@@ -2,6 +2,6 @@
 
     echo 'Test';
 
-    echo 'Cow';
+    echo 'Cow2';
 
 ?>
