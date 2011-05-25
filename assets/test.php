@@ -2,4 +2,6 @@
 
     echo 'Test';
 
+    echo 'Cow';
+
 ?>
