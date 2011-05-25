@@ -1,0 +1,332 @@
+@charset "utf-8";
+.home-section{
+/*    height: 430px!important;*/
+}
+
+#home-main{
+    float: left;
+    width: 640px;
+    height: 430px;
+}
+
+#home-main-bg{
+    position: absolute;
+    width: 640px;
+    height: 430px;
+    background: #ffffff;
+    opacity: 0.5;
+    filter: Alpha(Opacity=50);
+}
+
+#home-slider{
+    position: relative;
+    width: 640px;
+    height: 430px;
+}
+
+#home-slider.loader{
+    background: url(../images/loaders/big-loader1.gif) no-repeat center center transparent !important;
+}
+
+#home-slider .wow{
+    background: url('../images/sprite.png') -842px -715px;
+    width: 98px;
+    height: 98px;
+    position: absolute;
+    margin: 0px 0 0 0px;
+}
+
+.home-slider-info{
+    position: absolute;
+    bottom:0;
+    left:0;
+    background: url('../images/sprite.png') -170px -940px;
+    width: 640px;
+    height: 46px;
+}
+
+.home-slider-info-left{
+    float:left;   
+    margin-left: 10px;
+    width: 330px;
+}
+
+.home-slider-info-name-location{
+    width: 230px;
+    float: left;
+}
+.home-slider-info .title{
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    padding-top: 5px;
+/*    margin: 4px 0 4px 7px;*/
+}
+.home-slider-info .location{
+    font-size: 13px;
+    font-weight: normal;
+    color: #ffffff;
+    display: block;
+/*    margin: 4px 0 4px 7px;*/
+}
+
+.home-slider-info .rating-stars{
+    background: url('../images/sprite.png') -60px -270px;
+    float: right;
+    width: 60px;
+    height: 12px;
+    margin: 8px 0 0px 0;
+}
+
+.home-slider-info .rating-stars-value{
+    background: url('../images/sprite.png') 0 -270px;
+    width: 48px;
+    height: 12px;
+    position: absolute;
+}
+
+.home-slider-info .rating-value{
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 5px 0 0px 10px;
+}
+
+.home-slider-info-stars-price{
+    width: 100px;
+    float: right;
+}
+
+.home-slider-info .price{
+    color: #ffffff;
+/*    margin: 15px 0 0 360px;*/
+    width: 100px;
+    text-align: right;
+    display: block;
+    line-height: 15px;
+    clear:both;
+}
+
+.home-slider-info .pre-text{
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.home-slider-info .sum{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 0 5px;
+}
+
+.home-slider-info .currency-icon{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.home-slider-info-right{
+    float:right;
+/*    width: 290px;*/
+    margin-right: 10px;
+/*    text-align: right;*/
+}
+
+.home-slider-info-right .comments a, .home-slider-info-right .friends a,.home-slider-info-right .deals a{
+    cursor: default;
+}
+
+.home-slider-info-right .comments{
+    float: left;
+    margin: 10px 0 0 0;
+    width: 90px;
+}
+
+.home-slider-info-right .friends{
+    float: left;
+    margin: 10px 0 0 10px;
+    width: 65px;
+}
+
+.home-slider-info-right .deals{
+    float: left;
+    margin: 10px 0 0 10px;
+    width: 70px;
+}
+
+.home-slider-info-right .comments .icon{
+    background: url('../images/sprite.png') -870px -180px;
+    width: 25px;
+    height: 21px;
+    position: absolute;
+    margin: 2px 0 0 0;
+}
+
+.home-slider-info-right .comments .icon.no-comments{
+    background: url('../images/sprite.png') -900px -180px;
+}
+
+.home-slider-info-right .friends .icon{
+    background: url('../images/sprite.png') -870px -210px;
+    width: 25px;
+    height: 21px;
+    position: absolute;
+    margin: 2px 0 0 0;
+}
+
+.home-slider-info-right .friends .icon.no-friends{
+    background: url('../images/sprite.png') -900px -210px;
+}
+
+.home-slider-info-right .deals .icon{
+    background: url('../images/sprite.png') -870px -240px;
+    width: 25px;
+    height: 21px;
+    position: absolute;
+    margin: 7px 0 0 0;
+}
+
+.home-slider-info-right .deals .icon.no-deals{
+    background: url('../images/sprite.png') -900px -240px;
+}
+
+.home-slider-info-right .comments .no,.home-slider-info-right .friends .no,.home-slider-info-right .deals .no{
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1em;
+    margin: 0 0 0 30px;
+}
+
+.home-slider-info-right .comments .text,.home-slider-info-right .friends .text,.home-slider-info-right .deals .text{
+    color: #ffffff;
+    font-size: 10px;
+/*    font-weight: bold;*/
+    line-height: 1em;
+    margin: 0 0 0 30px;
+}
+
+
+#home-sidebar{
+    float: left;
+    width: 299px;
+    border:1px solid #DADADB;
+    border-left: none;
+    height: 428px;
+    background: #ffffff;
+}
+
+#home-sidebar h1{
+    font-size: 46px;
+    color:#6d8fbc;
+    line-height: 42px;
+    margin: 20px 20px 0 20px;
+    font-weight: bold;
+}
+
+.home-pink{
+    color:#fc4c98;
+}
+
+.home-sidebar-description{
+    font-size:14px;
+    color: #737373;
+    margin: 0 20px;
+}
+
+#home-booking{
+    margin:30px 20px 0;
+}
+
+.home-booking-form-field,.home-booking-form-field-left,.home-booking-form-field-right{
+    font-size: 11px;
+    font-weight: bold;
+    color:#737373;
+    margin: 10px 0px 0;
+}
+
+.home-booking-form-field label span{
+    font-weight: normal;
+}
+
+.home-booking-form-last-row{
+    width: 260px;
+}
+
+.home-booking-form-twofields{
+    width: 122px;
+    float:left;
+}
+
+.home-booking-form-field-left{
+    float:left;
+}
+
+.home-booking-form-field-right{
+    float:right;
+}
+
+.home-booking-select-big,.home-booking-select-small{
+    color:#737373;
+/*    margin: 10px 20px 0;*/
+    width: 258px;
+    border: 1px #d8d8d8 solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 3px 5px;
+    font-weight: bold;
+}
+
+.home-booking-select-small{
+    width: 55px;
+}
+
+.home-booking-input{
+    color:#737373;
+/*    margin: 10px 20px 0;*/
+    width: 90px;
+    border: 1px #d8d8d8 solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 3px 25px 3px 5px;
+    font-weight: bold;
+    float:left;
+    background: url('../images/sprite.png') 0px -510px;
+}
+
+.home-booking-input.right{
+    float:right;
+}
+
+.home-booking-form-field-submit{
+    float:right;
+    margin-top: 28px;
+    padding:0px;
+/*    display: block;*/
+    height: 25px;
+    width: 116px;
+/*    margin-left: 8px;*/
+}
+
+#home-booking-form-submit{
+    width: 116px;
+    height: 25px;
+    background: url('../images/sprite.png') 0 -480px;
+    border:0;
+    font-weight: bold;
+    font-size:14px;
+    text-align: right;
+    color: #ffffff;
+    padding:0px 10px 6px 6px;
+    cursor:pointer;
+    display: block;
+    float:left;
+}
+
+#booking-checkout{
+    float:right;
+}

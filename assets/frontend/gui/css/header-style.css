@@ -1,0 +1,214 @@
+@charset "utf-8";
+
+/* BEGIN HEADER */
+
+#header{
+    width: 940px;
+    height: 155px;
+    margin: auto;
+}
+
+#logo{
+    background: url('../images/sprite.png') 0 -100px repeat-x;
+    width: 170px;
+    height: 106px;
+    margin: 20px 0 0 10px;
+    float:left;
+/*    position: absolute;*/
+}
+
+#logo a{
+    width: 170px;
+    height: 106px;
+    display: block;
+}
+
+#header-content{
+    float:left;
+    width: 760px;
+}
+
+#header-content-top{
+    
+}
+
+#header-navigation{
+    float: right;
+    margin: 8px 10px 0 0px;
+}
+
+#header-navigation li{
+    padding: 4px 0 0 0;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #d9d9d9;
+}
+
+#header-navigation a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #d9d9d9;
+}
+
+#header-navigation a:hover{
+    text-decoration: underline;
+}
+
+a.fb_button{
+    text-decoration: none !important;
+}
+
+#header-navigation a.facebook-sign-in:hover{
+    text-decoration: none;
+}
+
+#header-navigation li.separator{
+    background: #737373;
+    width: 1px;
+    height: 23px;
+    display: block;
+    float: left;
+    margin: 0 10px 0 10px;
+}
+
+#header-promo-link{
+    float: right;
+    font-size:15px;
+    font-weight: bold;
+    margin: 0 0 0 20px;
+}
+#header-promo-link a{
+    color: #ffffff;
+/*    margin-top: 12px;*/
+    display:block;
+    vertical-align: middle;
+    line-height: 30px;
+}
+#header-promo-link a .text{
+    background: url("../images/sprite.png") -360px -337px;
+    float:left;
+    padding:0 0 0 13px;
+    cursor: pointer;
+}
+
+#header-promo-link a .end{
+    background: url("../images/sprite.png") -790px -337px;
+    display: block;
+    width: 13px;
+    height: 30px;
+    float:left;
+}
+
+#header-content-bottom{
+/*    float:left;*/
+    margin-top:9px;
+    width: 760px;
+}
+#header-search{
+    margin-top: 30px;
+    margin-left: 65px;
+    float: left;
+}
+
+#header-search label{
+    font-size: 20px;
+    color: #000000;
+/*    line-height: 26px;*/
+}
+
+#header-search-input{
+    margin-top: 7px;
+    border:1px solid #000000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size:14px;
+    color: #939393;
+    width: 390px;
+    background: #ffffff;
+}
+
+#header-search-submit{
+    width: 31px;
+    height: 27px;
+    font-weight: bold;
+    border: 0;
+    text-align: center;
+    line-height: 25px;
+    font-size: 13px;
+    color: #ffffff;
+    margin-top: 6px;
+    background: url('../images/sprite.png') 0 -400px;
+    padding-bottom: 3px;
+}
+
+#header-weather{
+    width: 224px;
+/*    height: 60px;*/
+    float:right;
+    margin: 20px 0 0 0px;
+}
+.header-weather-title{
+    font-size:14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header-weather-day{
+    font-size:14px;
+    text-align: center;
+}
+
+.header-weather-day .sup{
+    font-size: 10px;
+    vertical-align: super;
+}
+
+.header-weather-icon{
+    padding: 5px 0 0 55px;
+}
+
+.header-weather-icon img{
+    float:left;
+    padding-right: 10px;
+}
+.header-weather-temp{
+    font-size: 17px;
+    font-weight: bold;
+}
+.header-weather-temp-alt{
+    font-size: 12px;
+}
+
+.header-weather-left-nav1,.header-weather-left-nav2{
+    background: url("../images/sprite.png") repeat scroll -400px -100px transparent;
+    display: block;
+    height: 15px;
+    left: 0px;
+    position: absolute;
+    top: 2px;
+    width: 7px;
+    cursor: pointer;
+}
+.header-weather-left-nav2{
+    top: 23px;
+}
+.header-weather-right-nav1,.header-weather-right-nav2{
+    background: url("../images/sprite.png") repeat scroll -410px -100px transparent;
+    display: block;
+    height: 15px;
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    width: 7px;
+    cursor: pointer;
+}
+.header-weather-right-nav2{
+    top:23px;
+}
+
+/* END HEADER */

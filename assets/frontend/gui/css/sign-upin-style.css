@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+.sign-upin{
+    background-color: #fefefe;
+    border: 1px #d7d8d8 solid;
+    width: 703px !important;
+}
+
+.sign-upin h2{
+    color: #688ab9;
+    margin: 20px 20px 0 20px;
+}
+
+.sign-upin .title-separator{
+    background-color: #dddddd;
+    width: 665px;
+    height: 1px;
+    margin: 20px 0 0 20px;
+    display: block;
+}
+
+.sign-upin h3{
+    color: #555555;
+    margin: 40px 0 0 20px;
+    width: 322px;
+}
+
+.sign-upin h3.loading{
+    background: url('../images/loader1.gif') no-repeat center right;
+}
+
+.sign-upin .separator{
+    background-color: #dddddd;
+    width: 322px;
+    height: 1px;
+    margin: 10px 0 0 20px;
+    display: block;
+}
+
+.facebook-btn{
+    margin: 20px 0 0 20px;
+}
+
+.sign-upin-form-field{
+    width: 322px;
+    float: left;
+    margin: 20px 0 0 20px;
+}
+
+.sign-upin-form-field label{
+    width: 322px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777777;
+}
+
+.sign-upin-form-field label .required{
+    font-size: 10px;
+    font-weight: bold;
+    color: #688ab9;
+}
+
+.sign-upin-input-style{
+    background-color: #ffffff;
+    width: 310px;
+    border: 1px #d8d8d8 solid;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.sign-upin-input-style:focus{
+    border-color:#688ab9;
+}
+
+.sign-upin-input-style:disabled{
+    background-color: #f0f0f0;
+}
+
+.sign-upin-submit-style{
+    background-color: #688ab9;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 20px 0 20px 20px;
+    float: left;
+}
+
+.sign-upin-terms{
+    color: #777777;
+    margin: 25px 0 0 20px;
+    float: left;
+    display: block;
+}
+
+.sign-upin-message{
+    margin: 20px;
+    color: #777777;
+    display: block;
+}
+
+.sign-upin-forgot-password{
+    margin: 25px 0 0 20px;
+    float: left;
+    display: block;
+}
+
+.sign-upin-forgot-password a{
+    color: #688ab9;
+}
+
+.sign-upin-forgot-password a:hover{
+    color: #dd448d;
+}

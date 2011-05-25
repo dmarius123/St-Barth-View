@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+.page-section{
+    color: #4C4C4C;
+    text-align: justify;
+}
+
+.page-section h1{
+    padding:20px 20px 10px;
+    font-size: 18px;
+    color: #688AB9;
+}
+
+.page-section h2{
+    padding:20px 20px 10px;
+    font-size: 16px;
+    color: #688AB9;
+}
+
+.page-section p{
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+
+.page-section a{
+    color: #627AAD;
+    font-weight: bold;
+}
+
+.page-main{
+    background: #F0F0F0;
+    width: 685px!important;
+/*    min-height: 200px;*/
+}
+
+.page-main h1{
+}
+
+.page-main p{
+}
+
+.page-sidebar{
+    background: #F0F0F0;
+    margin-left: 20px;
+/*    min-height: 200px;*/
+}

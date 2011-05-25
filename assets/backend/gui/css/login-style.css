@@ -1,0 +1,143 @@
+@charset "utf-8";
+@import '../../../libraries/gui/css/reset.css';
+
+body{
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    line-height: 1.1em;
+}
+
+h1{
+    font-size: 20px;
+    color: #555555;
+}
+
+/* BEGIN LOGIN PANEL */
+
+#wrapper{
+    overflow: hidden;
+}
+
+#panel{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #000000;
+    width: 400px;
+    display: none;
+}
+
+#panel h1{
+    padding: 30px 0 0 30px;
+    color: #ffffff;
+}
+
+#form{
+    padding: 10px 0 0 0;
+    width: 400px;
+}
+
+.label{
+    padding: 10px 0 0 30px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#form .first-child{
+    padding: 20px 0 0 30px;
+}
+
+.input_container{
+    padding: 5px 0 0 30px;
+}
+
+.input_style{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    width: 330px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.input_style:focus{
+    background: #f0f0f0;
+}
+
+.input_style:disabled{
+    background: #f0f0f0;
+    color: #444444;
+}
+
+#form .last-child{
+    padding: 20px 30px 20px 0;
+    margin: 0 0 0 30px;
+    text-align: right;
+}
+
+.submit_style{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 0;
+    background: #f0f0f0;
+    padding: 10px 20px;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.submit_style:hover{
+    background:#e0e0e0;
+}
+
+.submit_style:disabled{
+    background: #e0e0e0;
+    color: #444444;
+}
+
+#info{
+    width: 340px;
+}
+
+.loader{
+    background: url('../images/loader.gif') no-repeat left;
+}
+
+#info_container{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #000000;
+    width: 360px;
+    padding: 10px 20px 5px 20px;
+    margin: 20px auto 0 auto;
+    display:none;
+}
+
+.info_icon{
+    float: left;
+}
+
+.info_spacer{
+    height: 5px;
+}
+
+.info_message{
+    min-height: 16px;
+    margin: 0 0 0 30px;
+    padding: 2px 0 0 0;
+    color: #9f9f9f;
+}
+
+.info_message span{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+/* END LOGIN PANEL */
