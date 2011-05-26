@@ -1,15 +1,18 @@
 <?php
 
-<<<<<<< HEAD
-    echo 'Test2';
-		echo "uite aici un alt test!";
-		echo "aici e un spatiu!";
-		echo "uite aici un alt test!";
-		echo "aici e un spatiu!";
-		echo "aici e un spatiu!";
-		echo "uite aici un alt test!";
-=======
-    echo "un test";
+    echo "aici";
+    echo "am";
+    echo "modificat";
+    echo "eu";
+    echo "eu";
+    echo "eu";
+		echo "si am mai pus o linie in plus";
 
->>>>>>> origin/master
+    echo "";
+    echo "";
+    echo "";
+    echo "";
+    echo "";
+    echo "";
+    
 ?>
