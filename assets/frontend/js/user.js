@@ -58,7 +58,6 @@ function parseContent(){
             });
         }
         else if (currPage == 'offers' || currPage == 'offers/'){
-            alert('ok');
             selectMenuItem('offers');
             $.post(BASE_URL+'user/offers/content', {}, function(data){
                 $('#user-area-main').html(data.split(';;;')[0]);
