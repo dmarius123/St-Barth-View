@@ -3,8 +3,7 @@
     echo "aici";
     echo "am";
     echo "modificat";
-    echo "eu";
-    echo "eu";
+    echo "eu am modificat aici";
     echo "eu";
 		echo "si am mai pus o linie in plus";
 
