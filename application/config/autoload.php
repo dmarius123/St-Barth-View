@@ -1,4 +1,16 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+/*
+ * Title                   : St Barth View
+ * File                    : application/config/autoload.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : CodeIgniter AUTO-LOADER.
+*/
+
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -52,8 +64,11 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'frontend/Language', 'frontend/Currency');
-
+$autoload['libraries'] = array('database',
+                               'session',
+                               'email',
+                               'frontend/Language',
+                               'frontend/Currency');
 
 /*
 | -------------------------------------------------------------------
@@ -64,7 +79,9 @@ $autoload['libraries'] = array('database', 'session', 'frontend/Language', 'fron
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'cookie', 'date');
+$autoload['helper'] = array('url',
+                            'cookie',
+                            'date');
 
 
 /*
@@ -96,7 +113,14 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('frontend/footer',
+                              'frontend/general',
+                              'frontend/header',
+                              'frontend/home',
+                              'frontend/modules',
+                              'frontend/search',
+                              'frontend/signupin',
+                              'frontend/user');
 
 
 /*
@@ -109,8 +133,11 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
-
+$autoload['model'] = array('frontend/Functions_model',
+                           'frontend/Hotels_model',
+                           'frontend/Last_model',
+                           'frontend/Users_model',
+                           'frontend/Offers_model');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

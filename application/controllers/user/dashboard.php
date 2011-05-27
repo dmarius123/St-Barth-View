@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/user/dashboard.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Login User - Dashboard Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Dashboard extends CI_Controller{
@@ -8,24 +18,8 @@
 
         function Dashboard(){
             parent::__construct();
-            $this->CI =& get_instance();
             $this->load->library('frontend/Facebook');
-        }
-
-        private function loadLanguage(){
-            $this->lang->load('frontend/header', $this->language->getLanguage());
-            $this->lang->load('frontend/user', $this->language->getLanguage());
-            $this->lang->load('frontend/footer', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            return array(0 => 'assets/libraries/js/swfobject.js',
-                         1 => 'assets/libraries/js/jquery.uploadify.min.js',
-                         2 => 'assets/libraries/js/jquery.dop.BookingCalendar.js',
-                         3 => 'assets/frontend/js/google-maps-api.js',
-                         4 => 'assets/frontend/js/user.js');
+            $this->CI =& get_instance();
         }
 
         public function index(){
@@ -35,16 +29,15 @@
             
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $this->CI->load->model('frontend/Users_model');
-
-                $data = $this->loadLanguage();
-                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
-                $data['js'] = $this->loadJS();
+                $data = $this->lang->language;
+                
+                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
                 $data['is_login'] = true;
 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
                 $data['last_name'] = $this->CI->Users_model->getProfile($this->userId, 'last_name');
                 $data['profile_picture'] = $this->CI->Users_model->getProfile($this->userId, 'picture');
+
                 $this->load->view('frontend/user/templates/user-admin-template', $data);
             }
             else{
@@ -55,26 +48,14 @@
         public function content(){
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $data = $this->loadLanguage();
-                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
-                $data['total_reward_points'] = sprintf($this->lang->line('user_reward_points_info'), $this->getTotalRewardPoints());
+                $data = $this->lang->language;
+
+                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                
                 $this->load->view('frontend/user/content/dashboard-content', $data);
             }
             else{
                 redirect('user/redirect');
-            }
-        }
-
-        private function getTotalRewardPoints(){
-            $this->db->select('(SELECT SUM(value) FROM reward_points) AS total_reward_points', FALSE);
-            $this->db->where('user_id', $this->userId);
-            $query = $this->db->get('reward_points');
-            if ($query->num_rows() > 0){
-                $row_items = $query->row_array(0);
-                return $row_items['total_reward_points'];
-            }
-            else{
-                return 0;
             }
         }
 

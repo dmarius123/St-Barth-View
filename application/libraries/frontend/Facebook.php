@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/libraries/frontend/Facebook.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : JavaScript distribution Library.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Facebook{

@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/models/frontend/users_model.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Users Model.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Users_model extends CI_Model{

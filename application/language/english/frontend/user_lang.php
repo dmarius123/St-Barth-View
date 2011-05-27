@@ -1,10 +1,21 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/language/english/frontend/user_lang.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : User pages translation.
+*/
+
     //$lang['user_'] = "";
 
     $lang['user_modify_my_profile'] = "Modify my profile";
     $lang['user_dashboard'] = "Dashboard";
     $lang['user_offers'] = "Offers";
+    $lang['user_deals'] = "Deals";
     $lang['user_messages'] = "Messages";
     $lang['user_friends'] = "Friends";
     $lang['user_reservations'] = "Reservations";
@@ -15,6 +26,7 @@
     $lang['user_profile_title'] = "My profile";
     $lang['user_dashboard_title'] = "Dashboard";
     $lang['user_offers_title'] = "My Offers";
+    $lang['user_deals_title'] = "My Deals";
     $lang['user_messages_title'] = "Messages";
     $lang['user_friends_title'] = "My Friends";
     $lang['user_reservations_title'] = "Reservations";

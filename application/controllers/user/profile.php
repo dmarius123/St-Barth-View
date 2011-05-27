@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/user/profile.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Login User - Profile Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Profile extends CI_Controller{
@@ -12,27 +22,12 @@
             $this->CI =& get_instance();
         }
 
-        private function loadLanguage(){
-            $this->lang->load('frontend/header', $this->language->getLanguage());
-            $this->lang->load('frontend/user', $this->language->getLanguage());
-            $this->lang->load('frontend/footer', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            return array(0 => 'assets/libraries/js/swfobject.js',
-                         1 => 'assets/libraries/js/jquery.uploadify.min.js',
-                         2 => 'assets/frontend/js/google-maps-api.js',
-                         3 => 'assets/frontend/js/user.js');
-        }
-
         public function index(){
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $data = $this->loadLanguage();
-                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
-                $data['js'] = $this->loadJS();
+                $data = $this->lang->language;
+
+                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
                 $data['is_login'] = true;
                 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -41,6 +36,7 @@
                 $data['email'] = $this->CI->Users_model->getProfile($this->userId, 'email');
                 $data['phone'] = $this->CI->Users_model->getProfile($this->userId, 'phone');
                 $data['description'] = $this->CI->Users_model->getProfile($this->userId, 'description');
+                
                 $this->load->view('frontend/user/templates/user-admin-template', $data);
             }
             else{
@@ -51,10 +47,9 @@
         public function content(){
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $this->CI->load->model('frontend/Users_model');
-                
-                $data = $this->loadLanguage();
-                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
+                $data = $this->lang->language;
+
+                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
                 $data['user_id'] = $this->userId;
 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -63,6 +58,7 @@
                 $data['email'] = $this->CI->Users_model->getProfile($this->userId, 'email');
                 $data['phone'] = $this->CI->Users_model->getProfile($this->userId, 'phone');
                 $data['description'] = $this->CI->Users_model->getProfile($this->userId, 'description');
+                
                 $this->load->view('frontend/user/content/profile-content', $data);
             }
             else{
@@ -98,29 +94,28 @@
         }
 
         public function validateFirstName(){
-            $lang = $this->loadLanguage();
+            $data = $this->lang->language;
+            
             if ($this->input->post('first_name')){
                 echo $lang['user_mandatory_field'];
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_edit_profile_first_name_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_first_name_invalid').'</font>';
             }
         }
 
         public function validateLastName(){
-            $lang = $this->loadLanguage();
             if ($this->input->post('last_name')){
-                echo $lang['user_mandatory_field'];
+                echo $this->lang->line('user_mandatory_field');
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_edit_profile_last_name_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_last_name_invalid').'</font>';
             }
         }
 
-        public function validateEmail(){
-            $lang = $this->loadLanguage();
+        public function validateEmail(){            
             if (!$this->validEmail($this->input->post('email'))){
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_edit_profile_email_invalid'].'</font> '.$lang['user_private_field'];
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_email_invalid').'</font> '.$this->lang->line('user_private_field');
             }
             else{
                 $this->db->where('email', $this->input->post('email'));
@@ -128,14 +123,14 @@
                 if ($query->num_rows() > 0){
                     $row_items = $query->row_array(0);
                     if ($row_items['id'] != $this->session->userdata('stbartsview-user')){
-                        echo '<font style="color:'.$this->errorColor.';">'.$lang['user_edit_profile_email_used'].'</font> '.$lang['user_private_field'];
+                        echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_email_used').'</font> '.$this->lang->line('user_private_field');
                     }
                     else{
-                        echo $lang['user_mandatory_field'].' '.$lang['user_private_field'];
+                        echo $this->lang->line('user_mandatory_field').' '.$this->lang->line('user_private_field');
                     }
                 }
                 else{
-                    echo $lang['user_mandatory_field'].' '.$lang['user_private_field'];
+                    echo $this->lang->line('user_mandatory_field').' '.$this->lang->line('user_private_field');
                 }
             }
         }
@@ -151,7 +146,6 @@
 
         public function edit(){
             if ($this->input->post('email')){
-                $lang = $this->loadLanguage();
                 $this->userId = $this->session->userdata('stbartsview-user');
                 
                 $query_data = array(
@@ -169,7 +163,7 @@
                 $this->db->where('user_id', $this->userId);
                 $this->db->update('profiles', $query_data);
 
-                echo $lang['user_edit_profile_success'];
+                echo $this->lang->line('user_edit_profile_success');
             }
         }
     }

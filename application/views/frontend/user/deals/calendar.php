@@ -2,7 +2,6 @@
 
 /*
  * Title                   : St Barth View
- * Version                 : 1.0
  * File                    : application/views/frontend/deals/calendar.php
  * File Version            : 1.0
  * Author                  : Marius-Cristian Donea

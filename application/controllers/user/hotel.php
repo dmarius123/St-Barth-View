@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/user/hotel.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Login User - Hotel Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Hotel extends CI_Controller{
@@ -11,22 +21,6 @@
         function Hotel(){
             parent::__construct();
             $this->CI =& get_instance();
-        }
-
-        private function loadLanguage(){
-            $this->lang->load('frontend/general', $this->language->getLanguage());
-            $this->lang->load('frontend/header', $this->language->getLanguage());
-            $this->lang->load('frontend/user', $this->language->getLanguage());
-            $this->lang->load('frontend/footer', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            return array(0 => 'assets/libraries/js/swfobject.js',
-                         1 => 'assets/libraries/js/jquery.uploadify.min.js',
-                         2 => 'assets/frontend/js/google-maps-api.js',
-                         3 => 'assets/frontend/js/user.js');
         }
 
         public function index(){
@@ -41,9 +35,10 @@
         public function add(){
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $data = $this->loadLanguage();
-                $data['js'] = $this->loadJS();
+                $data = $this->lang->language;
+                
                 $data['user_id'] = $this->userId;
+
                 $this->load->view('frontend/user/content/add-hotel-content', $data);
             }
             else{
@@ -57,7 +52,7 @@
                 echo $lang['user_mandatory_field'];
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_hotel_details_name_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_hotel_details_name_invalid').'</font>';
             }
         }
 
@@ -67,15 +62,13 @@
                 echo $lang['user_mandatory_field'];
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_hotel_details_description_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_hotel_details_description_invalid').'</font>';
             }
         }
 
         public function addSubmit(){
             if ($this->input->post('address')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                
-                $this->CI->load->model('frontend/Offers_model');
                 $this->CI->Offers_model->add($this->userId, 1);
             }
         }
@@ -84,16 +77,17 @@
             if ($this->session->userdata('stbartsview-user')){
                 if ($this->input->post('id')){
                     $this->userId = $this->session->userdata('stbartsview-user');
-                    $this->hotelId = $this->input->post('id');                    
+                    $this->hotelId = $this->input->post('id');
+                    
                     if ($this->validHotelRequest()){
-                        $this->CI->load->model('frontend/Functions_model');
-                        $this->CI->load->model('frontend/Offers_model');
-                        $data = $this->loadLanguage();
+                        $data = $this->lang->language;
 
                         $hotel = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
+
                         $data['short_description'] = $this->CI->Functions_model->shortText($hotel['description'], 150);
                         $data['first_image'] = $this->CI->Offers_model->getFirstImage($hotel['id']);
                         $data['hotel'] = $hotel;
+
                         $this->load->view('frontend/user/templates/hotel-template', $data);
                     }
                     else{
@@ -111,15 +105,17 @@
                 if ($this->input->post('id')){
                     $this->userId = $this->session->userdata('stbartsview-user');
                     $this->hotelId = $this->input->post('id');
+
                     if ($this->validHotelRequest()){
-                        $this->CI->load->model('frontend/Offers_model');
-                        $data = $this->loadLanguage();
+                        $data = $this->lang->language;
 
                         $details = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
+
                         $data['id'] = $this->hotelId;
                         $data['name'] = $details['name'];
                         $data['description'] = $details['description'];
                         $data['address'] = $details['alt_address'];
+                        
                         $this->load->view('frontend/user/templates/edit-hotel-details-template', $data);
                     }
                     else{
@@ -134,11 +130,11 @@
 
         public function editDetailsSubmit(){
             if ($this->input->post('id')){
-                $this->CI->load->model('frontend/Offers_model');
-                $this->CI->Offers_model->editDetails();
+                $data = $this->lang->language;
 
-                $lang = $this->loadLanguage();
-                echo $lang['user_edit_hotel_details_success'];
+                $this->CI->Offers_model->editDetails();
+                
+                echo $this->lang->line('user_edit_hotel_details_success');
             }
         }
 
@@ -147,15 +143,16 @@
                 if ($this->input->post('id')){
                     $this->userId = $this->session->userdata('stbartsview-user');
                     $this->hotelId = $this->input->post('id');
+                    
                     if ($this->validHotelRequest()){
-                        $this->CI->load->model('frontend/Offers_model');
-                        $data = $this->loadLanguage();
+                        $data = $this->lang->language;
                         
                         $details = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
+                        
                         $data['id'] = $this->hotelId;
                         $data['name'] = $details['name'];
-
                         $data['images'] = $this->CI->Offers_model->getGallery($this->hotelId);
+                        
                         $this->load->view('frontend/user/templates/edit-hotel-gallery-template', $data);
                     }
                     else{
@@ -210,8 +207,6 @@
                 // Output
                 if ($ext == 'png') $source = imagepng($thumb, $targetPath.'thumbs/'.$newName.'.'.$ext);
                 else $source = imagejpeg($thumb, $targetPath.'thumbs/'.$newName.'.'.$ext);
-
-                $this->CI->load->model('frontend/Offers_model');
                 
                 $images = $this->CI->Offers_model->gallery($this->hotelId);
                 $query_data = array(
@@ -236,20 +231,22 @@
 
         public function sortImages(){
             if ($this->input->post('data')){
-                $this->CI->load->model('frontend/Offers_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+
                 $this->CI->Offers_model->sortImages();
-                echo $lang['user_offers_sort_images_success'];
+
+                echo $this->lang->line('user_offers_sort_images_success');
             }
         }
 
         public function deleteImage(){
             if ($this->input->post('no')){
-                $this->CI->load->model('frontend/Offers_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+
                 $this->hotelId = $this->input->post('hotelId');
                 $this->CI->Offers_model->deleteImage($this->hotelId);
-                echo $lang['user_offers_delete_images_success'];
+                
+                echo $this->lang->line('user_offers_delete_images_success');
             }
         }
 
@@ -259,17 +256,17 @@
                     $this->userId = $this->session->userdata('stbartsview-user');
                     $this->hotelId = $this->input->post('id');
                     if ($this->validHotelRequest()){
-                        $this->CI->load->model('frontend/Offers_model');
-                        $this->CI->load->model('frontend/Hotels_model');
-                        $data = $this->loadLanguage();
+                        $data = $this->lang->language;
 
                         $details = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
+
                         $data['id'] = $this->hotelId;
                         $data['name'] = $details['name'];
                         $data['currency'] = $details['currency'];
                         $data['min_stay'] = $details['min_stay'];
                         $data['cancel_policy'] = $details['cancel_policy'];
                         $data['rooms'] = $this->CI->Hotels_model->getRooms($this->hotelId);
+                        
                         $this->load->view('frontend/user/templates/edit-hotel-pricing-template', $data);
                     }
                     else{
@@ -284,11 +281,11 @@
 
         public function editPricingSubmit(){
             if ($this->input->post('hotelId')){
-                $this->CI->load->model('frontend/Hotels_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+
                 $this->CI->Hotels_model->editPricing();
 
-                echo $lang['user_edit_hotel_pricing_edit_pricing_success'];
+                echo $this->lang->line('user_edit_hotel_pricing_edit_pricing_success');
             }            
         }
 
@@ -296,9 +293,9 @@
             if ($this->input->post('hotelId')){
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $this->hotelId = $this->input->post('hotelId');
-                $this->CI->load->model('frontend/Hotels_model');
-                $lang = $this->loadLanguage();
-                echo $this->CI->Hotels_model->addRoom($this->hotelId, $lang['user_edit_hotel_pricing_add_room_name']).';;'.$lang['user_edit_hotel_pricing_add_room_name'].';;'.$lang['user_edit_hotel_pricing_add_room_success'];
+                $data = $this->lang->language;
+
+                echo $this->CI->Hotels_model->addRoom($this->hotelId, $this->lang->line('user_edit_hotel_pricing_add_room_name')).';;'.$this->lang->line('user_edit_hotel_pricing_add_room_name').';;'.$this->lang->line('user_edit_hotel_pricing_add_room_success');
             }
         }
 
@@ -307,14 +304,16 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $this->hotelId = $this->input->post('hotelId');
                 if ($this->validHotelRequest()){
-                    $this->CI->load->model('frontend/Hotels_model');
-                    $data = $this->loadLanguage();
+                    $data = $this->lang->language;
+
                     $room = $this->CI->Hotels_model->getRoom($this->input->post('roomId'))->row_array(0);
+
                     $data['id'] = $room['id'];
                     $data['name'] = $room['name'];
                     $data['no_rooms'] = $room['no_rooms'];
                     $data['schedule_and_pricing'] = $room['schedule_and_pricing'];
                     $data['max_allowed_people'] = $room['max_allowed_people'];
+
                     $this->load->view('frontend/user/forms/edit-hotel-room-form', $data);
                 }
                 else{
@@ -325,64 +324,64 @@
 
         public function editRoomSubmit(){
             if ($this->input->post('roomId')){
-                $this->CI->load->model('frontend/Hotels_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+
                 $this->CI->Hotels_model->editRoom();
 
-                echo $lang['user_edit_hotel_pricing_edit_room_success'];
+                echo $this->lang->line('user_edit_hotel_pricing_edit_room_success');
             }
         }
 
         public function deleteRoom(){
             if ($this->input->post('roomId')){
-                $this->CI->load->model('frontend/Hotels_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+                
                 $this->CI->Hotels_model->deleteRoom();
 
-                echo $lang['user_edit_hotel_pricing_edit_room_deleted'];
+                echo $this->lang->line('user_edit_hotel_pricing_edit_room_deleted');
             }
         }
 
         public function getPricing(){
             if ($this->session->userdata('stbartsview-user')){
                 $result = '';
-                $this->CI->load->model('frontend/Hotels_model');
-                $lang = $this->loadLanguage();
+                $data = $this->lang->language;
+                
                 $room = $this->CI->Hotels_model->getRoom($this->uri->segment(4))->row_array(0);
 
-                if ($lang['general_calendar_days'] == ''){
+                if ($this->lang->line('general_calendar_days') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_days'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_days').';;;;;';
                 }
 
-                if ($lang['general_calendar_months'] == ''){
+                if ($this->lang->line('general_calendar_months') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_months'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_months').';;;;;';
                 }
 
-                if ($lang['general_calendar_booked'] == ''){
+                if ($this->lang->line('general_calendar_booked') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_booked'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_booked').';;;;;';
                 }
 
-                if ($lang['general_calendar_room'] == ''){
+                if ($this->lang->line('general_calendar_room') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_room'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_room').';;;;;';
                 }
 
-                if ($lang['general_calendar_rooms'] == ''){
+                if ($this->lang->line('general_calendar_rooms') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_rooms'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_rooms').';;;;;';
                 }
                 
                 if ($this->input->cookie('stbartsview-language') == 'english'){
@@ -394,53 +393,53 @@
                 $result .= 'default0123456789;;;;;';
                 $result .= $room['no_rooms'].';;;;;';
 
-                if ($lang['general_calendar_availability'] == ''){
+                if ($this->lang->line('general_calendar_availability') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_availability'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_availability').';;;;;';
                 }
 
-                if ($lang['general_calendar_price'] == ''){
+                if ($this->lang->line('general_calendar_price') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_price'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_price').';;;;;';
                 }
 
-                if ($lang['general_calendar_currency_euro'] == ''){
+                if ($this->lang->line('general_calendar_currency_euro') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_currency_euro'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_currency_euro').';;;;;';
                 }
 
-                if ($lang['general_calendar_submit'] == ''){
+                if ($this->lang->line('general_calendar_submit') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_submit'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_submit').';;;;;';
                 }
 
-                if ($lang['general_calendar_closed'] == ''){
+                if ($this->lang->line('general_calendar_closed') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_closed'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_closed').';;;;;';
                 }
 
-                if ($lang['general_calendar_reset'] == ''){
+                if ($this->lang->line('general_calendar_reset') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_reset'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_reset').';;;;;';
                 }
 
-                if ($lang['general_calendar_exit'] == ''){
+                if ($this->lang->line('general_calendar_exit') == ''){
                     $result .= 'default0123456789;;;;;';
                 }
                 else{
-                    $result .= $lang['general_calendar_exit'].';;;;;';
+                    $result .= $this->lang->line('general_calendar_exit').';;;;;';
                 }
 
                 if ($room['schedule_and_pricing'] == ''){
@@ -456,7 +455,6 @@
 
         public function savePricing(){
             if ($this->input->post('dop_booking_calendar')){
-                $this->CI->load->model('frontend/Hotels_model');
                 $this->CI->Hotels_model->savePricing($this->uri->segment(4));
             }
         }
@@ -480,7 +478,7 @@
         }
 
         private function offerContent(){
-            $data = $this->loadLanguage();
+            $data = $this->lang->language;
             $this->load->view('frontend/user/content/offers-content', $data);
         }
     }
