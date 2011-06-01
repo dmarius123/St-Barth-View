@@ -79,7 +79,7 @@
                 $data['home_search_offer_children'] = '';
             }
 
-            $this->load->view('frontend/search/templates/template-search', $data);
+            $this->load->view('frontend/search/templates/search-template', $data);
         }
 
         public function searchSubmit(){
