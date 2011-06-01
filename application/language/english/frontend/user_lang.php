@@ -3,11 +3,11 @@
 /*
  * Title                   : St Barth View
  * File                    : application/language/english/frontend/user_lang.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 28 May 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : User pages translation.
+ * Description             : English Frontend User translation.
 */
 
     //$lang['user_'] = "";

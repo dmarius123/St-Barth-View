@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/pages/commitments.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Pages - Commitments Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Commitments extends CI_Controller{
@@ -21,8 +31,8 @@
         }
 
         public function index(){
-            $this->CI->load->model('frontend/Users_model');
-            $data = $this->loadLanguage();
+            $data = $this->lang->language;
+
             $data['header_subtitle'] = ' - '.$data['footer_commitments'];
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
@@ -34,7 +44,8 @@
                 $data['facebook_language'] = $this->language->getFacebookLanguage();
                 $data['is_login'] = false;
             }
-            $this->load->view('frontend/pages/template-commitments', $data);
+            
+            $this->load->view('frontend/pages/templates/commitments-template', $data);
         }
     }
 

@@ -1,4 +1,16 @@
+<?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/views/frontend/modules/last-module/offers.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Last Items Module - Offers.
+*/
+
+?>
     <div class="search-review-slider-content" id="slider-offers">
     <input type="hidden" name="last_no_pages" id="last_no_pages" value="<?echo $offers->num_rows()%2==0 ? $offers->num_rows()/2:intval($offers->num_rows()/2)+1;?>" />
 <?php

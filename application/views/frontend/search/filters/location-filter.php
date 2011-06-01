@@ -1,4 +1,16 @@
+<?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/views/frontend/search/filters/location-filter.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Search Filters - Location.
+*/
+
+?>
     <input type="hidden" name="search_location" id="search_location" value="<?=$home_search_location?>" />
     <ul class="filter">
         <li>

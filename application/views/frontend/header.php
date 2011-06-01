@@ -3,15 +3,14 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/header.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 01 June 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Header.
+ * Description             : Header Section.
 */
 
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -24,19 +23,18 @@
         <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false&amp;key=ABQIAAAAs3IS16FqClJrvuY8j7iJsxRac1StWoOj8S9kJuUUUouEfBlwnxRWLOOuaGrrwmELKOoH4N71mpGAXg"></script>
         <script type="text/JavaScript">
-            var BASE_URL = "<?php echo base_url(); ?>";
+            var BASE_URL = "<?=base_url()?>";
         </script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.countdown-fr.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.countdown.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.ImageLoader.min.js'; ?>"></script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.BookingCalendar.min.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.BookingCalendar.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.uploadify.min.js'; ?>"></script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jsquery.swfobject.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/swfobject.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/main.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/home.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/last-module.js'; ?>"></script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/main.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/new-users-module.js'; ?>"></script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/search.js'; ?>"></script>
+<!--        <script type="text/JavaScript" src="<?php //echo base_url().'assets/frontend/js/search.js'; ?>"></script>-->
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/sign-upin.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/user.js'; ?>"></script>
     </head>

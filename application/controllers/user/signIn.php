@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/signIn.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -25,21 +25,21 @@
         public function index(){
             $data = $this->lang->language;
 
-            $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+            $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
             $data['facebook_language'] = $this->language->getFacebookLanguage();
 
             if ($this->session->userdata('stbartsview-user') || $this->CI->facebook->getCookie()){
                 redirect('user/dashboard/');
             }
             else{
-                $this->load->view('frontend/user/sign-in', $data);
+                $this->load->view('frontend/user/templates/sign-upin/sign-in-template', $data);
             }
         }
 
         public function validate(){
             $data = $this->lang->language;
 
-            $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+            $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
             $data['facebook_language'] = $this->language->getFacebookLanguage();
 
             $code = $this->uri->segment(3);
@@ -56,14 +56,14 @@
                 $session_data = array('stbartsview-user' => $row_items['id']);
                 $this->session->set_userdata($session_data);
                 
-                $data['message'] = $this->lang->line('signupin_activation_success');
+                $data['message'] = $data['signupin_activation_success'];
 
-                $this->load->view('frontend/user/validate', $data);
+                $this->load->view('frontend/user/templates/sign-upin/validate-template', $data);
             }
             else{
-                $data['message'] = $this->lang->line('signupin_activation_invalid');
+                $data['message'] = $data['signupin_activation_invalid'];
 
-                $this->load->view('frontend/user/validate', $data);
+                $this->load->view('frontend/user/templates/sign-upin/validate-template', $data);
             }
         }
 
@@ -92,14 +92,14 @@
         public function resetPassword(){
             $data = $this->lang->language;
 
-            $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+            $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
             $data['facebook_language'] = $this->language->getFacebookLanguage();
 
             if ($this->session->userdata('stbartsview-user') || $this->CI->facebook->getCookie()){
                 redirect('user/dashboard/');
             }
             else{
-                $this->load->view('frontend/user/reset-password', $data);
+                $this->load->view('frontend/user/templates/sign-upin/reset-password-template', $data);
             }
         }
 
@@ -116,19 +116,19 @@
                 $this->db->where('email', $this->input->post('reset-email'));
                 $this->db->update('users', $query_data);
 
+                $data = $this->lang->language;
+
                 $email_config = array('mailtype' => 'html');
                 $this->CI->email->initialize($email_config);
                 $this->CI->email->from('no-reply@stbarthview.com', $this->lang->line('header_title'));
                 $this->CI->email->to($this->input->post('reset-email'));
-                $this->CI->email->subject($this->lang->line('signupin_new_password_email_title'));
-                $email_message = sprintf($this->lang->line('signupin_new_password_email_text'), $newPassword);
+                $this->CI->email->subject($data['signupin_new_password_email_title']);
+                $email_message = sprintf($data['signupin_new_password_email_text'], $newPassword);
                 $this->CI->email->message($email_message);
                 $this->CI->email->send();
-
-                $data = $this->lang->language;
                 
                 $data['facebook_language'] = $this->language->getFacebookLanguage();
-                $this->load->view('frontend/user/new-password', $data);
+                $this->load->view('frontend/user/templates/sign-upin/new-password-template', $data);
             }
         }
 
@@ -138,13 +138,13 @@
 
             $data = $this->lang->language;
 
-            $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+            $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
             $data['facebook_language'] = $this->language->getFacebookLanguage();
-            $this->load->view('frontend/user/sign-out', $data);
+            $this->load->view('frontend/user/templates/sign-upin/sign-out-template', $data);
         }
 
         public function redirect(){
-            $this->load->view('frontend/user/redirect');
+            $this->load->view('frontend/user/templates/sign-upin/redirect-redirect');
         }
     }
 

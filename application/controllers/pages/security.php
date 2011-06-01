@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/pages/security.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Pages - Security Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Security extends CI_Controller{
@@ -9,20 +19,9 @@
             $this->CI =& get_instance();
         }
 
-        private function loadLanguage(){
-            $this->lang->load('frontend/header', $this->language->getLanguage());
-            $this->lang->load('frontend/footer', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            return array();
-        }
-
         public function index(){
-            $this->CI->load->model('frontend/Users_model');
-            $data = $this->loadLanguage();
+            $data = $this->lang->language;
+
             $data['header_subtitle'] = ' - '.$data['footer_security'];
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
@@ -34,7 +33,8 @@
                 $data['facebook_language'] = $this->language->getFacebookLanguage();
                 $data['is_login'] = false;
             }
-            $this->load->view('frontend/pages/template-security', $data);
+            
+            $this->load->view('frontend/pages/templates/security-template', $data);
         }
     }
 

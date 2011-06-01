@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/profile.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -27,7 +27,7 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 $data['is_login'] = true;
                 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -49,7 +49,7 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 $data['user_id'] = $this->userId;
 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -59,7 +59,7 @@
                 $data['phone'] = $this->CI->Users_model->getProfile($this->userId, 'phone');
                 $data['description'] = $this->CI->Users_model->getProfile($this->userId, 'description');
                 
-                $this->load->view('frontend/user/content/profile-content', $data);
+                $this->load->view('frontend/user/templates/profile-template', $data);
             }
             else{
                 redirect('user/redirect');
@@ -94,10 +94,8 @@
         }
 
         public function validateFirstName(){
-            $data = $this->lang->language;
-            
             if ($this->input->post('first_name')){
-                echo $lang['user_mandatory_field'];
+                echo $this->lang->line('user_mandatory_field');
             }
             else{
                 echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_first_name_invalid').'</font>';
@@ -114,7 +112,7 @@
         }
 
         public function validateEmail(){            
-            if (!$this->validEmail($this->input->post('email'))){
+            if (! $this->CI->Functions_model->validEmail($this->input->post('email'))){
                 echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_edit_profile_email_invalid').'</font> '.$this->lang->line('user_private_field');
             }
             else{
@@ -132,15 +130,6 @@
                 else{
                     echo $this->lang->line('user_mandatory_field').' '.$this->lang->line('user_private_field');
                 }
-            }
-        }
-
-        private function validEmail($email){
-            if (preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)){
-                return true;
-            }
-            else{
-                return false;
             }
         }
 

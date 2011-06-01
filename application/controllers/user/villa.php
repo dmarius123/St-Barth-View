@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/villa.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -34,10 +34,11 @@
         public function add(){
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-                $data = $this->loadLanguage();
-                $data['js'] = $this->loadJS();
+                $data = $this->lang->language;
+
                 $data['user_id'] = $this->userId;
-                $this->load->view('frontend/user/content/add-villa-content', $data);
+                
+                $this->load->view('frontend/user/templates/offers/add-villa-template', $data);
             }
             else{
                 redirect('user/redirect');
@@ -45,30 +46,26 @@
         }
 
         public function validateName(){
-            $lang = $this->loadLanguage();
             if ($this->input->post('name')){
-                echo $lang['user_mandatory_field'];
+                echo $this->lang->line('user_mandatory_field');
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_villa_details_name_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_villa_details_name_invalid').'</font>';
             }
         }
 
         public function validateDescription(){
-            $lang = $this->loadLanguage();
             if ($this->input->post('description')){
-                echo $lang['user_mandatory_field'];
+                echo $this->lang->line('user_mandatory_field');
             }
             else{
-                echo '<font style="color:'.$this->errorColor.';">'.$lang['user_villa_details_description_invalid'].'</font>';
+                echo '<font style="color:'.$this->errorColor.';">'.$this->lang->line('user_villa_details_description_invalid').'</font>';
             }
         }
 
         public function addSubmit(){
             if ($this->input->post('address')){
                 $this->userId = $this->session->userdata('stbartsview-user');
-
-                $this->CI->load->model('frontend/Offers_model');
                 $this->CI->Offers_model->add($this->userId, 2);
             }
         }

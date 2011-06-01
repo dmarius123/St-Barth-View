@@ -1,48 +1,28 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/search.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Search Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Search extends CI_Controller{
 
         function Search(){
             parent::__construct();
-            $this->load->library('frontend/Facebook');
             $this->CI =& get_instance();
-        }
-
-        private function loadLanguage(){
-            $this->lang->load('frontend/general', $this->language->getLanguage());
-            $this->lang->load('frontend/header', $this->language->getLanguage());
-            $this->lang->load('frontend/modules', $this->language->getLanguage());
-            $this->lang->load('frontend/search', $this->language->getLanguage());
-            $this->lang->load('frontend/footer', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            if ($this->input->cookie('stbartsview-language') == 'french'){
-                return array(0 => 'assets/libraries/js/jquery.countdown.js',
-                             1 => 'assets/libraries/js/jquery.countdown-fr.js',
-                             2 => 'assets/frontend/js/last-module.js',
-                             3 => 'assets/frontend/js/new-users-module.js',
-                             4 => 'assets/frontend/js/google-maps-api.js',
-                             5 => 'assets/frontend/js/search.js');
-            }
-            else{
-                return array(0 => 'assets/libraries/js/jquery.countdown.js',
-                             1 => 'assets/frontend/js/last-module.js',
-                             2 => 'assets/frontend/js/new-users-module.js',
-                             3 => 'assets/frontend/js/google-maps-api.js',
-                             4 => 'assets/frontend/js/search.js');
-            }
         }
         
         public function index(){
-            $this->CI->load->model('frontend/Users_model');
-            $data = $this->loadLanguage();
+            $data = $this->lang->language;
+
             $data['header_subtitle'] = ' - '.$data['search_title'];
-            $data['js'] = $this->loadJS();
 
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
@@ -99,15 +79,13 @@
                 $data['home_search_offer_children'] = '';
             }
 
-            $this->load->view('frontend/search/template-search', $data);
+            $this->load->view('frontend/search/templates/template-search', $data);
         }
 
         public function searchSubmit(){
             if ($this->input->post('category')){
-                $this->CI->load->model('frontend/Functions_model');
-                $this->CI->load->model('frontend/Offers_model');
-                $this->CI->load->model('frontend/Users_model');
-                $data = $this->loadLanguage();
+                $data = $this->lang->language;
+                
                 $data['offers'] = $this->CI->Offers_model->search();
                 $data['curr_page'] = $this->input->post('page');
 
@@ -132,19 +110,18 @@
                         $offer->last_comment_profile_picture = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'picture');
                     }
                 endforeach;
-
-                $view_mode = $this->input->post('view_mode');
-                if ($view_mode == 'photos'){
-                    $this->load->view('frontend/search/results/photos', $data);
+                
+                if ($this->input->post('view_mode') == 'photos'){
+                    $this->load->view('frontend/search/results/photos-results', $data);
                 }
-                elseif ($view_mode == 'map'){
-                    $this->load->view('frontend/search/results/list', $data);
+                elseif ($this->input->post('view_mode') == 'map'){
+                    $this->load->view('frontend/search/results/list-results', $data);
                 }
                 else{
-                    $this->load->view('frontend/search/results/list', $data);
+                    $this->load->view('frontend/search/results/list-results', $data);
                 }
 
-                $this->load->view('frontend/search/pagination', $data);
+                $this->load->view('frontend/search/templates/pagination-template', $data);
             }
         }
     }

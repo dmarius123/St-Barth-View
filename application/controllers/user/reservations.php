@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/reservations.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -26,7 +26,7 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 $data['is_login'] = true;
 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -45,9 +45,9 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 
-                $this->load->view('frontend/user/content/reservations-content', $data);
+                $this->load->view('frontend/user/templates/reservations-template', $data);
             }
             else{
                 redirect('user/redirect');

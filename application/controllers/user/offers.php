@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/offers.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -26,7 +26,7 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 $data['is_login'] = true;
 
                 $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
@@ -45,7 +45,7 @@
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
 
                 $hotels_list = $this->CI->Offers_model->getHotelsList($this->userId);
                 $data['hotels_list'] = $hotels_list;
@@ -65,7 +65,7 @@
                 $restaurants_list = $this->CI->Offers_model->getRestaurantsList($this->userId);
                 $data['restaurants_list'] = $restaurants_list;
                 
-                $this->load->view('frontend/user/content/offers-content', $data);
+                $this->load->view('frontend/user/templates/offers/offers-template', $data);
                 $this->load->view('frontend/user/submenus/offers-submenu', $data);
             }
             else{

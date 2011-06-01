@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/language/english/frontend/signupin_lang.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : English Frontend Sign Up/In translation.
+*/
+
     //$lang['signupin_'] = "";
 
     $lang['signupin_first_name'] = "First Name";

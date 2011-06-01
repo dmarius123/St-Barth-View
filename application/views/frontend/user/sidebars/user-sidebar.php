@@ -1,3 +1,16 @@
+<?php
+
+/*
+ * Title                   : St Barth View
+ * File                    : application/views/frontend/user/sidebars/user-sidebar.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Login User - Sidebar.
+*/
+
+?>
     <div class="user-info">
         <span class="user-image">
 <?php
@@ -16,6 +29,8 @@
         <li><a href="#dashboard" id="dashboard-link" class="user-nav"><span></span><?=$user_dashboard?></a></li>
         <li><a href="#offers" id="offers-link" class="user-nav"><span></span><?=$user_offers?></a></li>
         <li id="offers-submenu"></li>
+        <li><a href="#deals" id="offers-link" class="user-nav"><span></span><?=$user_deals?></a></li>
+        <li id="deals-submenu"></li>
         <li><a href="#messages" id="messages-link" class="user-nav"><span></span><?=$user_messages?></a></li>
         <li><a href="#friends" id="friends-link" class="user-nav"><span></span><?=$user_friends?></a></li>
         <li><a href="#reservations" id="reservations-link" class="user-nav"><span></span><?=$user_reservations?></a></li>

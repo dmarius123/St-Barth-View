@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/controllers/modules/lastModule.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Last Module Controller.
+*/
+
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class LastModule extends CI_Controller{
@@ -7,16 +17,6 @@
         function LastModule(){
             parent::__construct();
             $this->CI =& get_instance();
-        }
-
-        private function loadLanguage(){
-            $this->lang->load('frontend/modules', $this->language->getLanguage());
-
-            return $this->lang->language;
-        }
-
-        private function loadJS(){
-            return array();
         }
 
         public function index(){
@@ -34,11 +34,7 @@
         }
 
         private function lastDeals(){
-            $this->CI->load->model('frontend/Functions_model');
-            $this->CI->load->model('frontend/Users_model');
-            $this->CI->load->model('frontend/Offers_model');
-            $this->CI->load->model('frontend/Last_model');
-            $data = $this->loadLanguage();
+            $data =  $this->lang->language;
 
             $deals = $this->CI->Last_model->lastDeals();
             $data['deal_end_date'] = 'none';
@@ -51,15 +47,12 @@
             endforeach;
             $data['deals'] = $deals;
             $data['last_curr_page'] = $this->input->post('last_curr_page');
+            
             $this->load->view('frontend/modules/last-module/deals', $data);
         }
 
         private function lastOffers(){
-            $this->CI->load->model('frontend/Functions_model');
-            $this->CI->load->model('frontend/Users_model');
-            $this->CI->load->model('frontend/Offers_model');
-            $this->CI->load->model('frontend/Last_model');
-            $data = $this->loadLanguage();
+            $data =  $this->lang->language;
             
             $offers = $this->CI->Last_model->lastOffers();
             foreach ($offers->result() as $offer):
@@ -72,15 +65,12 @@
             endforeach;
             $data['offers'] = $offers;
             $data['last_curr_page'] = $this->input->post('last_curr_page');
+            
             $this->load->view('frontend/modules/last-module/offers', $data);
         }
     
         private function lastComments(){
-            $this->CI->load->model('frontend/Functions_model');
-            $this->CI->load->model('frontend/Users_model');
-            $this->CI->load->model('frontend/Offers_model');
-            $this->CI->load->model('frontend/Last_model');
-            $data = $this->loadLanguage();
+            $data =  $this->lang->language;
 
             $comments = $this->CI->Last_model->lastComments();
             foreach ($comments->result() as $comment):
@@ -95,6 +85,7 @@
             endforeach;
             $data['comments'] = $comments;
             $data['last_curr_page'] = $this->input->post('last_curr_page');
+            
             $this->load->view('frontend/modules/last-module/comments', $data);
         }
     }

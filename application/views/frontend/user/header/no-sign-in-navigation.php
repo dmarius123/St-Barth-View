@@ -1,4 +1,16 @@
+<?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/views/frontend/user/header/no-sign-in-navigation.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Not loged in User header.
+*/
+
+?>
     <ul id="header-navigation">
         <li><?=anchor('user', $header_sign_in)?></li>
         <li class="separator">&nbsp;</li>

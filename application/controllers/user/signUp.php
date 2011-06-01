@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/signUp.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -29,9 +29,10 @@
             else{
                 $data = $this->lang->language;
 
-                $data['header_subtitle'] = ' - '.$this->lang->line('user_dashboard_title');
+                $data['header_subtitle'] = ' - '.$data['user_dashboard_title'];
                 $data['facebook_language'] = $this->language->getFacebookLanguage();
-                $this->load->view('frontend/user/sign-up', $data);
+                
+                $this->load->view('frontend/user/templates/sign-upin/sign-up-template', $data);
             }
         }
         
@@ -141,7 +142,8 @@
 
                 $data['header_subtitle'] = ' - '.$data['signupin_sign_up_complete_title'].' '.$data['signupin_sign_up_complete_text'];
                 $data['facebook_language'] = $this->language->getFacebookLanguage();
-                $this->load->view('frontend/user/sign-up-complete', $data);
+                
+                $this->load->view('frontend/user/templates/sign-upin/sign-up-complete-template', $data);
             }
         }
     }

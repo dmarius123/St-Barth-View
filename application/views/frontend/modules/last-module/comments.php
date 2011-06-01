@@ -1,4 +1,16 @@
+<?php
 
+/*
+ * Title                   : St Barth View
+ * File                    : application/views/frontend/modules/last-module/comments.php
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Last Items Module - Comments.
+*/
+
+?>
     <div class="search-review-slider-content" id="slider-comments">
     <input type="hidden" name="last_no_pages" id="last_no_pages" value="<?echo $comments->num_rows()%2==0 ? $comments->num_rows()/2:intval($comments->num_rows()/2)+1;?>" />
 <?php
