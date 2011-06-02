@@ -12,6 +12,9 @@
 
 ?>
 <?php $this->load->view('frontend/header'); ?>
+<script type="text/JavaScript">
+    currPage = 'Search';
+</script>
             <div id="section">
                 <div id="main">
 
@@ -22,8 +25,7 @@
 
 <?php $this->load->view('frontend/search/templates/menu-template'); ?>
 <?php $this->load->view('frontend/search/templates/submenu-template'); ?>
-<?php //$this->load->view('frontend/search/results/photos'); ?>
-                    <ul id="results-list"><li></li></ul>
+                    <ul id="results-list"><li style="display: none;"></li></ul>
                     <br class="clear" />
                     <div id="results-pagination"></div>
                 </div>

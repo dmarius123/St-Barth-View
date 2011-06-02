@@ -2,19 +2,19 @@
 
 /*
  * Title                   : St Barth View
- * File                    : application/controllers/offers/hotel.php
+ * File                    : application/controllers/offers/offer.php
  * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 28 May 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Offers - Hotel Controller.
+ * Description             : Offers - Offer Controller.
 */
 
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Hotel extends CI_Controller{
+    class Offer extends CI_Controller{
 
-        function Hotel(){
+        function Offer(){
             parent::__construct();
             $this->CI =& get_instance();
         }
@@ -26,8 +26,8 @@
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data['is_login'] = true;
-                $data['first_name'] = $this->CI->Users_model->firstName($this->userId);
-                $data['last_name'] = $this->CI->Users_model->lastName($this->userId);
+                $data['first_name'] = $this->CI->Users_model->getProfile($this->userId, 'first_name');
+                $data['last_name'] = $this->CI->Users_model->getProfile($this->userId, 'last_name');
             }
             else{
                 $data['facebook_language'] = $this->language->getFacebookLanguage();

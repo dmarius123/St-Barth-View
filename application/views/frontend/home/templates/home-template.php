@@ -12,6 +12,9 @@
 
 ?>
 <?php $this->load->view('frontend/header'); ?>
+<script type="text/JavaScript">
+    currPage = 'Home';
+</script>
 <div id="section" class="home-section">
     <div id="home-main">
         <div id="home-main-bg"></div>

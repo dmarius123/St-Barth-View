@@ -30,11 +30,14 @@
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.BookingCalendar.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.uploadify.min.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/swfobject.js'; ?>"></script>
+
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/main.js'; ?>"></script>
-        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/home.js'; ?>"></script>
+        
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/last-module.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/new-users-module.js'; ?>"></script>
-<!--        <script type="text/JavaScript" src="<?php //echo base_url().'assets/frontend/js/search.js'; ?>"></script>-->
+
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/home.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/search.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/sign-upin.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/user.js'; ?>"></script>
     </head>

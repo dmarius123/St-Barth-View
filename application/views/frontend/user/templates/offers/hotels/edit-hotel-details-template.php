@@ -11,7 +11,5 @@
 */
 
 ?>
-    <h2><?=$user_edit_hotel_title?>: <?=$name?></h2>
-    <span class="title-separator"></span>
-<?php $this->load->view('frontend/user/forms/offers/hotels/edit-hotel-details-form'); ?>
+    <?php $this->load->view('frontend/user/forms/offers/hotels/edit-hotel-details-form'); ?>
     <div class="user-bottom"></div>

@@ -12,6 +12,9 @@
 
 ?>
 <?php $this->load->view('frontend/header'); ?>
+<script type="text/JavaScript">
+    currPage = 'User';
+</script>
     <div id="section">
         <div id="sidebar" class="user-area-sidebar">
 <?php $this->load->view('frontend/user/sidebars/user-sidebar'); ?>
