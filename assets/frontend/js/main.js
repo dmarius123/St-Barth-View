@@ -1,3 +1,15 @@
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/js/main.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Main Scripts.
+*/
+
+var timeoutID;
+var currPage;
 
 $(document).ready(function(){
     positionFooter();
@@ -5,6 +17,20 @@ $(document).ready(function(){
     $(window).resize(function(){
         positionFooter();
     });
+    
+    switch (currPage){
+        case 'Home':
+            home_init();
+            last_module_init();
+            break;
+        case 'Search':
+            search_init();
+            last_module_init();
+            break;
+        case 'User':
+            user_init();
+            break;
+    }
 });
 
 function facebookSignIn(){
@@ -48,4 +74,20 @@ function readCookie(name){// readCookie("MyCookie"); // Returns value "jump".
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
+}
+
+function gmtDate(){
+    var time = null,
+    timeZone = new Date().getTimezoneOffset();
+
+    $.ajax({url: BASE_URL+'functions/GMT/',
+        async: false, dataType: 'text',
+        success: function(data) {
+            time = new Date(data);
+        }, error: function(http, message, exc) {
+            time = new Date();
+    }});
+
+    time.setHours(time.getHours()-timeZone/60);
+    return time;
 }

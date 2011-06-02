@@ -1,3 +1,12 @@
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/js/sign-upin.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Sign Up/In Scripts.
+*/
 
 $(document).ready(function(){
     $('#first-name').blur(function(){

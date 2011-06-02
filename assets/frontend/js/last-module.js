@@ -1,10 +1,19 @@
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/js/last-module.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Last Module Scripts.
+*/
 
-    $(document).ready(function(){
+    function last_module_init(){
         $('#last_filter1').val('deals');
         $('#last_filter2').val('all');
         $('#last_curr_page').val(1);
 
-        showLastSlide();
+        last_module_showLastSlide();
 
         $('.last-filter1-click').hover(function(){
             $('#search-reviews-nav li.selected').css('border-bottom-color', '#d4d4d4');
@@ -19,7 +28,7 @@
             $(this).addClass('selected');
             $('#last_filter1').val($(this).attr('id').split('-')[1]);
             $('#last_curr_page').val('1');
-            showLastSlide();
+            last_module_showLastSlide();
         });
 
         $('.last-filter2-click').click(function(){
@@ -27,25 +36,25 @@
             $(this).addClass('selected');
             $('#last_filter2').val($(this).attr('id').split('-')[1]);
             $('#last_curr_page').val('1');
-            showLastSlide();
+            last_module_showLastSlide();
         });
 
         $('#last-prev-arrow').click(function(){
             if ($('#last_curr_page').val() > 1){
                 $('#last_curr_page').val(parseInt($('#last_curr_page').val())-1);
-                showLastSlide();
+                last_module_showLastSlide();
             }
         });
 
         $('#last-next-arrow').click(function(){
             if ($('#last_curr_page').val() < $('#last_no_pages').val()){
                 $('#last_curr_page').val(parseInt($('#last_curr_page').val())+1);
-                showLastSlide();
+                last_module_showLastSlide();
             }
         });
-    });
+    }
 
-    function showLastSlide(){
+    function last_module_showLastSlide(){
         $('#search-review-slider-content-container').html('');
         $('#search-review-slider-content-container').addClass('loader');
         
@@ -115,22 +124,4 @@
                 $('#last-next-arrow').css('display', 'none');
             }
         });
-    }
-
-    //serverSync: ahead5Mins});
-
-    function gmtDate(){
-        var time = null,
-        timeZone = new Date().getTimezoneOffset();
-        
-        $.ajax({url: BASE_URL+'functions/GMT/',
-            async: false, dataType: 'text',
-            success: function(data) {
-                time = new Date(data);
-            }, error: function(http, message, exc) {
-                time = new Date();
-        }});
-
-        time.setHours(time.getHours()-timeZone/60);
-        return time;
     }

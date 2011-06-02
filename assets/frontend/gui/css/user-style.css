@@ -1,11 +1,19 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/user-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : User Style.
+*/
+
 .user-area-main{
     background-color: #f6f6f6;
     width: 685px;
-    margin-left:20px;
-/*    border: 1px #d7d8d8 solid;*/
-/*    background: url('../images/sprite.png') -170px -460px;*/
+    margin-left: 20px;
 }
 
 #calendar{
@@ -20,7 +28,7 @@
 }
 
 div.user-add-offer{
-    display:block;
+    display: block;
     background: url('../images/sprite.png') -170px -598px;
     width: 685px;
     height: 32px;
@@ -35,11 +43,9 @@ div.user-add-offer span{
     background: #eff0f1;
     font-size: 18px;
     font-weight: bold;
-/*    display: block;*/
     height: 32px;
-    float:left;
+    float: left;
     line-height: 31px;
-/*    line-height: 31px;*/
 }
 
 .user-area-main .title-separator{
@@ -92,7 +98,7 @@ div.user-add-offer span{
 }
 
 #address:focus{
-    border-color:#688ab9;
+    border-color: #688ab9;
 }
 
 #address:disabled{
@@ -223,9 +229,7 @@ div.user-add-offer span{
 /* FORM */
 
 .user-area-form-info{
-/*    width: 663px;*/
     font-size: 12px;
-/*    font-weight: bold;*/
     color: #777777;
     margin: 0px 20px 0 20px;
     display: block;
@@ -250,7 +254,6 @@ div.user-add-offer span{
 }
 
 .user-area-form-field-small,.user-area-form-field-medium{
-/*    width: 100px;*/
     float: left;
     margin: 20px 0 0 20px;
 }
@@ -280,7 +283,6 @@ div.user-add-offer span{
 }
 
 .user-area-form-field-small label{
-/*    width: 100px;*/
     font-size: 12px;
     font-weight: normal;
     color: #939393;
@@ -290,7 +292,7 @@ div.user-add-offer span{
 .user-area-form-field label .required, #add-offer-location-title .required{
     font-size: 12px;
     font-weight: normal;
-    color: #FF69A7;/*#627aad;*/
+    color: #FF69A7;
 }
 
 .user-area-input-style,.user-area-input-style-medium{
@@ -313,7 +315,7 @@ div.user-add-offer span{
 }
 
 .user-area-input-style:focus,.user-area-input-style-medium:focus{
-    border-color:#627aad;
+    border-color: #627aad;
 }
 
 .user-area-input-style:disabled,.user-area-input-style-medium:disabled{
@@ -333,7 +335,7 @@ div.user-add-offer span{
 }
 
 .user-area-input-style-big:focus{
-    border-color:#627aad;
+    border-color: #627aad;
 }
 
 .user-area-input-style-big:disabled{
@@ -353,7 +355,7 @@ div.user-add-offer span{
 }
 
 .user-area-textarea-style:focus{
-    border-color:#627aad;
+    border-color: #627aad;
 }
 
 .user-area-textarea-style:disabled{
@@ -385,7 +387,7 @@ div.user-add-offer span{
 
 
 .user-area-select-style:focus{
-    border-color:#627aad;
+    border-color: #627aad;
 }
 
 .user-area-select-style:disabled{
@@ -404,7 +406,7 @@ div.user-add-offer span{
 }
 
 .user-area-select-style-big:focus{
-    border-color:#627aad;
+    border-color: #627aad;
 }
 
 .user-area-select-style-big:disabled{
@@ -452,7 +454,7 @@ div.user-add-offer span{
     color: #939393;
     margin-top:0px;
     width: auto;
-    float:left;
+    float: left;
     display: block;
     height: 30px;
     line-height: 28px;
@@ -473,13 +475,12 @@ div.user-add-offer span{
     color: #939393;
     margin-top:0px;
     width: auto;
-/*    float:left;*/
     display: block;
 }
 
 #edit-room{
-    float:left;
-    margin:23px 0 0 0px;
+    float: left;
+    margin: 23px 0 0 0px;
     text-align: right;
     width: 60px;
 }
@@ -497,7 +498,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 }
 
 #edit-offer-room-select{
-    display:none;
+    display: none;
 }
 
 /* TABLE */
@@ -517,7 +518,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 }
 
 .user-table td{
-    border:1px solid #688ab9;
+    border: 1px solid #688ab9;
     padding: 5px;
     font-size: 14px;
     vertical-align: middle;
@@ -557,11 +558,9 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 
 #user-offer-edit-top{
     text-align: right;
-/*    margin: 0px 20px 10px 0;*/
     padding:10px 0px 10px 0;
     height: 29px;
     background: #c7e6f9;
-/*    border:1px solid #deb1c5;*/
 }
 #user-offer-edit-top a{
     vertical-align: middle;
@@ -598,7 +597,6 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 
 
 #calendar-pricing-links li{
-/*    display: inline-block;*/
     display:block;
     float: left;
     font-weight: bold;
@@ -609,7 +607,6 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 
 #calendar-pricing-links li.separator{
     background-color: #949494;
-/*    display: inline-block;*/
     width: 1px;
     height: 10px;
     vertical-align: middle;
@@ -623,14 +620,14 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     vertical-align: middle;
     line-height: 17px;
     display: block;
-    margin-top:6px;
-    float:left;
+    margin-top: 6px;
+    float: left;
 }
 
 #calendar-pricing-links li a .text{
     padding: 0px 0 0px 3px;
-    cursor:pointer;
-    float:left;
+    cursor: pointer;
+    float: left;
 }
 
 #calendar-pricing-links li a .end{
@@ -644,41 +641,35 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 #calendar-pricing-links li a:hover .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #calendar-pricing-links li a:hover .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
     width: 3px;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #calendar-pricing-links li a.selected .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #calendar-pricing-links li a.selected .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
     width: 3px;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 
 /* OFFER LIST */
 
 #offers-list{
-/*    margin: 10px 0 0 20px;*/
 }
 
 #offers-list li{
     background: url('../images/sprite.png') -170px -460px;
     width: 685px;
     height: 170px;
-/*    margin: 10px 0 0 0;*/
 }
 
 #offers-list li .image{
@@ -838,7 +829,6 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 #offers-list li .content .comments .text, #offers-list li .content .friends .text, #offers-list li .content .deals .text{
     color: #3c3d3d;
     font-size: 10px;
-/*    font-weight: bold;*/
     line-height: 1em;
     margin: 0 0 0 30px;
 }
@@ -876,12 +866,10 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 }
 
 #offers-list li .content .owner .first-name{
-/*    color: #3c3d3d;*/
-/*    font-size: 16px;*/
     font-weight: bold;
     line-height: 1em;
     margin: 0 0px 0 5px;
-    float:right;
+    float: right;
 }
 
 #offers-list li .content .owner .last-name{
@@ -893,7 +881,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 }
 
 #offers-list li .content .owner .no-comment{
-    display:block;
+    display: block;
     width: 100px;
     height: 25px;
 }
@@ -911,7 +899,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     margin: 15px 0 0 0px;
     width: 123px;
     text-align: right;
-    float:right;
+    float: right;
     display: block;
     line-height: 16px;
 }
@@ -936,7 +924,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     font-size: 18px;
     font-weight: bold;
     margin: 3px 0 0 8px;
-    display:block;
+    display: block;
 }
 
 #offers-list li .actions a{
@@ -1096,7 +1084,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
 }
 
 #offers-submenu li a{
-    padding-left:30px;
+    padding-left: 30px;
 }
 
 #offers-submenu li a span.valid{

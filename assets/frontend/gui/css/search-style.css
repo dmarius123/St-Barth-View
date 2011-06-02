@@ -1,5 +1,15 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/search-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Search Style.
+*/
+
 #main-menu{
     background: url('../images/sprite.png') -170px -120px;
     width: 705px;
@@ -9,7 +19,7 @@
 
 #main-menu li{
     display: block;
-    float:left;
+    float: left;
 }
 
 #main-menu li a{
@@ -51,18 +61,16 @@
 }
 
 #main-submenu .left li, #main-submenu .right li{
-/*    display: inline-block;*/
-    display:block;
+    display: block;
     float: left;
     font-weight: bold;
-    font-size:13.5px;
+    font-size: 13.5px;
     line-height: 30px;
     margin: 0 5px 0 0;
 }
 
 #main-submenu li.separator{
     background-color: #949494;
-/*    display: inline-block;*/
     width: 1px;
     height: 14px;
     vertical-align: middle;
@@ -76,47 +84,43 @@
     vertical-align: middle;
     line-height: 17px;
     display: block;
-    margin-top:6px;
+    margin-top: 6px;
 }
 
 #main-submenu li a .text{
     padding: 0px 0 0px 3px;
-    cursor:pointer;
-    float:left;
+    cursor: pointer;
+    float: left;
 }
 
 #main-submenu li a .end{
     width: 3px;
     padding: 0px 0 3px 1px;
     display: block;
-    float:left;
+    float: left;
     height: 15px;
 }
 
 #main-submenu li a:hover .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #main-submenu li a:hover .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
     width: 3px;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #main-submenu li a.selected .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #main-submenu li a.selected .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
     width: 3px;
-/*    padding: 0px 0 3px 5px;*/
 }
 
 #results-list{
@@ -139,7 +143,6 @@
 }
 
 #results-list li .image-container{
-    /*background: url('../images/sprite.png') -170px -335px;*/
     width: 172px;
     height: 122px;
     margin: 3px 0 0 3px;
@@ -268,7 +271,7 @@
     margin: 2px 0 0 0;
 }
 #results-list-images li .content-bottom .comments .icon,#results-list-images li .content-bottom .friends .icon,#results-list-images li .content-bottom .deals .icon{
-    margin-top:0px;
+    margin-top: 0px;
 }
 
 #results-list-images li .content-bottom .comments,#results-list-images li .content-bottom .friends,#results-list-images li .content-bottom .deals{
@@ -286,10 +289,10 @@
     position: absolute;
     margin: 7px 0 0 0;
 }
+
 #results-list-images li .content-bottom .deals .icon{
     margin-top: 5px;
 }
-
 
 #results-list li .content .deals .icon.no-deals, #results-list-images li .content-bottom .deals .icon.no-deals{
     background: url('../images/sprite.png') -900px -240px;
@@ -312,7 +315,6 @@
 #results-list-images li .content-bottom .comments .text, #results-list-images li .content-bottom .friends .text, #results-list-images li .content-bottom .deals .text{
     color: #3c3d3d;
     font-size: 10px;
-/*    font-weight: bold;*/
     line-height: 1em;
     margin: 0 0 0 30px;
 }
@@ -326,12 +328,12 @@
     margin: 5px 0 0 10px;
     text-align: right;
     font-size: 11px;
-    color:#737373;
+    color: #737373;
     line-height: 14px;
 }
 
 #results-list li .content .owner a{
-    font-size:14px;
+    font-size: 14px;
     font-weight: bold;
     color: #627aad;
 }
@@ -350,16 +352,14 @@
 }
 
 #results-list li .content .owner .last-comment{
-    float:left;
+    float: left;
 }
 
 #results-list li .content .owner .first-name{
-/*    color: #3c3d3d;*/
-/*    font-size: 16px;*/
     font-weight: bold;
     line-height: 1em;
     margin: 0 0px 0 5px;
-    float:right;
+    float: right;
 }
 
 #results-list li .content .owner .last-name{
@@ -371,7 +371,7 @@
 }
 
 #results-list li .content .owner .no-comment{
-    display:block;
+    display: block;
     width: 100px;
     height: 25px;
 }
@@ -395,7 +395,7 @@
 
 #results-list-images li .content-bottom .price{
     margin-left: 0;
-    float:right;
+    float: right;
     width: auto;
     text-align: right;
     margin-top: 5px;
@@ -457,20 +457,19 @@
 }
 
 #results-list-images li.right{
-    float:right;
+    float: right;
 }
 
 #results-list-images li .image{
     border: 1px #e4e4e4 solid;
     background: #ffffff;
     margin: 8px 0 0 9px;
-    display:block;
+    display: block;
     width: 312px;
     height: 216px;
 }
 
 #results-list-images .image-container{
-    /*background: url('../images/sprite.png') -170px -335px;*/
     width: 306px;
     height: 210px;
     margin: 3px 0 0 3px;
@@ -488,28 +487,28 @@
 }
 
 #results-list-images li .content-top{
-    border-bottom: 1px solid #DADADB;
+    border-bottom: 1px solid #dadadb;
     margin: 0 10px;
     display: block;
     width: 312px;
 }
 
 #results-list-images li .content-top .number{
-    font-size:16px;
+    font-size: 16px;
 }
 
 #results-list-images li .content-top .title{
-    font-size:16px;
+    font-size: 16px;
 }
 
 #results-list-images li .content-top .rating-value{
-    font-size:16px;
-    margin-left:5px;
+    font-size: 16px;
+    margin-left: 5px;
 }
 
 #results-list-images li .content-bottom{
     display: block;
-    margin:0 10px;
+    margin: 0 10px;
     width: 312px;
 }
 
@@ -522,36 +521,34 @@
 }
 
 #results-pagination {
-    font-size:13px;
-    color:#737373;
-    margin:0 10px 0px;
+    font-size: 13px;
+    color: #737373;
+    margin: 0 10px 0px;
 }
 #results-pagination span{
     float: right;
-    color:#6a81b1;
+    color: #6a81b1;
     font-weight: bold;
 }
 #results-pagination span strong, #results-pagination span a{
-    color:#6a81b1;
+    color: #6a81b1;
     font-weight: bold;
     text-align: center;
-    font-size:12px;
+    font-size: 12px;
     line-height: 18px;
     width: 18px;
     height: 18px;
-/*    background: url('../images/sprite.png') 0 -455px;*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#f1f1f1'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#f1f1f1)); /* for webkit browsers */
     background: -moz-linear-gradient(top, #fefefe, #f1f1f1); /* for firefox 3.6+ */
     display: inline-block;
     border:1px solid #d1d1d1;
 }
-#results-pagination span strong,#results-pagination span a:hover{
-/*    background: url('../images/sprite.png') -25px -455px;*/
+#results-pagination span strong, #results-pagination span a:hover{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7e92bb', endColorstr='#7185ae'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#7e92bb), to(#7185ae)); /* for webkit browsers */
     background: -moz-linear-gradient(top, #7e92bb, #7185ae); /* for firefox 3.6+ */
-    color:#ffffff;
+    color: #ffffff;
 }
 
 #sidebar-menu{
@@ -701,7 +698,7 @@ a.filter-header{
 }
 
 .filter ul li select:focus{
-    border-color:#688ab9;
+    border-color: #688ab9;
 }
 
 .filter ul li select:disabled{
@@ -759,8 +756,6 @@ a.filter-header{
 #search-reviews{
     width: 628px;
     height: 278px;
-/*    border: 1px solid #cad8de;*/
-/*    background: #ffffff;*/
     float:left;
 }
 
@@ -794,10 +789,10 @@ a.filter-header{
 
 #search-reviews-nav li a{
     display: block;
-    padding:0 15px;
-    color:#737373;
+    padding: 0 15px;
+    color: #737373;
     font-weight: bold;
-    font-size:15px;
+    font-size: 15px;
 }
 
 #search-reviews-nav li.selected a{
@@ -808,7 +803,7 @@ a.filter-header{
 }
 
 #search-reviews-content{
-    padding:10px 15px;
+    padding: 10px 15px;
     border: 1px solid #D4D4D4;
     background: #ffffff;
     position: relative;
@@ -817,25 +812,22 @@ a.filter-header{
 }
 
 #search-reviews-sorting{
-    font-size:13px;
+    font-size: 13px;
     height: 18px;
     display: block;
 }
 
 #search-reviews-sorting li{
     display: block;
-    float:left;
+    float: left;
     color: #333333;
     font-weight: bold;
-    margin:0 8px 0 0;
+    margin: 0 8px 0 0;
     font-size: 14px;
 }
 
 #search-reviews-sorting li.separator{
     background-color: #949494;
-/*    display: inline-block;*/
-/*    display:block;*/
-/*    float: left;*/
     height: 10px;
     margin: 5px 8px 0 0;
     vertical-align: middle;
@@ -852,15 +844,15 @@ a.filter-header{
 }
 #search-reviews-sorting li a .text{
     padding: 0px 0 0px 3px;
-    float:left;
-    cursor:pointer;
+    float: left;
+    cursor: pointer;
     height: 17px;
 }
 
 #search-reviews-sorting li a .end{
     width: 3px;
-    display:block;
-    float:left;
+    display: block;
+    float: left;
     padding: 0px 0 2px 1px;
     height: 15px;
 }
@@ -868,34 +860,30 @@ a.filter-header{
 #search-reviews-sorting li a:hover .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 3px;*/
 }
 
 #search-reviews-sorting li a:hover .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
-/*    width: 3px;*/
-/*    padding: 0px 0 3px 3px;*/
 }
 
 #search-reviews-sorting li a.selected .text{
     background: url('../images/sprite.png') -250px -100px;
     color: #ffffff;
-/*    padding: 0px 0 3px 3px;*/
 }
 
 #search-reviews-sorting li a.selected .end{
     background: url('../images/sprite.png') -357px -100px;
     color: #ffffff;
     width: 3px;
-/*    padding: 0px 0 3px 3px;*/
 }
+
 #search-review-slider{
-/*    height: 140px;*/
     position: relative;
-    clear:both;
-    margin-top:20px;
+    clear: both;
+    margin-top: 20px;
 }
+
 #search-review-slider-content-container.loader{
     height: 170px;
     background: url(../images/loaders/big-loader1.gif) no-repeat center center transparent !important;
@@ -903,17 +891,20 @@ a.filter-header{
 
 .search-review-slider-content{
     height: 170px;
-    margin:0 26px;
-/*    padding: 10px 0;*/
+    margin: 0 26px;
 }
-#slider-comments{padding: 10px 0 0;height: 160px;}
+
+#slider-comments{
+    padding: 10px 0 0;
+    height: 160px;
+}
 
 .slider-nav-left{
     position: absolute;
-    top:0px;
+    top: 0px;
     left: 0px;
     background: url('../images/sprite.png') 0px -540px;
-    display:block;
+    display: block;
     width: 16px;
     height: 170px;
     display: none;
@@ -926,10 +917,10 @@ a.filter-header{
 
 .slider-nav-right{
     position: absolute;
-    top:0px;
+    top: 0px;
     right: 0px;
     background: url('../images/sprite.png') -25px -540px;
-    display:block;
+    display: block;
     width: 16px;
     height: 170px;
     display: none;
@@ -940,19 +931,20 @@ a.filter-header{
     background: url('../images/sprite.png') -75px -540px;
 }
 
-#search-review-slider .last{float:right;}
+#search-review-slider .last{
+    float: right;
+}
 
 .search-review-item{
-/*    height: 140px;*/
     width: 260px;
-    float:left;
-/*    margin-right: 35px;*/
+    float: left;
 }
+
 .search-review-item-name{
-    font-size:14px;
+    font-size: 14px;
     font-weight: bold;
-    color:#333333;
-    margin-top:3px;
+    color: #333333;
+    margin-top: 3px;
 }
 
 #slider-offers .search-review-item-name{
@@ -983,8 +975,7 @@ a.filter-header{
 
 .search-review-item-name .rating-stars{
     background: url('../images/sprite.png') -60px -270px;
-/*    float: right;*/
-    display:block;
+    display: block;
     width: 60px;
     height: 12px;
     margin: 2px 4px 2px 4px;
@@ -1001,7 +992,7 @@ a.filter-header{
     font-weight: bold;
     font-size: 13px;
     color: #6d8fbc;
-    float:left;
+    float: left;
 }
 
 .search-review-item-postdate{
@@ -1010,21 +1001,20 @@ a.filter-header{
     line-height: 11px;
 }
 
-
 #slider-offers .search-review-item-author{
     margin-top: 10px;
-    float:left;
+    float: left;
 }
 
 .search-review-item-author{
-    clear:both;
+    clear: both;
     font-size: 11px;
     color: #737373;
 }
 
 .search-review-item-author a{
-    color:#6d8fbc;
-    font-size:14px;
+    color: #6d8fbc;
+    font-size: 14px;
     font-weight: bold;
     line-height: 21px;
 }
@@ -1051,7 +1041,7 @@ a.filter-header{
 }
 
 .search-review-item-author .date{
-    font-size:11px;
+    font-size: 11px;
 }
 
 .search-review-item-author .owner{
@@ -1060,18 +1050,17 @@ a.filter-header{
     font-size: 11px;
     color: #a0a0a0;
     width: 160px;
-    display:block;
+    display: block;
 }
 
 .search-review-item-price {
-    float:right;
+    float: right;
     color: #333333;
     font-size: 11px;
     font-weight: bold;
-    margin-top:19px;
+    margin-top: 19px;
     margin-right: 5px;
     white-space: nowrap;
-/*    margin-left: 15px;*/
 }
 
 .search-review-item-price span{
@@ -1080,8 +1069,8 @@ a.filter-header{
 
 #slider-offers .search-review-item-description{
     font-style: italic;
-    font-size:12px;
-    margin-top:8px;
+    font-size: 12px;
+    margin-top: 8px;
     line-height: 15px;
     color: #333333;
     height: 92px;
@@ -1090,15 +1079,15 @@ a.filter-header{
 
 #slider-comments .search-review-item-description{
     font-style: italic;
-    font-size:14px;
-    margin-top:8px;
+    font-size: 14px;
+    margin-top: 8px;
     line-height: 19px;
     color: #333333;
 }
 
 .search-review-item-description .image{
-    float:left;
-    border:1px solid #e7e7e7;
+    float: left;
+    border: 1px solid #e7e7e7;
     padding: 3px;
     margin-right: 10px;
 }
@@ -1113,17 +1102,16 @@ a.filter-header{
 }
 
 .search-review-item-description .last-image-container{
-    display:block;
+    display: block;
     width: 124px;
     height: 84px;
 }
 
-.search-review-deal-item{
-    
+.search-review-deal-item{    
 }
 
 .search-review-deal-image{
-    float:left;
+    float: left;
     margin-right: 13px;
 }
 
@@ -1134,12 +1122,12 @@ a.filter-header{
 }
 
 .search-review-deal-info{
-    float:left;
+    float: left;
     width: 286px;
 }
 
 .search-review-deal-info-title{
-    font-size:19px;
+    font-size: 19px;
     font-weight: bold;
     color: #333333;
 }
@@ -1149,7 +1137,7 @@ a.filter-header{
 }
 
 .search-review-deal-info-location{
-    font-size:14px;
+    font-size: 14px;
     color: #737373;
 }
 
@@ -1169,7 +1157,7 @@ a.filter-header{
 .search-review-deal-info-price .box{
     width: 95px;
     text-align: center;
-    float:left;
+    float: left;
     display: block;
     font-size: 11px;
     font-weight: bold;
@@ -1177,7 +1165,7 @@ a.filter-header{
 }
 
 .search-review-deal-info-price .box span{
-    font-size:20px;
+    font-size: 20px;
 }
 
 .search-review-deal-info-timer{
@@ -1191,11 +1179,11 @@ a.filter-header{
     line-height: 40px;
     font-weight: bold;
     display: block;
-    font-size:11px;
+    font-size: 11px;
 }
 
 .search-review-deal-info-timer .text{
-    float:left;
+    float: left;
     margin-right: 5px;
     cursor: pointer;
 }
@@ -1213,7 +1201,7 @@ a.filter-header{
     height: 276px;
     border: 1px solid #D4D4D4;
     background: #ffffff;
-    float:right;
+    float: right;
 }
 #search-members h3{
     color:#333333;
@@ -1222,13 +1210,13 @@ a.filter-header{
 }
 
 #search-members-area{
-    padding:0px 10px 0;
+    padding: 0px 10px 0;
     height: 212px;
 }
 
 #search-members-area a{
     float: left;
-    margin:0 5px 5px 0;
+    margin: 0 5px 5px 0;
     width: 48px;
     height: 48px;
 }
@@ -1246,7 +1234,6 @@ a.filter-header{
     margin-left: 10px;
     height: 25px;
     width: 142px;
-/*    background: url("../images/sprite.png") repeat scroll -585px -100px transparent;*/
     background: url('../images/sprite.png') 0 -750px;
     display: block;
     float: left;
@@ -1255,28 +1242,14 @@ a.filter-header{
     line-height: 22px;
 }
 
-
-/*
-#search-members-join .text{
-    background: url("../images/sprite.png") repeat scroll -585px -100px transparent;
-    color: #FFFFFF;
-    font-size:13.5px;
-    padding: 1px 0 3px 7px;
-}
-#search-members-join .end{
-    background: url("../images/sprite.png") repeat scroll -724px -100px transparent;
-    color: #FFFFFF;
-    padding: 1px 0 3px 7px;
-    width: 7px;
-}
-*/
 #search-members-login{
     font-size: 12px;
-    color:#333333;
+    color: #333333;
     padding-left: 10px;
-    float:left;
+    float: left;
     display: block;
-    margin-top:5px;
+    margin-top: 5px;
     line-height: 22px;
 }
+
 /* end #search-reviews-members */

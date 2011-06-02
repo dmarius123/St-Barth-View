@@ -1,5 +1,15 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/header-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Header Style.
+*/
+
 /* BEGIN HEADER */
 
 #header{
@@ -14,7 +24,6 @@
     height: 106px;
     margin: 20px 0 0 10px;
     float:left;
-/*    position: absolute;*/
 }
 
 #logo a{
@@ -80,13 +89,14 @@ a.fb_button{
     font-weight: bold;
     margin: 0 0 0 20px;
 }
+
 #header-promo-link a{
     color: #ffffff;
-/*    margin-top: 12px;*/
     display:block;
     vertical-align: middle;
     line-height: 30px;
 }
+
 #header-promo-link a .text{
     background: url("../images/sprite.png") -360px -337px;
     float:left;
@@ -103,7 +113,6 @@ a.fb_button{
 }
 
 #header-content-bottom{
-/*    float:left;*/
     margin-top:9px;
     width: 760px;
 }
@@ -116,7 +125,6 @@ a.fb_button{
 #header-search label{
     font-size: 20px;
     color: #000000;
-/*    line-height: 26px;*/
 }
 
 #header-search-input{
@@ -194,9 +202,11 @@ a.fb_button{
     width: 7px;
     cursor: pointer;
 }
+
 .header-weather-left-nav2{
     top: 23px;
 }
+
 .header-weather-right-nav1,.header-weather-right-nav2{
     background: url("../images/sprite.png") repeat scroll -410px -100px transparent;
     display: block;
@@ -207,6 +217,7 @@ a.fb_button{
     width: 7px;
     cursor: pointer;
 }
+
 .header-weather-right-nav2{
     top:23px;
 }

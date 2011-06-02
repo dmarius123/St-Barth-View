@@ -1,8 +1,20 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/footer-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Footer Style.
+*/
+
 /* BEGIN FOOTER */
 
-.footer-white{color:#ffffff;}
+.footer-white{
+    color: #ffffff;
+}
 
 #footer{
     background-color: #ffffff;
@@ -33,7 +45,7 @@
 }
 
 #footer-point-description{
-    color:#000000;
+    color: #000000;
     font-weight: bold;
     font-family: Arial;
     line-height: 40px;

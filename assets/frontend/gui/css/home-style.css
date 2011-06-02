@@ -1,7 +1,14 @@
 @charset "utf-8";
-.home-section{
-/*    height: 430px!important;*/
-}
+
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/home-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Home Style.
+*/
 
 #home-main{
     float: left;
@@ -61,14 +68,12 @@
     color: #ffffff;
     display: block;
     padding-top: 5px;
-/*    margin: 4px 0 4px 7px;*/
 }
 .home-slider-info .location{
     font-size: 13px;
     font-weight: normal;
     color: #ffffff;
     display: block;
-/*    margin: 4px 0 4px 7px;*/
 }
 
 .home-slider-info .rating-stars{
@@ -101,7 +106,6 @@
 
 .home-slider-info .price{
     color: #ffffff;
-/*    margin: 15px 0 0 360px;*/
     width: 100px;
     text-align: right;
     display: block;
@@ -127,9 +131,7 @@
 
 .home-slider-info-right{
     float:right;
-/*    width: 290px;*/
     margin-right: 10px;
-/*    text-align: right;*/
 }
 
 .home-slider-info-right .comments a, .home-slider-info-right .friends a,.home-slider-info-right .deals a{
@@ -201,7 +203,6 @@
 .home-slider-info-right .comments .text,.home-slider-info-right .friends .text,.home-slider-info-right .deals .text{
     color: #ffffff;
     font-size: 10px;
-/*    font-weight: bold;*/
     line-height: 1em;
     margin: 0 0 0 30px;
 }
@@ -268,7 +269,6 @@
 
 .home-booking-select-big,.home-booking-select-small{
     color:#737373;
-/*    margin: 10px 20px 0;*/
     width: 258px;
     border: 1px #d8d8d8 solid;
     -webkit-border-radius: 5px;
@@ -285,7 +285,6 @@
 
 .home-booking-input{
     color:#737373;
-/*    margin: 10px 20px 0;*/
     width: 90px;
     border: 1px #d8d8d8 solid;
     -webkit-border-radius: 5px;
@@ -306,10 +305,8 @@
     float:right;
     margin-top: 28px;
     padding:0px;
-/*    display: block;*/
     height: 25px;
     width: 116px;
-/*    margin-left: 8px;*/
 }
 
 #home-booking-form-submit{

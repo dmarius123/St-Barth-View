@@ -1,14 +1,16 @@
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/js/search.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Search Scripts.
+*/
 
-$(function(){
-    $('body').DOPImageLoader({'Container':'#search-members',
-                    'LoaderURL': BASE_URL+'assets/frontend/gui/images/loaders/small-loader1.gif',
-                    'NoImageURL': BASE_URL+'assets/frontend/gui/images/no-images/no-profile-image-48.jpg',
-                    'LoadingInOrder': false,
-                    'ImageDelay': 200});
-});
-
-$(document).ready(function(){
-    initializeGoogleMap('sidebar-map');
+function search_init(){
+    //initializeGoogleMap('sidebar-map');
+    
     $('#price-range').slider({
         range: true,
         min: 0,
@@ -22,13 +24,13 @@ $(document).ready(function(){
     $('#low-price').html($('#price-range').slider('values', 0));
     $('#high-price').html($('#price-range').slider('values', 1));
 
-    initFilterToggle();
+    search_initFilterToggle();
 
     if ($('#view_mode').val() == 'photos'){
-        positionPhotosFilters();
+        search_positionPhotosFilters();
     }
     else{
-        positionListFilters();
+        search_positionListFilters();
     }
 
     $('.search-sort-by').removeClass('selected');
@@ -47,22 +49,22 @@ $(document).ready(function(){
     }
     
     if ($('#category').val() == ''){
-        parseSearchCategory();
+        search_parseSearchCategory();
     }
     else{
         $('#search-category-link-'+$('#category').val()).addClass('selected');
-        searchAjax();
+        search_searchAjax();
     }
 
     $('.search-menu-category').click(function(){
-        parseSearchCategory();
+        search_parseSearchCategory();
     });
 
     $('.search-sort-by').click(function(){
         $('.search-sort-by').removeClass('selected');
         $(this).addClass('selected');
         $('#sort_by').val($(this).attr('id').split('-')[1]);
-        searchAjax();
+        search_searchAjax();
     });
 
     $('.search-view-mode').click(function(){
@@ -81,24 +83,24 @@ $(document).ready(function(){
                 $('#results-list-images').attr('id', 'results-list');
             }
         }
-        searchAjax();
+        search_searchAjax();
     });
     
     $(window).scroll(function(){
         if ($('#view_mode').val() == 'photos'){
-            positionPhotosFilters();
+            search_positionPhotosFilters();
         }
         else{
-            positionListFilters();
+            search_positionListFilters();
         }
     });
-});
+}
 
-function locationChange(value){
+function search_locationChange(value){
     alert(value);
 }
 
-function initFilterToggle(){
+function search_initFilterToggle(){
     $('.filter-header').click(function(){
         var parent = $(this).parent();
         if ($('ul', parent).css('display') == 'none'){
@@ -110,51 +112,51 @@ function initFilterToggle(){
     });
 }
 
-function parseSearchCategory(){
+function search_parseSearchCategory(){
     var baseCategory;
 
     setTimeout(function(){
         baseCategory = window.location.href.split('#')[1];
 
         if (baseCategory == 'hotels' || baseCategory == 'hotels/'){
-            selectSearchCategory(1);
-            searchAjax();
+            search_selectSearchCategory(1);
+            search_searchAjax();
         }
         else if (baseCategory == 'spa-beauty' || baseCategory == 'spa-beauty/'){
-            selectSearchCategory(2);
-            searchAjax();
+            search_selectSearchCategory(2);
+            search_searchAjax();
         }
         else if (baseCategory == 'shopping' || baseCategory == 'shopping/'){
-            selectSearchCategory(3);
-            searchAjax();
+            search_selectSearchCategory(3);
+            search_searchAjax();
         }
         else if (baseCategory == 'services' || baseCategory == 'services/'){
-            selectSearchCategory(4);
-            searchAjax();
+            search_selectSearchCategory(4);
+            search_searchAjax();
         }
         else if (baseCategory == 'restaurants' || baseCategory == 'restaurants/'){
-            selectSearchCategory(5);
-            searchAjax();
+            search_selectSearchCategory(5);
+            search_searchAjax();
         }
         else{
-            selectSearchCategory('villas');
-            searchAjax();
+            search_selectSearchCategory('villas');
+            search_searchAjax();
         }
     }, 100);
 }
 
-function selectSearchCategory(item){
+function search_selectSearchCategory(item){
     $('#category').val(item);
     $('.search-menu-category').removeClass('selected');
     $('#search-category-link-'+item).addClass('selected');
 }
 
-function parseSearchPage(page){
+function search_parseSearchPage(page){
     $('#page').val(page);
-    searchAjax();
+    search_searchAjax();
 }
 
-function searchAjax(){   
+function search_searchAjax(){
     if ($('#results-list').html() != null){
         $('#results-list').html('<li id="results-loader"></li><br class="clear" />');
     }
@@ -171,7 +173,7 @@ function searchAjax(){
     $('#results-loader').height($('#sidebar-content').height()-40);
 
     if ($('#location').val() != ''){
-        codeGoogleMapAddress($('#location').val(), 'map');
+        //codeGoogleMapAddress($('#location').val(), 'map');
     }
     
     $.post(BASE_URL+'search/searchSubmit', {location: $('#location').val(),
@@ -188,11 +190,11 @@ function searchAjax(){
             $('#results-list-images li .image-container').DOPImageLoader({'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png', 'LoadingInOrder': false});
         }
         $('#results-pagination').html(data.split(';;;;;')[1]);
-        setGoogleMapMarkers('sidebar-map');
+        //setGoogleMapMarkers('sidebar-map');
     });
 }
 
-function positionListFilters(){
+function search_positionListFilters(){
     if ($('#results-list').height() > $('#sidebar-content').height()-40){
         if ($(window).scrollTop() >= $('#main-menu').offset().top+$('#main-menu').height()){
             $('#main-submenu').css('position', 'fixed');
@@ -216,7 +218,7 @@ function positionListFilters(){
     }
 }
 
-function positionPhotosFilters(){
+function search_positionPhotosFilters(){
     if ($('#results-list-images').height() > $('#sidebar-content').height()-40){
         if ($(window).scrollTop() >= $('#main-menu').offset().top+$('#main-menu').height()){
             $('#main-submenu').css('position', 'fixed');

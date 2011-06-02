@@ -1,4 +1,14 @@
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/js/google-maps-api.php
+ * File Version            : 1.0
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 27 May 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Google Maps API.
+*/
+
 var geocoder;
 var map;
 var marker;

@@ -1,5 +1,15 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/sign-upin-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Sign Up/In Style.
+*/
+
 .sign-upin{
     background-color: #fefefe;
     border: 1px #d7d8d8 solid;

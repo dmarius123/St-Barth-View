@@ -1,20 +1,30 @@
 @charset "utf-8";
 
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/page-style.js
+ * File Version            : 1.1
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 01 June 2011
+ * Last Modified By        : Marius-Cristian Donea
+ * Description             : Page Style.
+*/
+
 .page-section{
-    color: #4C4C4C;
+    color: #4c4c4c;
     text-align: justify;
 }
 
 .page-section h1{
-    padding:20px 20px 10px;
+    padding: 20px 20px 10px;
     font-size: 18px;
-    color: #688AB9;
+    color: #688ab9;
 }
 
 .page-section h2{
-    padding:20px 20px 10px;
+    padding: 20px 20px 10px;
     font-size: 16px;
-    color: #688AB9;
+    color: #688ab9;
 }
 
 .page-section p{
@@ -24,14 +34,13 @@
 }
 
 .page-section a{
-    color: #627AAD;
+    color: #627aad;
     font-weight: bold;
 }
 
 .page-main{
-    background: #F0F0F0;
-    width: 685px!important;
-/*    min-height: 200px;*/
+    background: #f0f0f0;
+    width: 685px !important;
 }
 
 .page-main h1{
@@ -43,5 +52,4 @@
 .page-sidebar{
     background: #F0F0F0;
     margin-left: 20px;
-/*    min-height: 200px;*/
 }
