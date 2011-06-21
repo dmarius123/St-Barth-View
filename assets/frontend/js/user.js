@@ -3,7 +3,7 @@
  * File                    : assets/frontend/js/user.js
  * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 01 June 2011
+ * Created / Last Modified : 20 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : User Scripts.
 */
@@ -28,8 +28,9 @@ function user_parseContent(){
 function user_openPage(currPage, ID){
     var ajaxURL = BASE_URL+'user/'+currPage+'/content',
     menuSelect = currPage,
+    contentArea = '#user-area-main',
     submenuHide = 'all';
-    
+
     switch (currPage){
         case 'add-hotel':
             ajaxURL = BASE_URL+'user/hotel/add';
@@ -54,6 +55,7 @@ function user_openPage(currPage, ID){
         case 'edit-hotel-details':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/hotel/editDetails';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -64,6 +66,7 @@ function user_openPage(currPage, ID){
         case 'edit-hotel-gallery':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/hotel/editGallery';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -74,6 +77,7 @@ function user_openPage(currPage, ID){
         case 'edit-hotel-pricing':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/hotel/editPricing';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -94,6 +98,7 @@ function user_openPage(currPage, ID){
         case 'edit-villa-details':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/villa/editDetails';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -104,6 +109,7 @@ function user_openPage(currPage, ID){
         case 'edit-villa-gallery':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/villa/editGallery';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -114,6 +120,7 @@ function user_openPage(currPage, ID){
         case 'edit-villa-pricing':
             if ($('#offers-submenu').html() != ''){
                 ajaxURL = BASE_URL+'user/villa/editPricing';
+                contentArea = '.user-offers-list-content';
                 menuSelect = 'none';
                 submenuHide = 'deals';
             }
@@ -125,9 +132,9 @@ function user_openPage(currPage, ID){
 
     user_selectMenuItem(menuSelect);
     user_hideSubmenus(submenuHide);
-
+    
     $.post(ajaxURL, {id:ID}, function(data){
-        $('#user-area-main').html(data);
+        $(contentArea).html(data);
         positionFooter();
         
         switch (currPage){
@@ -405,11 +412,11 @@ function user_redirectOffers(){
 
     function user_initAddHotel(){
         marker = null;
-        //initializeGoogleMap('user-area-main-add-map');
-        //codeGoogleMapAddress('St Barthélemy', 'mapplusmarker');
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
         $("#address").keyup(function(event){
             if(event.keyCode != 13){
-                //showGoogleMapHints($(this).val(), '#address-hints');
+                gm_showHints($(this).val(), '#address-hints');
             }
         });
 
@@ -445,8 +452,9 @@ function user_redirectOffers(){
                 }
                 if (validForm){
                     $.post(BASE_URL+'user/hotel/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                              location_id: $('#location_id').val(),
+                                                              locality: $('#locality').val(),
                                                               address: $('#address').val(),
-                                                              location: $('#location').val(),
                                                               alt_address: $('#alt-address').val(),
                                                               name: $('#name').val(),
                                                               description: $('#description').val()}, function(data){
@@ -520,10 +528,21 @@ function user_redirectOffers(){
                     validForm = false;
                 }
                 if (validForm){
+                    var amenities = '', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
                     $.post(BASE_URL+'user/hotel/editDetailsSubmit/', {id: $('#hotel_id').val(),
                                                                       alt_address: $('#alt-address').val(),
                                                                       name: $('#name').val(),
-                                                                      description: $('#description').val()}, function(data){
+                                                                      description: $('#description').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#hotel_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
                         $('#edit-offer-details-title').removeClass('loading');
                         user_disableEditHotelDetailsForm(false);
                         user_showInfo('#edit-offer-details-info', data);
@@ -577,8 +596,8 @@ function user_redirectOffers(){
             'folder'         : '',
             'queueID'        : 'fileQueue',
             'buttonText'     : UPLOAD_IMAGES,
-            'width'          : 134,
-            'height'         : 34,
+            'width'          : 120,
+            'height'         : 30,
             'auto'           : true,
             'multi'          : true,
             'onSelect'       : function(event, ID, fileObj){
@@ -725,11 +744,11 @@ function user_redirectOffers(){
 
     function user_initAddVilla(){
         marker = null;
-        //initializeGoogleMap('user-area-main-add-map');
-        //codeGoogleMapAddress('St Barthélemy', 'mapplusmarker');
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
         $("#address").keyup(function(event){
             if(event.keyCode != 13){
-                //showGoogleMapHints($(this).val(), '#address-hints');
+                gm_showHints($(this).val(), '#address-hints');
             }
         });
 
@@ -765,8 +784,9 @@ function user_redirectOffers(){
                 }
                 if (validForm){
                     $.post(BASE_URL+'user/villa/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                              location_id: $('#location_id').val(),
+                                                              locality: $('#locality').val(),
                                                               address: $('#address').val(),
-                                                              location: $('#location').val(),
                                                               alt_address: $('#alt-address').val(),
                                                               name: $('#name').val(),
                                                               description: $('#description').val()}, function(data){
@@ -804,6 +824,130 @@ function user_redirectOffers(){
     }
 
 /* END ADD VILLA */
+
+/* BEGIN EDIT VILLA */
+
+    function user_initEditVillaDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/villa/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/villa/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editVillaDetails(){
+        var validForm = true;
+        user_disableEditVillaDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/villa/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/villa/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = '', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/hotel/editDetailsSubmit/', {id: $('#villa_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#villa_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditVillaDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditVillaDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditVillaDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditVillaGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/villa/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/hotel/uploadify/'+HOTEL_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+/* END EDIT VILLA */
 
 /* BEGIN SETTINGS */
 

@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/user-style.js
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 01 June 2011
+ * Created / Last Modified : 20 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : User Style.
 */
@@ -85,7 +85,7 @@ div.user-add-offer span{
 
 #address{
     background-color: #ffffff;
-    width: 250px;
+    width: 350px;
     border: 1px #d8d8d8 solid;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -93,8 +93,8 @@ div.user-add-offer span{
     font-size: 14px;
     padding: 5px;
     height: 18px;
-    margin: 11px 20px 0 0;
-    float: right;
+    margin: 11px 0 0 20px;
+    float: left;
 }
 
 #address:focus{
@@ -115,8 +115,8 @@ div.user-add-offer span{
     font-size: 14px;
     padding: 5px;
     height: 30px;
-    margin: 10px 0 0 20px;
-    float: left;
+    margin: 10px 20px 0 0;
+    float: right;
 }
 
 .user_add_location:focus{
@@ -130,11 +130,11 @@ div.user-add-offer span{
 #address-hints{
     position: absolute;
     z-index: 200;
-    margin: 0 0 0 403px;
+    margin: 0 0 0 20px;
 }
 
 #address-hints li{
-    width: 262px;
+    width: 362px;
 }
 
 #address-hints li a{
@@ -293,6 +293,16 @@ div.user-add-offer span{
     font-size: 12px;
     font-weight: normal;
     color: #FF69A7;
+}
+
+.user-area-form-field .amenities-list{
+}
+
+.user-area-form-field .amenities-list li{
+    float: left;
+    width: 201px;
+    margin: 10px 0 0 0;
+    padding: 0 10px 0 0;
 }
 
 .user-area-input-style,.user-area-input-style-medium{

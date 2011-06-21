@@ -1,15 +1,15 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/js/search.js
- * File Version            : 1.1
+ * File Version            : 1.4
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 01 June 2011
+ * Created / Last Modified : 19 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Search Scripts.
 */
 
 function search_init(){
-    //initializeGoogleMap('sidebar-map');
+    //gm_initialize('sidebar-map');
     
     $('#price-range').slider({
         range: true,
@@ -47,11 +47,11 @@ function search_init(){
             $('#results-list-images').attr('id', 'results-list');
         }
     }
-    
+
     if ($('#category').val() == ''){
         search_parseSearchCategory();
     }
-    else{
+    else{        
         $('#search-category-link-'+$('#category').val()).addClass('selected');
         search_searchAjax();
     }
@@ -60,9 +60,11 @@ function search_init(){
         search_parseSearchCategory();
     });
 
+// Click Events
     $('.search-sort-by').click(function(){
         $('.search-sort-by').removeClass('selected');
         $(this).addClass('selected');
+        $('#page').val(1);
         $('#sort_by').val($(this).attr('id').split('-')[1]);
         search_searchAjax();
     });
@@ -73,16 +75,19 @@ function search_init(){
         item.addClass('selected');
         $('#view_mode').val(item.attr('id').split('-')[1]);
 
-        if ($('#results-list').html() != null){
-            if (item.attr('id').split('-')[1] == 'photos'){
-                $('#results-list').attr('id', 'results-list-images');
-            }
-        }        
-        else if ($('#results-list-images').html() != null){
-            if (item.attr('id').split('-')[1] == 'list' || item.attr('id').split('-')[1] == 'map'){
-                $('#results-list-images').attr('id', 'results-list');
-            }
+        switch ($('#view_mode').val()){
+            case 'photos':
+                $('.search-results-wrapper').attr('id', 'results-list-images');
+                break;
+            case 'map':
+                $('#page').val(1);
+                $('.search-results-wrapper').attr('id', 'results-map');
+                break;
+            default:
+                $('.search-results-wrapper').attr('id', 'results-list');
+                break;           
         }
+        
         search_searchAjax();
     });
     
@@ -94,10 +99,6 @@ function search_init(){
             search_positionListFilters();
         }
     });
-}
-
-function search_locationChange(value){
-    alert(value);
 }
 
 function search_initFilterToggle(){
@@ -123,29 +124,30 @@ function search_parseSearchCategory(){
             search_searchAjax();
         }
         else if (baseCategory == 'spa-beauty' || baseCategory == 'spa-beauty/'){
-            search_selectSearchCategory(2);
-            search_searchAjax();
-        }
-        else if (baseCategory == 'shopping' || baseCategory == 'shopping/'){
             search_selectSearchCategory(3);
             search_searchAjax();
         }
-        else if (baseCategory == 'services' || baseCategory == 'services/'){
+        else if (baseCategory == 'shopping' || baseCategory == 'shopping/'){
             search_selectSearchCategory(4);
             search_searchAjax();
         }
-        else if (baseCategory == 'restaurants' || baseCategory == 'restaurants/'){
+        else if (baseCategory == 'services' || baseCategory == 'services/'){
             search_selectSearchCategory(5);
             search_searchAjax();
         }
+        else if (baseCategory == 'restaurants' || baseCategory == 'restaurants/'){
+            search_selectSearchCategory(6);
+            search_searchAjax();
+        }
         else{
-            search_selectSearchCategory('villas');
+            search_selectSearchCategory(2);
             search_searchAjax();
         }
     }, 100);
 }
 
 function search_selectSearchCategory(item){
+    $('#page').val(1);
     $('#category').val(item);
     $('.search-menu-category').removeClass('selected');
     $('#search-category-link-'+item).addClass('selected');
@@ -157,11 +159,16 @@ function search_parseSearchPage(page){
 }
 
 function search_searchAjax(){
-    if ($('#results-list').html() != null){
-        $('#results-list').html('<li id="results-loader"></li><br class="clear" />');
-    }
-    else if ($('#results-list-images').html() != null){
-        $('#results-list-images').html('<li id="results-loader"></li><br class="clear" />');
+    switch ($('#view_mode').val()){
+        case 'photos':
+            $('#results-list-images').html('<li id="results-loader"></li><br class="clear" />');
+            break;
+        case 'map':
+            $('#results-map').html('<li id="results-loader"></li><br class="clear" />');
+            break;
+        default:
+            $('#results-list').html('<li id="results-loader"></li><br class="clear" />');
+            break;
     }
 
     if ($(window).scrollTop() >= $('#main-menu').offset().top){
@@ -171,26 +178,59 @@ function search_searchAjax(){
         $('body').scrollTop($('#main-menu').offset().top);
     }
     $('#results-loader').height($('#sidebar-content').height()-40);
-
-    if ($('#location').val() != ''){
-        //codeGoogleMapAddress($('#location').val(), 'map');
-    }
     
-    $.post(BASE_URL+'search/searchSubmit', {location: $('#location').val(),
-                                            category: $('#category').val(),
+    $.post(BASE_URL+'search/searchSubmit', {category: $('#category').val(),
                                             sort_by: $('#sort_by').val(),
                                             view_mode: $('#view_mode').val(),
-                                            page: $('#page').val()}, function(data){
-        if ($('#results-list').html() != null){
-            $('#results-list').html(data.split(';;;;;')[0]);
-            $('#results-list li .image-container').DOPImageLoader({'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png', 'LoadingInOrder': false});
+                                            page: $('#page').val(),
+                                            location: $('#location').val(),
+                                            locality: $('#locality').val()}, function(data){
+        switch ($('#view_mode').val()){
+            case 'photos':
+                $('#results-list-images').html(data.split(';;;;;')[0]);
+                $('#results-list-images li .image-container').DOPImageLoader({'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png', 'LoadingInOrder': false});
+                $('#results-pagination').html(data.split(';;;;;')[1]);
+                $('#sidebar-map').css('display', 'block');
+                gm_initialize('sidebar-map');
+                break;
+            case 'map':
+                $('#results-map').html(data);
+                $('#results-pagination').html('');
+                $('#sidebar-map').css('display', 'none');
+                gm_initialize('map-results');
+                break;
+            default:
+                $('#results-list').html(data.split(';;;;;')[0]);
+                $('#results-list li .image-container').DOPImageLoader({'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png', 'LoadingInOrder': false});
+                $('#results-pagination').html(data.split(';;;;;')[1]);
+                $('#sidebar-map').css('display', 'block');
+                gm_initialize('sidebar-map');
+                break;
         }
-        else if ($('#results-list-images').html() != null){
-            $('#results-list-images').html(data.split(';;;;;')[0]);
-            $('#results-list-images li .image-container').DOPImageLoader({'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png', 'LoadingInOrder': false});
+
+        if ($('#view_mode').val() == 'map'){
+            $('#sidebar-map').css('display', 'none');
+            gm_initialize('map-results');
         }
-        $('#results-pagination').html(data.split(';;;;;')[1]);
-        //setGoogleMapMarkers('sidebar-map');
+        else{
+            $('#sidebar-map').css('display', 'block');
+            gm_initialize('sidebar-map');
+        }
+        
+        gm_codeAddress($('option[value="'+$('#location').val()[0]+'"]', '#location').text(), 'map');
+        gm_setMarkers('sidebar-map');
+
+        var pieces, index;
+
+        $('.offer-item').hover(function(){
+            $(this).addClass('hovered');
+            pieces = $(this).attr('id').split('-');
+            index = pieces[pieces.length-1]-1;
+            markers[index].setIcon(imageHover[index]);
+        },function(){
+            $(this).removeClass('hovered');
+            markers[index].setIcon(image[index]);
+        });
     });
 }
 
@@ -240,4 +280,31 @@ function search_positionPhotosFilters(){
             $('#sidebar-content').css('top', 0);
         }
     }
+}
+
+function search_locationChange(){
+    switch ($('#view_mode').val()){
+        case 'photos':
+            $('#results-list-images').html('<li id="results-loader"></li><br class="clear" />');
+            break;
+        case 'map':
+            $('#results-map').html('<li id="results-loader"></li><br class="clear" />');
+            break;
+        default:
+            $('#results-list').html('<li id="results-loader"></li><br class="clear" />');
+            break;
+    }
+
+    if ($(window).scrollTop() >= $('#main-menu').offset().top){
+        $('#main-submenu').css('position', 'relative');
+        $('#sidebar-content').css('position', 'relative');
+        $('html').scrollTop($('#main-menu').offset().top);
+        $('body').scrollTop($('#main-menu').offset().top);
+    }
+    $('#results-loader').height($('#sidebar-content').height()-40);
+
+    $.post(BASE_URL+'search/localities', {location: $('#location').val()}, function(data){
+        $('#localities-filter').replaceWith(data);
+        search_searchAjax();
+    });
 }
