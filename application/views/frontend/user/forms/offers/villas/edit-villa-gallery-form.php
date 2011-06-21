@@ -2,16 +2,16 @@
 
 /*
  * Title                   : St Barth View
- * File                    : application/views/frontend/user/forms/offers/hotels/edit-hotel-gallery-form.php
+ * File                    : application/views/frontend/user/forms/offers/villas/edit-villa-gallery-form.php
  * File Version            : 1.0
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 16 June 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Login User - Edit Hotel Gallery form.
+ * Description             : Login User - Edit Villa Gallery form.
 */
 
 ?>
-    <h3 id="edit-offer-gallery-title"><?=$user_edit_hotel_gallery_title?></h3>
+    <h3 id="edit-offer-gallery-title"><?=$user_edit_villa_gallery_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-gallery-info"></span>        
     <ul id="edit-offer-gallery">

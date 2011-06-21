@@ -5,7 +5,7 @@
  * File                    : application/controllers/user/hotel.php
  * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 16 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Hotel Controller.
 */
@@ -36,10 +36,21 @@
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
-                
+
                 $data['user_id'] = $this->userId;
 
-                $this->load->view('frontend/user/templates/add-hotel-template', $data);
+                $locations_list = $this->CI->Locations_model->getLocationsList();
+                foreach ($locations_list->result() as $location):
+                    if ($location->aa0_id == 0){
+                        $location->country = 'none';
+                    }
+                    else{
+                        $location->country = $this->CI->Locations_model->getCountry($location->aa0_id);
+                    }
+                endforeach;
+                $data['locations_list'] = $locations_list;
+
+                $this->load->view('frontend/user/templates/offers/add-hotel-template', $data);
             }
             else{
                 redirect('user/redirect');
@@ -85,7 +96,8 @@
                         $data['short_description'] = $this->CI->Functions_model->shortText($hotel['description'], 150);
                         $data['first_image'] = $this->CI->Offers_model->getFirstImage($hotel['id']);
                         $data['hotel'] = $hotel;
-
+                        
+                        
                         $this->load->view('frontend/user/templates/offers/hotels/hotel-template', $data);
                     }
                     else{
@@ -112,7 +124,10 @@
                         $data['id'] = $this->hotelId;
                         $data['name'] = $details['name'];
                         $data['description'] = $details['description'];
+                        $data['offer_amenities'] = $details['amenities'];
                         $data['address'] = $details['alt_address'];
+
+                        $data['amenities'] = $this->CI->Offers_model->getAmenities(1);
                         
                         $this->load->view('frontend/user/templates/offers/hotels/edit-hotel-details-template', $data);
                     }
@@ -203,7 +218,7 @@
                 if ($ext == 'png') $source = imagepng($thumb, $targetPath.'thumbs/'.$newName.'.'.$ext);
                 else $source = imagejpeg($thumb, $targetPath.'thumbs/'.$newName.'.'.$ext);
                 
-                $images = $this->CI->Offers_model->gallery($this->hotelId);
+                $images = $this->CI->Offers_model->getGallery($this->hotelId);
                 $query_data = array(
                     'offer_id' => $this->hotelId,
                     'path' => base_url().$targetPath.$newName.'.'.$ext,
@@ -213,14 +228,14 @@
                 $this->db->insert('offers_images', $query_data);
                 $image_id = $this->db->insert_id();
 
-                $details = $this->CI->Offers_model->details($this->hotelId)->row_array(0);
+                $details = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
                 $query_data = array(
                     'no_images' => $details['no_images']+1
                 );
                 $this->db->where('id', $this->hotelId);
                 $this->db->update('offers', $query_data);
 
-                echo '<li id="image_'.$image_id.'"><img src="'.base_url().$targetPath.'thumbs/'.$newName.'.'.$ext.'" alt="" /><span class="delete" onclick="deleteImage('.$image_id.')"></span></li>';
+                echo '<li id="image_'.$image_id.'"><img src="'.base_url().$targetPath.'thumbs/'.$newName.'.'.$ext.'" alt="" /><span class="delete" onclick="user_deleteImage('.$image_id.')"></span></li>';
             }
         }
 

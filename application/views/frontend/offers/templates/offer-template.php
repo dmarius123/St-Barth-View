@@ -2,39 +2,55 @@
 
 /*
  * Title                   : St Barth View
- * File                    : application/views/frontend/offers/hotel/templates/hotel-template.php
- * File Version            : 1.1
+ * File                    : application/views/frontend/offers/templates/offer-template.php
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 19 June 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Offers - Hotel Template.
+ * Description             : Offers - Offer Template.
 */
 
 ?>
 <?php $this->load->view('frontend/header'); ?>
+<?php $curr_date = date('Y-m-d H:i:s'); ?>
+<script type="text/JavaScript">
+    currPage = 'Offer';
+</script>
     <div id="section" class="offer-section">
+        <input type="hidden" id="offer-id" name="offer-id" value="<?=$offer['id']?>" />
+        <input type="hidden" id="offer-description" name="offer-description" value="<?=$offer['description']?>" />
         <div id="offer-top">
-            <span class="title">La Banane <span class="location">St Barth, Lorient</span></span>
-            <span class="new"></span>
+            <span class="title"><?=$offer['name']?><span class="location"><?=$offer['location']?><?=$offer['country'] == '' ? '':', '.$offer['country']?><?=$offer['locality'] == '' ? '':', '.$offer['locality']?></span></span>
+<?php echo (strtotime($curr_date)-strtotime($offer['date_created']))/86400 < 30 ? '<span class="new"></span>':''; ?>
             <span class="rating-value-stars">
-                <span class="rating-value">4.0</span>
+                <span class="rating-value"><?=number_format($offer['rating'], 1, '.', '')?></span>
                 <span class="rating-stars">
-                    <span class="rating-stars-value"></span>
+                    <span class="rating-stars-value" style="width:<?=$offer['rating']*12?>px;"></span>
                 </span>
             </span>
-            <a href="javascript:void(0)" target="_self"><span class="owner-icon"></span></a>
+<?php if ($offer['no_comments'] > 0){ ?>
+            <a href="javascript:void(0)" target="_self"><?php echo $offer['last_comment_profile_picture'] != '' ? '<img src="'.$offer['last_comment_profile_picture'].'" tittle="'.$offer['last_comment_first_name'].' '.$offer['last_comment_last_name'].'" alt="" />':''; ?></a>
             <span class="owner">
-                <span class="last-comment">Last comment <a href="javascript:void(0)" target="_self"><span class="first-name">Alexandre A.</span></a><br />
-                at: 12/12/2010 - 5:57pm</span>
+                <span class="last-comment"><?=$offers_last_comment?>
+                    <a href="<?=base_url()?>user/profile/view/<?=$offer['last_comment_user_id']?>" target="_self">
+                        <span class="icon"><?php echo $offer['last_comment_profile_picture'] != '' ? '<img src="'.$offer['last_comment_profile_picture'].'" tittle="'.$offer['last_comment_first_name'].' '.$offer['last_comment_last_name'].'" alt="" />':''; ?></span>
+                        <span class="first-name"><?=$offer['last_comment_first_name']?> <?=substr($offer['last_comment_last_name'], 0, 1)?>.</span>
+                    </a><br />
+                    <?=$offers_last_comment_at?> <?=$offer['last_comment_date']?>
+                </span>
             </span>
-            <span class="deals"><a href="javascript:void(0)" target="_self"><span class="icon no-deals"></span><span class="no">2</span><br /><span class="text">deals</span></a></span>
-            <span class="friends"><a href="javascript:void(0)" target="_self"><span class="icon no-friends"></span><span class="no">220</span><br /><span class="text">like</span></a></span>
-            <span class="comments"><a href="javascript:void(0)" target="_self"><span class="icon"></span><span class="no">2000</span><br /><span class="text">comments</span></a></span>
+<?php }
+      else{
+?>
+            <span class="owner"><span class="no-comment" style="padding: 6px 0 0 0;"><?=$offers_no_comments?></span></span>
+<?php } ?>
+            <span class="deals"><a href="javascript:void(0)" target="_self"><span class="icon<?php echo $offer['no_deals'] > 0 ? '':' no-deals'; ?>"></span><span class="no"><?=$offer['no_deals']?></span><br /><span class="text"><?=$offers_deals?></span></a></span>
+            <span class="friends"><a href="javascript:void(0)" target="_self"><span class="icon<?php echo $offer['no_friends'] > 0 ? '':' no-friends'; ?>"></span><span class="no"><?=$offer['no_friends']?></span><br /><span class="text"><?=$offers_friends?></span></a></span>
+            <span class="comments"><a href="javascript:void(0)" target="_self"><span class="icon<?php echo $offer['no_comments'] > 0 ? '':' no-comments'; ?>"></span><span class="no"><?=$offer['no_comments']?></span><br /><span class="text"><?=$offers_comments?></span></a></span>
         </div>
         <div id="offer-content">
             <div id="offer-main">
-                <div id="offer-image-container">
-                    <img src="<?php echo base_url()?>assets/frontend/gui/images/offer_detail_img.jpg" alt="" width="660" height="450"/>
+                <div id="offer-image-container" style="width:660px; height:450px;">
                 </div>
                 <div id="rates-slider"class="hidden-slider" style="display:none;">
                     <div class="slider-left"> <a href="">>></a> </div>
@@ -46,7 +62,7 @@
                     </div>
                     <br class="clear" />
                 </div>
-                <div id="deal-slider" class="hidden-slider" style="display:block;">
+                <div id="deal-slider" class="hidden-slider" style="display:none;">
                     <div class="slider-left"> <a href="">>></a> </div>
                     <div class="slider-right">
                         <p class="title">Ultimate carribbean luxury hotel<br />for 2 pers cars included !</p>
@@ -222,17 +238,17 @@
         <div id="offer-bottom">
             <div class="offer-bottom-actions">
                 <ul id="" class="sorting-menu">
-                    <li><a href="javascript:void(0)" target="_self" class="selected" id=""><span class="text">description</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showDescription()" target="_self" class="selected" id=""><span class="text">description</span><span class="end"></span></a></li>
                     <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">amenities</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showAmenities()" target="_self" class="" id=""><span class="text">amenities</span><span class="end"></span></a></li>
                     <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">rooms</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showRooms()" target="_self" class="" id=""><span class="text">rooms</span><span class="end"></span></a></li>
                     <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">map</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showMap()" target="_self" class="" id=""><span class="text">map</span><span class="end"></span></a></li>
                     <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">locations</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showLocations()" target="_self" class="" id=""><span class="text">locations</span><span class="end"></span></a></li>
                     <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">reviews (2000)</span><span class="end"></span></a></li>
+                    <li><a href="javascript:offer_showReviews()" target="_self" class="" id=""><span class="text">reviews (2000)</span><span class="end"></span></a></li>
                 </ul>
                 <div class="add-this-widget">
                     <!-- AddThis Button BEGIN -->
@@ -249,9 +265,8 @@
                 </div>
                 <br class="clear" />
             </div>
-            <div class="offer-bottom-content">
-                <p>Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié n hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégiée ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on
-    t privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié n hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....</p>
+            <div class="offer-bottom-content" id="offer-bottom-content">
+                <p><?=$offer['description']?></p>
             </div>
         </div>
     </div>

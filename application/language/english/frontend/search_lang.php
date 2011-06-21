@@ -39,7 +39,6 @@
     $lang['search_offer_likes'] = "likes";
     $lang['search_offer_deals'] = "deals";
 
-    $lang['search_offer_deals'] = "deals";
     $lang['search_offer_no_comments'] = "no comments";
     $lang['search_offer_last_comment'] = "Last comment";
     $lang['search_offer_last_comment_at'] = "at:";
@@ -53,11 +52,16 @@
     $lang['search_pagination_listings'] = "listings";
 
 // Filters
-    $lang['search_filters_location'] = "location";
+    $lang['search_filters_locations'] = "location";
+    $lang['search_filters_localities'] = "locality";
+    $lang['search_filters_localities_others'] = "...";
     $lang['search_filters_price'] = "price";
     $lang['search_filters_travel_dates'] = "travel dates";
     $lang['search_filters_check_in'] = "check in";
     $lang['search_filters_check_out'] = "check out";
     $lang['search_filters_amenities'] = "amenities";
+
+// No results
+    $lang['search_no_results'] = "No results.";
 
 ?>

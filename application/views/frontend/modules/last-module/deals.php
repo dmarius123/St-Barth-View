@@ -27,7 +27,7 @@
             </div>
             <div class="search-review-deal-info">
                 <p class="search-review-deal-info-title"><a href="<?=base_url().'offer/'.$deal->offer_id?>"><?=$deal->name;?></a></p>
-                <p class="search-review-deal-info-location"><?=$deal->offer_name;?>, <?=$deal->offer_location;?></p>
+                <p class="search-review-deal-info-location"><?=$deal->offer_name;?>, <?=$deal->offer_location;?><?=$offer->offer_country == '' ? '':', '.$offer->offer_country?></p>
                 <div class="search-review-deal-info-price">
                     <a href="<?=base_url().'offer/'.$deal->offer_id?>">
                         <span class="box">

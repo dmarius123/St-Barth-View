@@ -1,23 +1,23 @@
-<?php
+h<?php
 
 /*
  * Title                   : St Barth View
- * File                    : application/views/frontend/user/forms/offers/hotels/edit-hotel-pricing-form.php
+ * File                    : application/views/frontend/user/forms/offers/villas/edit-villa-pricing-form.php
  * File Version            : 1.0
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 16 June 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Login User - Edit Hotel Pricing form.
+ * Description             : Login User - Edit Villa Pricing form.
 */
 
 ?>
-    <h3 id="edit-offer-pricing-title"><?=$user_edit_hotel_pricing_title?></h3>
+    <h3 id="edit-offer-pricing-title"><?=$user_edit_villa_pricing_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-pricing-info"></span>
-    <form method="post" action="" onsubmit="return editHotelPricing()">
-        <input type="hidden" id="hotel_id" name="hotel_id" value="<?=$id?>" />
+    <form method="post" action="" onsubmit="return editVillaPricing()">
+        <input type="hidden" id="villa_id" name="villa_id" value="<?=$id?>" />
         <div class="user-area-form-field">
-            <label><?=$user_edit_hotel_pricing_currency?> <span class="required" id="info-last-name">&nbsp</span></label><br />
+            <label><?=$user_edit_villa_pricing_currency?> <span class="required" id="info-last-name">&nbsp</span></label><br />
             <select id="currency" name="currency" class="user-area-select-style">
 <?php
             if ($currency == 0){
@@ -32,7 +32,7 @@
            </select>
         </div>
         <div class="user-area-form-field">
-            <label><?=$user_edit_hotel_pricing_minimum_stay?> <span class="required" id="info-last-name">&nbsp</span></label><br />
+            <label><?=$user_edit_villa_pricing_minimum_stay?> <span class="required" id="info-last-name">&nbsp</span></label><br />
             <select id="min-stay" name="min-stay" class="user-area-select-style">
 <?php
             for ($i=1; $i<=14; $i++){
@@ -69,18 +69,18 @@
            </select>
         </div>
         <br class="clear" />
-        <input type="submit" name="submit-pricing" id="submit-pricing" class="user-area-submit-style" value="<?=$user_edit_hotel_pricing_edit_pricing_submit?>" />
+        <input type="submit" name="submit-pricing" id="submit-pricing" class="user-area-submit-style" value="<?=$user_edit_villa_pricing_edit_pricing_submit?>" />
     </form>
-    <input type="button" name="add-room" index="add-room" class="user-area-submit-style" value="<?=$user_add_room?>" onclick="addHotelRoom(<?=$id?>)" />
+    <input type="button" name="add-room" index="add-room" class="user-area-submit-style" value="<?=$user_add_room?>" onclick="addVillaRoom(<?=$id?>)" />
     <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; user_parseContent()" value="<?=$user_offers_back?>" />
     <br class="clear" />
 
-    <h3 id="edit-offer-rooms-title"><?=$user_edit_hotel_rooms_title?></h3>
+    <h3 id="edit-offer-rooms-title"><?=$user_edit_villa_rooms_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-rooms-info"></span>
     <div class="user-area-form-field">
-        <select id="rooms" id="rooms" class="user-area-select-style" onchange="showHotelRoom(this.value)">
-            <option value="0"><?=$user_edit_hotel_pricing_select_room?></option>
+        <select id="rooms" id="rooms" class="user-area-select-style" onchange="showVillaRoom(this.value)">
+            <option value="0"><?=$user_edit_villa_pricing_select_room?></option>
 <?php
     foreach ($rooms->result() as $room):
         echo '<option value="'.$room->id.'" id="room'.$room->id.'">'.$room->name.'</option>';

@@ -12,4 +12,3 @@
 
 ?>
     <?php $this->load->view('frontend/user/forms/offers/hotels/edit-hotel-details-form'); ?>
-    <div class="user-bottom"></div>

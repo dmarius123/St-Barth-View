@@ -5,7 +5,7 @@
  * File                    : application/views/frontend/user/templates/offers/hotels/hotel-template.php
  * File Version            : 1.0
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 17 june 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Hotel template.
 */
@@ -38,15 +38,15 @@
             </span>
             <br class="clear" />
             <span class="actions">
-                <a href="#edit-hotel-details:<?=$hotel['id']?>" onclick="javascript:parseContent()"><!--<span class="valid"></span>--><?=$user_offers_table_edit_details?></a>
-                <a href="#edit-hotel-gallery:<?=$hotel['id']?>" onclick="javascript:parseContent()"><!--<span class="<?php echo $hotel['no_images'] > 0 ? 'valid':'invalid' ?>"></span>--><?=$user_offers_table_edit_gallery?></a>
-                <a href="#edit-hotel-pricing:<?=$hotel['id']?>" onclick="javascript:parseContent()"><!--<span class="<?php echo $hotel['start_price'] > 0 ? 'valid':'invalid' ?>"></span>--><?=$user_edit_hotel_pricing?></a>
+                <a href="#edit-hotel-details:<?=$hotel['id']?>" onclick="javascript:user_parseContent()"><!--<span class="valid"></span>--><?=$user_offers_table_edit_details?></a>
+                <a href="#edit-hotel-gallery:<?=$hotel['id']?>" onclick="javascript:user_parseContent()"><!--<span class="<?php echo $hotel['no_images'] > 0 ? 'valid':'invalid' ?>"></span>--><?=$user_offers_table_edit_gallery?></a>
+                <a href="#edit-hotel-pricing:<?=$hotel['id']?>" onclick="javascript:user_parseContent()"><!--<span class="<?php echo $hotel['start_price'] > 0 ? 'valid':'invalid' ?>"></span>--><?=$user_edit_hotel_pricing?></a>
             </span>
         </li>
     </ul>
     <div style="height: 1px; display: block;"></div>
     <div class="user-offers-list-content">
-        <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; parseContent()" value="<?=$user_offers_back?>" />
+        <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; user_parseContent()" value="<?=$user_offers_back?>" />
         <br class="clear" />
     </div>
     <div class="user-bottom"></div>

@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/search/templates/search-template.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 18 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Search Page Template.
 */
@@ -25,7 +25,7 @@
 
 <?php $this->load->view('frontend/search/templates/menu-template'); ?>
 <?php $this->load->view('frontend/search/templates/submenu-template'); ?>
-                    <ul id="results-list"><li style="display: none;"></li></ul>
+                    <ul id="results-list" class="search-results-wrapper"><li style="display: none;"></li></ul>
                     <br class="clear" />
                     <div id="results-pagination"></div>
                 </div>

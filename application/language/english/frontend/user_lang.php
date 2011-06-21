@@ -5,7 +5,7 @@
  * File                    : application/language/english/frontend/user_lang.php
  * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 16 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : English Frontend User translation.
 */
@@ -102,6 +102,7 @@
     $lang['user_hotel_details_name_invalid'] = "[required]";
     $lang['user_hotel_details_description'] = "Description";
     $lang['user_hotel_details_description_invalid'] = "[required]";
+    $lang['user_hotel_details_amenities'] = "Amenities";
 
     $lang['user_add_hotel'] = "Add Hotel";
     $lang['user_add_hotel_title'] = "Add Hotel";
@@ -143,6 +144,7 @@
     $lang['user_villa_details_name_invalid'] = "[required]";
     $lang['user_villa_details_description'] = "Description";
     $lang['user_villa_details_description_invalid'] = "[required]";
+    $lang['user_villa_details_amenities'] = "Amenities";
 
     $lang['user_add_villa'] = "Add Villa";
     $lang['user_add_villa_title'] = "Add Villa";
@@ -152,7 +154,15 @@
     $lang['user_add_villa_details_title'] = "Details";
     $lang['user_add_villa_submit'] = "Add Villa";
 
+    $lang['user_edit_villa_title'] = "Edit Villa";
+    $lang['user_edit_villa_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_villa_details_submit'] = "Edit";
+    $lang['user_edit_villa_details_success'] = "Villa details have been successfully edited.";
+
     $lang['user_edit_villa_pricing'] = "Rooms & Pricing";
+    $lang['user_edit_villa_details_title'] = "Edit Villa Details";
+    $lang['user_edit_villa_gallery_title'] = "Edit Villa Gallery";
+    $lang['user_editvilla_pricing_title'] = "Edit Villa Rooms & Pricing";
 
 
 

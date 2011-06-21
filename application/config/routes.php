@@ -54,7 +54,7 @@ $route['user/reward-points'] = 'user/rewardPoints';
 $route['user/reward-points/content'] = 'user/rewardPoints/content';
 
 // Offers
-$route['offer'] = 'offers/offer';
+$route['offer/(:any)'] = 'offers/offer';
 
 // Pages
 $route['who-we-are'] = 'pages/whoWeAre';
