@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/models/frontend/offers_model.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 19 June 2011
+ * Created / Last Modified : 21 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers Model.
 */

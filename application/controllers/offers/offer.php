@@ -68,6 +68,21 @@
             $data['images'] = $this->CI->Offers_model->getGallery($this->uri->segment(4));
             $this->load->view('frontend/offers/data/gallery-data', $data);
         }
+
+        public function getAmenities(){
+            $amenities = $this->CI->Offers_model->getAmenities($this->input->post('offer_type_id'));
+            $i = 0;
+
+            foreach ($amenities->result() as $amenity):
+                $i++;
+                if ($i == 1){
+                    echo $amenity->id.':'.$amenity->name;
+                }
+                else{
+                    echo ','.$amenity->id.':'.$amenity->name;
+                }
+            endforeach;
+        }
     }
 
 ?>

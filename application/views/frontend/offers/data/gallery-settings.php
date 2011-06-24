@@ -38,17 +38,17 @@
     <ThumbnailAlpha></ThumbnailAlpha> <!-- Thumbnail Alpha (value from 0 to 100). Default value: 50. Set the alpha of a thumbnail. -->
     <ThumbnailAlphaHover></ThumbnailAlphaHover> <!-- Thumbnail Alpha Hover (value from 0 to 100). Default value: 100. Set the alpha of a thumbnail when hover. -->
     <ThumbnailAlphaSelected></ThumbnailAlphaSelected> <!-- Thumbnail Alpha Selected (value from 0 to 100). Default value: 100. Set the alpha of a thumbnail when selected. -->
-    <ThumbnailBgColor>000000</ThumbnailBgColor> <!-- Thumbnail Background Color (color hex code). Default value: ffffff. Set the color of a thumbnail's background. -->
+    <ThumbnailBgColor>ffffff</ThumbnailBgColor> <!-- Thumbnail Background Color (color hex code). Default value: ffffff. Set the color of a thumbnail's background. -->
     <ThumbnailBgColorHover>ffffff</ThumbnailBgColorHover> <!-- Thumbnail Background Color Hover (color hex code). Default value: ffffff. Set the color of a thumbnail's background when hover. -->
     <ThumbnailBgColorSelected>ffffff</ThumbnailBgColorSelected> <!-- Thumbnail Background Color Selected (color hex code). Default value: ffffff. Set the color of a thumbnail's background when selected. -->
     <ThumbnailBorderSize></ThumbnailBorderSize> <!-- Thumbnail Border Size (value in pixels). Default value: 0. Set the size of a thumbnail's border. -->
     <ThumbnailBorderColor></ThumbnailBorderColor> <!-- Thumbnail Border Color (color hex code). Default value: 000000. Set the color of a thumbnail's border. -->
     <ThumbnailBorderColorHover></ThumbnailBorderColorHover> <!-- Thumbnail Border Color Hover (color hex code). Default value: 000000. Set the color of a thumbnail's border when hover. -->
     <ThumbnailBorderColorSelected></ThumbnailBorderColorSelected> <!-- Thumbnail Border Color Selected (color hex code). Default value: 000000. Set the color of a thumbnail's border when selected. -->
-    <ThumbnailPaddingTop>3</ThumbnailPaddingTop> <!-- Thumbnail Padding Top (value in pixels). Default value: 0. Set top padding value of a thumbnail. -->
-    <ThumbnailPaddingRight>3</ThumbnailPaddingRight> <!-- Thumbnail Padding Right (value in pixels). Default value: 0. Set right padding value of a thumbnail. -->
-    <ThumbnailPaddingBottom>3</ThumbnailPaddingBottom> <!-- Thumbnail Padding Bottom (value in pixels). Default value: 0. Set bottom padding value of a thumbnail. -->
-    <ThumbnailPaddingLeft>3</ThumbnailPaddingLeft> <!-- Thumbnail Padding Left (value in pixels). Default value: 0. Set left padding value of a thumbnail. -->
+    <ThumbnailPaddingTop></ThumbnailPaddingTop> <!-- Thumbnail Padding Top (value in pixels). Default value: 0. Set top padding value of a thumbnail. -->
+    <ThumbnailPaddingRight></ThumbnailPaddingRight> <!-- Thumbnail Padding Right (value in pixels). Default value: 0. Set right padding value of a thumbnail. -->
+    <ThumbnailPaddingBottom></ThumbnailPaddingBottom> <!-- Thumbnail Padding Bottom (value in pixels). Default value: 0. Set bottom padding value of a thumbnail. -->
+    <ThumbnailPaddingLeft></ThumbnailPaddingLeft> <!-- Thumbnail Padding Left (value in pixels). Default value: 0. Set left padding value of a thumbnail. -->
 
     <ImageLoader><?=base_url().'assets/libraries/gui/images/thumbnail-gallery/loaders/ImageLoader.gif'?></ImageLoader> <!-- Image Loader (path to image). Default value: WallGridGallery/images/ImageLoader.gif . Set the loader for the big image. -->
     <ImageBgColor></ImageBgColor> <!-- Image Background Color (css, color hex code). Default value: css. Set the color for the image background. -->
@@ -100,5 +100,5 @@
     <SlideshowLoop></SlideshowLoop> <!-- Slideshow Loop (true, false). Default: true. Set it to false if you want the slideshow to stop when it reaches the last image. -->
 
     <AutoHide>true</AutoHide> <!-- Auto Hide Thumbnails and Buttons (true, false). Default: false. Hide the thumbnails and buttons and display them when you hover the gallery. -->
-    <AutoHideTime></AutoHideTime> <!-- Auto Hide Time (time in miliseconds). Default: 2000. Set the time after which the thumbnails and buttons hide. -->
+    <AutoHideTime>100</AutoHideTime> <!-- Auto Hide Time (time in miliseconds). Default: 2000. Set the time after which the thumbnails and buttons hide. -->
 </Settings>
