@@ -528,7 +528,7 @@ function user_redirectOffers(){
                     validForm = false;
                 }
                 if (validForm){
-                    var amenities = '', item_id;
+                    var amenities = ',', item_id;
                     $('input', '.amenities-list').each(function(){
                         if ($(this).is(':checked')){
                             item_id = $(this).attr('id');
@@ -859,7 +859,7 @@ function user_redirectOffers(){
                     validForm = false;
                 }
                 if (validForm){
-                    var amenities = '', item_id;
+                    var amenities = ',', item_id;
                     $('input', '.amenities-list').each(function(){
                         if ($(this).is(':checked')){
                             item_id = $(this).attr('id');

@@ -107,6 +107,65 @@ function gm_codeAddress(address, type, name){
     }, 1000);
 }
 
+function gm_codeLocation(coordinates, type){
+    geocoder.geocode({'location': new google.maps.LatLng(coordinates.split(',')[0], coordinates.split(',')[1])}, function(results, status){
+        if (status == google.maps.GeocoderStatus.OK){
+            if (type == 'map'){
+                map.setCenter(results[0].geometry.location);
+                google.maps.event.addListener(map, 'zoom_changed', function(){
+                    zoomChangeBoundsListener = google.maps.event.addListener(map, 'bounds_changed', function(event){
+                        if (this.getZoom() > 15 && this.initialZoom == true) {
+                            this.setZoom(15);
+                            this.initialZoom = false;
+                        }
+                        google.maps.event.removeListener(zoomChangeBoundsListener);
+                    });
+                });
+                map.initialZoom = true;
+                map.fitBounds(results[0].geometry.bounds);
+                gm_setMarkers();
+            }
+            else if (type == 'marker'){
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            }
+            else if (type == 'mapplusmarker'){
+                map.setCenter(results[0].geometry.location);
+                google.maps.event.addListener(map, 'zoom_changed', function(){
+                    zoomChangeBoundsListener = google.maps.event.addListener(map, 'bounds_changed', function(event){
+                        if (this.getZoom() > 15 && this.initialZoom == true) {
+                            this.setZoom(15);
+                            this.initialZoom = false;
+                        }
+                        google.maps.event.removeListener(zoomChangeBoundsListener);
+                    });
+                });
+                map.initialZoom = true;
+                map.fitBounds(results[0].geometry.bounds);
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|333333|ffffff'
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function(){
+                    gm_getAddress(marker.getPosition());
+                });
+            }
+        }
+        else{
+            alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+
+    setTimeout(function(){
+        googleFormEvent = false;
+    }, 1000);
+}
+
 function gm_setMarkers(id){
     var locations = new Array(),
     LatLngList = new Array(),

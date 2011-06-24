@@ -937,13 +937,37 @@
 }
 
 .offer-bottom-content{
-    padding-top: 15px;
+    margin: 15px 0 0 0;
     font-size: 12px;
     color: #333333;
+    overflow: hidden;
+}
+
+.offer-bottom-content.loader{
+    background: url(../images/loaders/big-loader1.gif) no-repeat center center !important;
 }
 
 .offer-bottom-content p{
     text-indent: 40px;
+}
+
+.offer-bottom-content .amenities li{
+    width: 25%;
+    float: left;
+    text-align: center;
+    color: #333333;
+    font-weight: bold;
+}
+
+.offer-bottom-content .amenities li.no{
+    color: #a0a0a0;
+    font-weight: normal;
+}
+
+.offer-bottom-content .map{
+    margin: auto;
+    width: 685px;
+    height: 400px;
 }
 
 /* end #offer-bottom */
