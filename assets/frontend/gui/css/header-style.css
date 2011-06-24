@@ -43,7 +43,7 @@
 
 #header-navigation{
     float: right;
-    margin: 8px 10px 0 0px;
+    margin: 8px 0px 0 0px;
 }
 
 #header-navigation li{
@@ -85,9 +85,9 @@ a.fb_button{
 
 #header-promo-link{
     float: right;
-    font-size:15px;
+    font-size:13px;
     font-weight: bold;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 10px;
 }
 
 #header-promo-link a{
@@ -115,6 +115,7 @@ a.fb_button{
 #header-content-bottom{
     margin-top:9px;
     width: 760px;
+    z-index: 999;
 }
 #header-search{
     margin-top: 30px;
@@ -220,6 +221,180 @@ a.fb_button{
 
 .header-weather-right-nav2{
     top:23px;
+}
+
+/* FLAGS */
+
+.language_menu{
+    
+}
+
+.language_currency {
+    height: 26px;
+    width: 70px;
+}
+
+.sprite-en {
+    background-position: 0 -1701px;
+    height: 16px;
+    width: 16px;
+}
+
+.sprite-fr {
+    background-position: 0 -1749px;
+    height: 16px;
+    width: 16px;
+}
+
+.reward_points {
+    background-position: -906px -853px;
+    height: 16px;
+    width: 16px;
+}
+
+.reward_points_option{
+    margin-bottom: 5px;
+}
+
+.language_currency_display {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #FC4C98;
+/*    cursor: default;*/
+    height: 20px;
+    margin-left: -4px;
+    margin-top: 0px;
+    padding-top: 0px;
+    position: absolute;
+    width: 68px;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.language_currency_display_language {
+    display: inline;
+    margin-left: 4px;
+    margin-top: -1px;
+    position: absolute;
+    width: 16px;
+}
+
+.language_currency .flag {
+    background-image:  url("../images/sprite.png");
+    background-repeat: no-repeat;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+}
+
+.currency span{
+    padding: 0 11px 0 5px;
+}
+
+.language_currency_display_currency {
+    display: inline;
+    margin-left: 28px;
+    position: absolute;
+    width: 40px;
+}
+
+.rounded {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.language_currency_selector_container {
+    background-color: #333333;
+    border: 1px solid #737373;
+    border-top-right-radius: 0;
+    cursor: default;
+    list-style: none outside none;
+    margin-left: -61px;
+    margin-top: 20px;
+    padding: 0px;
+    position: absolute;
+/*    width: 120px;*/
+    width: auto;
+    z-index: 999800;
+    display: none;
+}
+
+.language_menu:hover .language_currency_display{
+    background-color: #333333;
+    border: 1px solid #737373;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 0px solid #fff;
+}
+
+#language_menu .language_currency_selector .instruction,#profile_menu .language_currency_selector .instruction{
+    padding: 5px;
+}
+
+#language_menu .language_currency_selector li,#profile_menu .language_currency_selector li{
+    float: none;
+}
+
+#language_menu .language_currency_selector li.option, #profile_menu .language_currency_selector li.option {
+    width: 115px;
+    padding:0 5px 0 5px;
+    white-space: nowrap;
+}
+
+#profile_menu .language_currency_selector li.option {
+    width: auto;
+}
+
+.language_currency_selector li.option:hover{
+    background: #737373;
+}
+
+#language_menu .language_currency_selector li.dash, #profile_menu .language_currency_selector li.dash {
+    border-bottom: 1px dotted #CCCCCC;
+    height: 4px;
+    float: none;
+    padding-bottom: 2px;
+}
+
+.language_currency_selector .language, .language_currency_selector .currency{
+    cursor: pointer;
+}
+
+#profile_menu .language_currency {
+    width: auto;
+}
+
+#profile_menu .language_currency_display {
+    color: #d9d9d9;
+    width:auto;
+    position: relative;
+    padding: 0 4px;
+}
+
+#profile_menu .language_currency_display_currency {
+    display: inline;
+    margin-left: 0px;
+    position: relative;
+    width: auto;
+}
+
+#profile_menu .language_currency_selector_container {
+    background-color: #333333;
+    border: 1px solid #737373;
+    border-top-right-radius: 0;
+    cursor: default;
+    list-style: none outside none;
+/*    margin-left: -54px;*/
+    margin-left: 0px;
+    right: 0;
+    margin-top: -1px;
+    padding: 0px;
+    position: absolute;
+    width: auto;
+    z-index: 9998;
+    display: none;
+}
+
+.language_menu:hover .language_currency_selector_container{
+    display: block!important;
 }
 
 /* END HEADER */
