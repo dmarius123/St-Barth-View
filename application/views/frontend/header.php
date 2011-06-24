@@ -18,6 +18,8 @@
         <title><?=$header_title?><?=$header_subtitle?></title>
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/frontend/gui/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/frontend/gui/css/fullcalendar.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/frontend/gui/css/fullcalendar.print.css" />
 
         <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
@@ -40,6 +42,8 @@
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/search.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/sign-upin.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/user.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/fullcalendar.min.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/frontend/js/fullcalendar-deals.js'; ?>"></script>
     </head>
     <body>
         <div id="wrapper">
