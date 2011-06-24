@@ -18,8 +18,8 @@
                 <div class="home-booking-form-field">
                     <label><?=$home_search_destination?></label><br />
                     <select class="home-booking-select-big" name="home_search_location" id="home_search_location">
-                        <option value="St Barthélemy">St Barthélemy</option>
-                        <option value="Miami">Miami</option>
+                        <option value="1">St Barthélemy</option>
+                        <option value="2">Miami</option>
                     </select>
                 </div>
                 <div class="home-booking-form-field">

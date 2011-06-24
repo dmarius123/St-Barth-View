@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/user/submenus/offers-submenu.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 20 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Offers Submenu.
 */
@@ -24,7 +24,7 @@
 ?>
                 <li>
                     <a href="#hotel:<?=$row->id?>" id="offer-<?=$row->id?>" onclick="javascript:user_parseContent()">
-                        <strong><?=$user_offers_hotel?></strong>:&nbsp;<?=$row->name?>
+                        <strong><?=$user_offers_hotel?></strong>:&nbsp;<font class="name"><?=$row->name?></font>
                     </a>
                 </li>
 <?php
@@ -44,7 +44,7 @@
                 <li>
                     <a href="#villa:<?=$row->id?>" id="offer-<?=$row->id?>" onclick="javascript:user_parseContent()">
 
-                        <strong><?=$user_offers_villa?></strong>:&nbsp;<?=$row->name?>
+                        <strong><?=$user_offers_villa?></strong>:&nbsp;<font class="name"><?=$row->name?></font>
                     </a>
                 </li>
 <?php

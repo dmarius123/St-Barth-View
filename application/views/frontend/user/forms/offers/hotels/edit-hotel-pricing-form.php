@@ -72,7 +72,7 @@
         <input type="submit" name="submit-pricing" id="submit-pricing" class="user-area-submit-style" value="<?=$user_edit_hotel_pricing_edit_pricing_submit?>" />
     </form>
     <input type="button" name="add-room" index="add-room" class="user-area-submit-style" value="<?=$user_add_room?>" onclick="addHotelRoom(<?=$id?>)" />
-    <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#hotel:<?=$id?>'; parseContent()" value="<?=$user_offers_back?>" />
+    <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; user_parseContent()" value="<?=$user_offers_back?>" />
     <br class="clear" />
 
     <h3 id="edit-offer-rooms-title"><?=$user_edit_hotel_rooms_title?></h3>

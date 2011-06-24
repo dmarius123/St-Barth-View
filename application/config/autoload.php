@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/config/autoload.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -118,6 +118,7 @@ $autoload['language'] = array('frontend/footer',
                               'frontend/header',
                               'frontend/home',
                               'frontend/modules',
+                              'frontend/offer',
                               'frontend/search',
                               'frontend/signupin',
                               'frontend/user');
@@ -136,8 +137,9 @@ $autoload['language'] = array('frontend/footer',
 $autoload['model'] = array('frontend/Functions_model',
                            'frontend/Hotels_model',
                            'frontend/Last_model',
-                           'frontend/Users_model',
-                           'frontend/Offers_model');
+                           'frontend/Locations_model',
+                           'frontend/Offers_model',
+                           'frontend/Users_model');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

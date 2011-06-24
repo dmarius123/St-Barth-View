@@ -20,7 +20,7 @@
         if ($i==$last_curr_page*2-1 || $i==$last_curr_page*2){
 ?>
         <div class="search-review-item<?php echo $i%2==0 ? ' last':''; ?>">
-            <p class="search-review-item-name"><a href="<?=base_url().'offer/'.$offer->id?>"><span><?=$offer->name;?></span></a> <span class="search-review-item-location"><?=$offer->location;?></span><br class="clear" /></p>
+            <p class="search-review-item-name"><a href="<?=base_url().'offer/'.$offer->id?>"><span><?=$offer->name;?></span></a> <span class="search-review-item-location"><?=$offer->location?><?=$offer->country == '' ? '':', '.$offer->country?></span><br class="clear" /></p>
             <p class="search-review-item-postdate"><?=$modules_last_offers_since?> <?=$offer->date?></p>
             <p class="search-review-item-description">
                 <span class="image">

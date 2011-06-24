@@ -144,7 +144,7 @@
         }
 
         public function redirect(){
-            $this->load->view('frontend/user/templates/sign-upin/redirect-redirect');
+            $this->load->view('frontend/user/templates/sign-upin/redirect-template');
         }
     }
 

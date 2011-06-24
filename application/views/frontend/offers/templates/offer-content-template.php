@@ -2,40 +2,18 @@
 
 /*
  * Title                   : St Barth View
- * File                    : application/views/frontend/offers/hotel/templates/hotel-template.php
- * File Version            : 1.1
+ * File                    : application/views/frontend/offers/templates/offer-content-template.php
+ * File Version            : 1.0
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 21 June 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Offers - Hotel Template.
+ * Description             : Offers - Offer Content Template.
 */
 
 ?>
-<?php $this->load->view('frontend/header'); ?>
-    <div id="section" class="offer-section">
-        <div id="offer-top">
-            <span class="title">La Banane <span class="location">St Barth, Lorient</span></span>
-            <span class="new"></span>
-            <span class="rating-value-stars">
-                <span class="rating-value">4.0</span>
-                <span class="rating-stars">
-                    <span class="rating-stars-value"></span>
-                </span>
-            </span>
-            <a href="javascript:void(0)" target="_self"><span class="owner-icon"></span></a>
-            <span class="owner">
-                <span class="last-comment">Last comment <a href="javascript:void(0)" target="_self"><span class="first-name">Alexandre A.</span></a><br />
-                at: 12/12/2010 - 5:57pm</span>
-            </span>
-            <span class="deals"><a href="javascript:void(0)" target="_self"><span class="icon no-deals"></span><span class="no">2</span><br /><span class="text">deals</span></a></span>
-            <span class="friends"><a href="javascript:void(0)" target="_self"><span class="icon no-friends"></span><span class="no">220</span><br /><span class="text">like</span></a></span>
-            <span class="comments"><a href="javascript:void(0)" target="_self"><span class="icon"></span><span class="no">2000</span><br /><span class="text">comments</span></a></span>
-        </div>
         <div id="offer-content">
             <div id="offer-main">
-                <div id="offer-image-container">
-                    <img src="<?php echo base_url()?>assets/frontend/gui/images/offer_detail_img.jpg" alt="" width="660" height="450"/>
-                </div>
+                <div id="offer-gallery-container" style="width:660px; height:450px;"></div>
                 <div id="rates-slider"class="hidden-slider" style="display:none;">
                     <div class="slider-left"> <a href="">>></a> </div>
                     <div class="slider-right">
@@ -46,7 +24,7 @@
                     </div>
                     <br class="clear" />
                 </div>
-                <div id="deal-slider" class="hidden-slider" style="display:block;">
+                <div id="deal-slider" class="hidden-slider" style="display:none;">
                     <div class="slider-left"> <a href="">>></a> </div>
                     <div class="slider-right">
                         <p class="title">Ultimate carribbean luxury hotel<br />for 2 pers cars included !</p>
@@ -219,40 +197,3 @@
             </div>
             <br class="clear" />
         </div>
-        <div id="offer-bottom">
-            <div class="offer-bottom-actions">
-                <ul id="" class="sorting-menu">
-                    <li><a href="javascript:void(0)" target="_self" class="selected" id=""><span class="text">description</span><span class="end"></span></a></li>
-                    <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">amenities</span><span class="end"></span></a></li>
-                    <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">rooms</span><span class="end"></span></a></li>
-                    <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">map</span><span class="end"></span></a></li>
-                    <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">locations</span><span class="end"></span></a></li>
-                    <li class="separator"></li>
-                    <li><a href="javascript:void(0)" target="_self" class="" id=""><span class="text">reviews (2000)</span><span class="end"></span></a></li>
-                </ul>
-                <div class="add-this-widget">
-                    <!-- AddThis Button BEGIN -->
-                    <div class="addthis_toolbox addthis_default_style ">
-                    <a class="addthis_button_preferred_1"></a>
-                    <a class="addthis_button_preferred_2"></a>
-                    <a class="addthis_button_preferred_3"></a>
-                    <a class="addthis_button_preferred_4"></a>
-                    <a class="addthis_button_compact"></a>
-                    <a class="addthis_counter addthis_bubble_style"></a>
-                    </div>
-                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dd2fb514ac30d70"></script>
-                    <!-- AddThis Button END -->
-                </div>
-                <br class="clear" />
-            </div>
-            <div class="offer-bottom-content">
-                <p>Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié n hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégiée ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on
-    t privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....Un hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié n hôtel secret, une adresse confidentielle, une atmosphère unique et intime. Un endroit privilégié où l’on pose ses valises avec le sentiment profond d’avoir enfin trouvé sa place....</p>
-            </div>
-        </div>
-    </div>
-<?php $this->load->view('frontend/footer');?>

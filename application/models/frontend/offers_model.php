@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/models/frontend/offers_model.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 21 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers Model.
 */
@@ -25,9 +25,10 @@
                'offer_type_id' => $type,
                'name' => $this->input->post('name'),
                'description' => $this->input->post('description'),
-               'coordinates' => $this->input->post('coordinates'),
+               'coordinates' => $this->extractCoordinates($this->input->post('coordinates')),
                'address' => $this->input->post('address'),
-               'location' => $this->input->post('location'),
+               'location_id' => $this->input->post('location_id'),
+               'locality_id' => $this->validateLocality($this->input->post('locality'), $this->input->post('location_id')),
                'alt_address' => $this->input->post('alt_address')
             );
             $this->db->insert('offers', $query_data);
@@ -38,6 +39,7 @@
                 'name' => $this->input->post('name'),
                 'alt_address' => $this->input->post('alt_address'),
                 'description' => $this->input->post('description'),
+                'amenities' => $this->input->post('amenities')
             );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('offers', $query_data);
@@ -70,7 +72,7 @@
             unlink($image_path);
             unlink($thumb_path);
 
-            $images = $this->gallery($id);
+            $images = $this->getGallery($id);
 
             foreach ($images->result() as $image):
                 if($image->position > $position){
@@ -83,7 +85,7 @@
                 }
             endforeach;
 
-            $details = $this->details($id)->row_array(0);
+            $details = $this->getData($id, 'all')->row_array(0);
             $query_data = array(
                 'no_images' => $details['no_images']-1
             );
@@ -94,7 +96,35 @@
 // Search
         function search(){
             if ($this->input->post('location') != ''){
-                $this->db->where('location', $this->input->post('location'));
+                $locations = $this->input->post('location');
+                $where = '(';
+
+                for ($i=0; $i<count($locations); $i++){
+                    if ($i != 0){
+                        $where .= " OR location_id = '".$locations[$i]."'";
+                    }
+                    else{
+                        $where .= "location_id = '".$locations[$i]."'";
+                    }
+                }
+                $where .= ')';
+                $this->db->where($where);
+            }
+
+            if ($this->input->post('locality') != ''){
+                $localities = $this->input->post('locality');
+                $where = '(';
+
+                for ($i=0; $i<count($localities); $i++){
+                    if ($i != 0){
+                        $where .= " OR locality_id = '".$localities[$i]."'";
+                    }
+                    else{
+                        $where .= "locality_id = '".$localities[$i]."'";
+                    }
+                }
+                $where .= ')';
+                $this->db->where($where);
             }
 
             $this->db->where('offer_type_id', $this->input->post('category'));            
@@ -208,8 +238,11 @@
                 case 'address':
                     return $row_items['address'];
                     break;
-                case 'location':
-                    return $row_items['location'];
+                case 'location_id':
+                    return $row_items['location_id'];
+                    break;
+                case 'locality_id':
+                    return $row_items['locality_id'];
                     break;
                 case 'alt_address':
                     return $row_items['alt_address'];
@@ -317,6 +350,44 @@
             else{
                 return $this->getFirstImage($id);
             }
+        }
+    
+// Functions
+        function validateLocality($locality, $location_id){
+            if ($locality != 'none'){
+                $this->db->where('name', $locality);
+                $query = $this->db->get('aa2_localities');
+
+                if ($query->num_rows > 0){
+                    $row_items = $query->row_array(0);
+                    return $row_items['id'];
+                }
+                else{
+                    $query_data = array(
+                        'aa1_id' => $location_id,
+                        'name' => $locality
+                    );
+                    $this->db->insert('aa2_localities', $query_data);
+                    return $this->db->insert_id();
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+
+        function extractCoordinates($coordinates){
+            $pieces = explode(', ', $coordinates);
+            $lat = explode('(', $pieces[0]);
+            $lng = explode(')', $pieces[1]);
+
+            return $lat[1].','.$lng[0];
+        }
+    
+        function getAmenities($offer_type){
+            $this->db->where('offer_type_filter_id', $offer_type);
+            $query = $this->db->get('offers_types_filters_values');
+            return $query;
         }
     }
 

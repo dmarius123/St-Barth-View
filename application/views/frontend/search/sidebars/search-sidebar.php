@@ -19,6 +19,7 @@
             <div id="sidebar-map"></div>
             <div id="filters">
 <?php $this->load->view('frontend/search/filters/location-filter'); ?>
+<?php $this->load->view('frontend/search/filters/locality-filter'); ?>
 <?php $this->load->view('frontend/search/filters/price-filter'); ?>
 <?php $this->load->view('frontend/search/filters/amenities-filter'); ?>               
             </div>

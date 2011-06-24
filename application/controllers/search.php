@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/search.php
- * File Version            : 1.1
+ * File Version            : 1.4
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 19 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Search Controller.
 */
@@ -41,7 +41,7 @@
                 $data['home_search_location'] = $this->input->post('home_search_location');
             }
             else{
-                $data['home_search_location'] = '';
+                $data['home_search_location'] = '1';
             }
             
             if ($this->input->post('home_search_category')){
@@ -79,6 +79,22 @@
                 $data['home_search_offer_children'] = '';
             }
 
+            $locations_list = $this->CI->Locations_model->getLocationsList();
+            foreach ($locations_list->result() as $location):
+                if ($location->aa0_id == 0){
+                    $location->country = 'none';
+                }
+                else{
+                    $location->country = $this->CI->Locations_model->getCountry($location->aa0_id);
+                }
+            endforeach;
+            $data['locations_list'] = $locations_list;
+
+            $localities_list = $this->CI->Locations_model->getLocalitiesList($data['home_search_location']);
+            $data['localities_list'] = $localities_list;
+
+            $data['amenities'] = $this->CI->Offers_model->getAmenities($data['home_search_category']);
+
             $this->load->view('frontend/search/templates/search-template', $data);
         }
 
@@ -93,36 +109,48 @@
                     $offer->title = $this->CI->Functions_model->shortText($offer->name, 15);
                     $offer->short_description = $this->CI->Functions_model->shortText($offer->description, 150);
                     $offer->image = $this->CI->Offers_model->getImageUserSelection($offer->id);
-                    if ($offer->no_comments > 0){
-                        $offer->last_comment = $this->CI->Offers_model->getLastComment($offer->id)->row_array();
-                        $date_pieces = explode(' ', $offer->last_comment['date']);
-                        $year_pieces = explode('-', $date_pieces[0]);
-                        $time_pieces = explode(':', $date_pieces[1]);
-                        if ($this->input->cookie('stbartsview-language') == 'english'){
-                            $offer->last_comment_date = $year_pieces[1].'/'.$year_pieces[2].'/'.$year_pieces[0].' '.$time_pieces[0].':'.$time_pieces[1];
-                        }
-                        else{
-                            $offer->last_comment_date = $year_pieces[2].'/'.$year_pieces[1].'/'.$year_pieces[0].' '.$time_pieces[0].':'.$time_pieces[1];
-                        }
-                        $offer->last_comment_user_id = $offer->last_comment['user_id'];
-                        $offer->last_comment_first_name = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'first_name');
-                        $offer->last_comment_last_name = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'last_name');
-                        $offer->last_comment_profile_picture = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'picture');
-                    }
+                    $offer->locality = $this->CI->Locations_model->getLocality($this->CI->Offers_model->getData($offer->id, 'locality_id'), 'name');
+                    $offer->location = $this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'name');
+                    $offer->country = $this->CI->Locations_model->getCountry($this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'aa0_id'));
+//                    if ($offer->no_comments > 0){
+//                        $offer->last_comment = $this->CI->Offers_model->getLastComment($offer->id)->row_array();
+//                        $date_pieces = explode(' ', $offer->last_comment['date']);
+//                        $year_pieces = explode('-', $date_pieces[0]);
+//                        $time_pieces = explode(':', $date_pieces[1]);
+//                        if ($this->input->cookie('stbartsview-language') == 'english'){
+//                            $offer->last_comment_date = $year_pieces[1].'/'.$year_pieces[2].'/'.$year_pieces[0].' '.$time_pieces[0].':'.$time_pieces[1];
+//                        }
+//                        else{
+//                            $offer->last_comment_date = $year_pieces[2].'/'.$year_pieces[1].'/'.$year_pieces[0].' '.$time_pieces[0].':'.$time_pieces[1];
+//                        }
+//                        $offer->last_comment_user_id = $offer->last_comment['user_id'];
+//                        $offer->last_comment_first_name = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'first_name');
+//                        $offer->last_comment_last_name = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'last_name');
+//                        $offer->last_comment_profile_picture = $this->CI->Users_model->getProfile($offer->last_comment['user_id'], 'picture');
+//                    }
                 endforeach;
-                
+
                 if ($this->input->post('view_mode') == 'photos'){
                     $this->load->view('frontend/search/results/photos-results', $data);
+                    $this->load->view('frontend/search/templates/pagination-template', $data);
                 }
                 elseif ($this->input->post('view_mode') == 'map'){
-                    $this->load->view('frontend/search/results/list-results', $data);
+                    $this->load->view('frontend/search/results/map-results', $data);
                 }
                 else{
                     $this->load->view('frontend/search/results/list-results', $data);
+                    $this->load->view('frontend/search/templates/pagination-template', $data);
                 }
-
-                $this->load->view('frontend/search/templates/pagination-template', $data);
             }
+        }
+
+        public function localities(){
+            $data = $this->lang->language;
+            
+            $localities_list = $this->CI->Locations_model->getLocalitiesList($this->input->post('location'));
+            $data['localities_list'] = $localities_list;
+            
+            $this->load->view('frontend/search/filters/locality-filter', $data);
         }
     }
 

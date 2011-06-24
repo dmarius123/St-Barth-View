@@ -25,18 +25,18 @@
             <span>
 <?php
             if ($curr_page > 1){
-                echo '<a href="javascript:parseSearchPage('.($curr_page-1).')">&lt;</a>';
+                echo '<a href="javascript:search_parseSearchPage('.($curr_page-1).')">&lt;</a>';
             }
             for ($i=1; $i<=$no_pages; $i++){
                 if ($curr_page == $i){
                     echo '<strong>'.$i.'</strong>';
                 }
                 else{
-                    echo '<a href="javascript:parseSearchPage('.$i.')">'.$i.'</a>';
+                    echo '<a href="javascript:search_parseSearchPage('.$i.')">'.$i.'</a>';
                 }
             }
             if ($curr_page < $no_pages){
-                echo '<a href="javascript:parseSearchPage('.($curr_page+1).')">&gt;</a>';
+                echo '<a href="javascript:search_parseSearchPage('.($curr_page+1).')">&gt;</a>';
             }
 ?>
             </span>

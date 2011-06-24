@@ -11,15 +11,28 @@
 */
 
 ?>
+<?php
+    $locations = '';
+
+    foreach ($locations_list->result() as $location):
+        if ($location->country == 'none'){
+            $locations .= '<option value="'.$location->id.';;'.$location->coordinates.';;'.$location->name.'">'.$location->name.'</option>';
+        }
+        else{
+            $locations .= '<option value="'.$location->id.';;'.$location->coordinates.';;'.$location->name.', '.$location->country.'">'.$location->name.', '.$location->country.'</option>';
+        }
+    endforeach;
+?>
     <h3 id="add-offer-location-title"><?=$user_add_villa_location_title?></h3>
     <span class="separator"></span>
     <span class="user-area-form-info"><?=$user_add_villa_location_info?></span>
     <form method="post" action="" onsubmit="return showMap('#address-hints')">
         <input type="hidden" id="coordinates" name="coordinates" value="" />
+        <input type="hidden" id="location_id" name="location_id" value="" />
+        <input type="hidden" id="locality" name="locality" value="" />
         <input type="text" id="address" name="address" value="" />
-        <select name="location" id="location" onchange="showGoogleMapLocation(this.value)">
-            <option value="St Barthélemy">St Barthélemy</option>
-            <option value="Miami">Miami</option>
+        <select name="location" id="location" class="user_add_location" onchange="gm_showLocation(this.value)">
+            <?=$locations?>
         </select>
         <br class="clear" />
     </form>

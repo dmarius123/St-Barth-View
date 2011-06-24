@@ -40,8 +40,8 @@
             $data['deal_end_date'] = 'none';
             foreach ($deals->result() as $deal):
                 $deal->image = $this->CI->Offers_model->getImageUserSelection($deal->offer_id);
-                $deal->offer_name = $this->CI->Functions_model->shortText($this->CI->Offers_model->getData($deal->offer_id, 'name'), 20);
-                $deal->offer_location = $this->CI->Offers_model->getData($deal->offer_id, 'location');
+                $deal->offer_name = $this->CI->Functions_model->shortText($this->CI->Offers_model->getData($deal->offer_id, 'name'), 20);                
+                $deal->offer_location = $this->CI->Locations_model->getLocation($this->CI->Locations_model->getLocality($this->CI->Offers_model->getData($deal->offer_id, 'locality_id'), 'aa1_id'), 'name');
                 $deal->offer_currency = $this->CI->Offers_model->getData($deal->offer_id, 'currency');
                 $data['deal_end_date'] = $deal->end_date;
             endforeach;
@@ -62,6 +62,9 @@
                 $offer->profile_picture = $this->CI->Users_model->getProfile($offer->user_id, 'picture');
                 $offer->first_name = $this->CI->Users_model->getProfile($offer->user_id, 'first_name');
                 $offer->last_name = $this->CI->Users_model->getProfile($offer->user_id, 'last_name');
+                $offer->locality = $this->CI->Locations_model->getLocality($this->CI->Offers_model->getData($offer->id, 'locality_id'), 'name');
+                $offer->location = $this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'name');
+                $offer->country = $this->CI->Locations_model->getCountry($this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'aa0_id'));
             endforeach;
             $data['offers'] = $offers;
             $data['last_curr_page'] = $this->input->post('last_curr_page');

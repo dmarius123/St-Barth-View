@@ -14,7 +14,7 @@
     <h3 id="edit-offer-details-title"><?=$user_edit_hotel_details_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-details-info"></span>
-    <form method="post" action="" onsubmit="return editHotelDetails()">
+    <form method="post" action="" onsubmit="return user_editHotelDetails()">
         <input type="hidden" name="hotel_id" id="hotel_id" class="user-area-input-style" value="<?=$id?>" />
         <div class="user-area-form-field">
             <label><?=$user_hotel_details_name?> <span class="required" id="info-name"><?=$user_mandatory_field?></span></label><br />
@@ -28,7 +28,31 @@
             <label><?=$user_hotel_details_description?> <span class="required" id="info-description"><?=$user_mandatory_field?></span></label><br />
             <textarea name="description" id="description" cols="" rows="" class="user-area-textarea-style"><?=$description?></textarea>
         </div>
+        <div class="user-area-form-field textarea">
+            <label><?=$user_hotel_details_amenities?></label><br />
+            <ul class="amenities-list">
+<?php
+    $selected_amenities = explode(',', $offer_amenities);
+
+    foreach ($amenities->result() as $amenity):
+        $checked = false;
+        for ($i=0; $i<count($selected_amenities); $i++){
+            if ($amenity->id == $selected_amenities[$i]){
+                $checked = true;
+            }
+        }
+        if ($checked){
+            echo '<li><input type="checkbox" id="amenity'.$amenity->id.'" name="amenity'.$amenity->id.'" class="filter-checkbox" checked="checked" value="" />'.$general_amenities_hotels[$amenity->index].'</li>';
+        }
+        else{
+            echo '<li><input type="checkbox" id="amenity'.$amenity->id.'" name="amenity'.$amenity->id.'" class="filter-checkbox" value="" />'.$general_amenities_hotels[$amenity->index].'</li>';
+        }
+    endforeach;
+?>
+                <br class="clear" />
+            </ul>
+        </div>
         <input type="submit" name="submit" id="submit" class="user-area-submit-style" value="<?=$user_edit_hotel_details_submit?>" />
-        <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#hotel-<?=$id?>'; parseContent()" value="<?=$user_offers_back?>" />
+        <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; user_parseContent()" value="<?=$user_offers_back?>" />
         <br class="clear" />
     </form>

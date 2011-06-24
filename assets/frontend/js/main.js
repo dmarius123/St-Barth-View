@@ -30,6 +30,9 @@ $(document).ready(function(){
         case 'User':
             user_init();
             break;
+        case 'Offer':
+            offer_init();
+            break;
     }
 });
 
@@ -90,4 +93,19 @@ function gmtDate(){
 
     time.setHours(time.getHours()-timeZone/60);
     return time;
+}
+
+function searchBoxShortText(text, size){
+    var shortText = '', i, words = text.split(' ');
+
+    for (i=0; i<words.length; i++){
+        if (shortText.length > size){
+            return shortText+' ...';
+        }
+        else{
+            shortText += words[i]+' ';
+        }
+    }
+
+    return shortText;
 }

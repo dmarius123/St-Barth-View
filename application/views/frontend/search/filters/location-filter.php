@@ -3,31 +3,33 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/search/filters/location-filter.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
+ * Created / Last Modified : 19 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Search Filters - Location.
 */
 
 ?>
-    <input type="hidden" name="search_location" id="search_location" value="<?=$home_search_location?>" />
     <ul class="filter">
         <li>
-            <a href="javascript:void(0)" class="filter-header">location</a>
+            <a href="javascript:void(0)" class="filter-header"><?=$search_filters_locations?></a>
             <ul>
                 <li>
-                    <select name="search_location" id="search_location" size="2" multiple="multiple" onchange="locationChange(this.value)">
-                        <option value="Miami">Miami</option>
-                        <option value="St Barthélemy">St Barthélemy</option>
+                    <select name="location" id="location" size="2" multiple="multiple" onchange="search_locationChange()">
+<?php
+    foreach ($locations_list->result() as $location):
+        $country = $location->country == 'none' ? '':', '.$location->country;
+        if ($location->id == $home_search_location){
+            echo '<option value="'.$location->id.'" selected="selected">'.$location->name.$country.'</option>';
+        }
+        else{
+            echo '<option value="'.$location->id.'">'.$location->name.$country.'</option>';
+        }
+    endforeach;
+?>
                     </select>
                 </li>
             </ul>
-            <!--
-            <ul>
-                <li><input type="checkbox" id="location1" name="location1" class="filter-checkbox" value="Miami" />Miami</li>
-                <li><input type="checkbox" id="location2" name="location2" class="filter-checkbox" value="St Barthélemy" />St Barthélemy</li>
-            </ul>
-            -->
         </li>
     </ul>
