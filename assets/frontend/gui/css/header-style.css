@@ -3,10 +3,10 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/header-style.js
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 01 June 2011
- * Last Modified By        : Marius-Cristian Donea
+ * Created / Last Modified : 25 June 2011
+ * Last Modified By        : Andrei Calistru
  * Description             : Header Style.
 */
 
@@ -121,6 +121,7 @@ a.fb_button{
     margin-top: 30px;
     margin-left: 65px;
     float: left;
+    z-index: 100;
 }
 
 #header-search label{
@@ -246,6 +247,13 @@ a.fb_button{
     width: 16px;
 }
 
+.user-icon{
+    background-position: -130px -332px;
+    height: 16px;
+    width: 16px;
+}
+
+
 .reward_points {
     background-position: -906px -853px;
     height: 16px;
@@ -264,8 +272,8 @@ a.fb_button{
     height: 20px;
     margin-left: -4px;
     margin-top: 0px;
-    padding-top: 0px;
-    position: absolute;
+    padding: 0px 2px;
+    position: relative;
     width: 68px;
     z-index: 9999;
     cursor: pointer;
@@ -308,13 +316,15 @@ a.fb_button{
     border-top-right-radius: 0;
     cursor: default;
     list-style: none outside none;
-    margin-left: -61px;
-    margin-top: 20px;
+/*    margin-left: -61px;*/
+    right: 0;
+/*    margin-top: 20px;*/
+    margin-top: -1px;
     padding: 0px;
     position: absolute;
-/*    width: 120px;*/
+    width: 130px;
     width: auto;
-    z-index: 999800;
+    z-index: 9998;
     display: none;
 }
 
@@ -334,13 +344,13 @@ a.fb_button{
 }
 
 #language_menu .language_currency_selector li.option, #profile_menu .language_currency_selector li.option {
-    width: 115px;
+    width: 120px;
     padding:0 5px 0 5px;
     white-space: nowrap;
 }
 
 #profile_menu .language_currency_selector li.option {
-    width: auto;
+/*    width: auto;*/
 }
 
 .language_currency_selector li.option:hover{
@@ -370,8 +380,8 @@ a.fb_button{
 }
 
 #profile_menu .language_currency_display_currency {
-    display: inline;
-    margin-left: 0px;
+/*    display: inline;*/
+/*    margin-left: 0px;*/
     position: relative;
     width: auto;
 }
@@ -395,6 +405,19 @@ a.fb_button{
 
 .language_menu:hover .language_currency_selector_container{
     display: block!important;
+}
+
+#profile_menu .language_currency_selector{
+    margin: 5px 0;
+}
+
+#profile_menu .language_currency_display_language{
+    margin-top:2px;
+}
+
+#profile_menu .language_currency_selector li a{
+    text-decoration: none;
+    display: block;
 }
 
 /* END HEADER */

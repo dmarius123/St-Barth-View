@@ -41,7 +41,10 @@
 }
 .user-deals-tabs{
     margin: 10px 0px;
-    border-bottom: 2px solid #6D8FBC;
+/*    border-bottom: 2px solid #6D8FBC;*/
+    background: url('../images/sprite.png') -170px -598px;
+    width: 685px;
+    height: 32px;
 }
 
 .user-deals-tabs ul{
@@ -50,20 +53,22 @@
 .user-deals-tabs ul li{
     float:left;
     display:block;
-    margin-right: 3px;   
+/*    margin-right: 3px;   */
 }
 .user-deals-tabs ul li a{
-    border:2px solid #6D8FBC;
-    border-bottom-width: 0px;
-    border-radius: 9px 9px 0px 0px;
+/*    border:2px solid #6D8FBC;*/
+/*    border-bottom-width: 0px;*/
+/*    border-radius: 9px 9px 0px 0px;*/
     display: block;
     color:#ffffff;
-    background: #6D8FBC;
-    padding: 5px 10px;
+/*    background: #6D8FBC;*/
+    padding: 7px 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
 .user-deals-tabs ul li.current a,.user-deals-tabs ul li a:hover{
-    color: #6D8FBC;
-    background: #ffffff;
+    color: #627aad;
+    background: #eff0f1;
 }
 
 .uses-deals-add-form{
@@ -280,34 +285,49 @@
     padding: 0 10px;
 }
 
+.user-add-daily-deal{
+    margin: 10px;
+    color: #627AAD;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.user-add-daily-deal a{
+    text-decoration: underline;
+    color: #627AAD;
+}
+
 .users-daily-deals-list{
     margin: 10px;
 }
 
 .users-daily-deals-list table{
-    border: 1px solid #737373;
+    border: 0px solid #737373;
     width: 100%;
 }
 
-.users-daily-deals-list table th{
-    border-right: 1px solid #a0a0a0;
-    background: #d4d4d4;
-    padding: 5px;
-    text-align: center;
+.users-daily-deals-list table th, .users-daily-deals-list table td{
+    border-bottom: 10px solid #F6F6F6;
 }
 
-.users-daily-deals-list table th.last{
-    border-right: none;
+.users-daily-deals-list table th{
+/*    border-right: 1px solid #a0a0a0;*/
+    border: 0;
+    background: none;
+    padding: 5px;
+    text-align: left;
+    color: #a0a0a0;
+    font-style: italic;
+    font-size: 12px;
 }
 
 .users-daily-deals-list table td{
-    background: #a0a0a0;
-    padding: 5px;
-    border: 1px solid #d4d4d4;
+    background: #edf0f3;
+    padding: 15px;
 }
 
 .users-daily-deals-list table td.no_deals{
-    border: 1px solid #d4d4d4;
+/*    border: 1px solid #d4d4d4;*/
     padding: 15px;
     text-align:center;
     font-style: italic;
@@ -316,4 +336,75 @@
 
 .users-daily-deals-list table td a{
     color: #627AAD;
+    text-decoration: underline;
+}
+
+a.user-deal-active{
+    display: block;
+    width: 99px;
+    height: 29px;
+    background: url("../images/sprite.png") no-repeat -25px -1680px transparent;
+    color: #fff!important;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    text-decoration: none!important;
+}
+
+a.user-deal-pending{
+    display: block;
+    width: 99px;
+    height: 29px;
+    background: url("../images/sprite.png") no-repeat -25px -1714px transparent;
+    color: #fff!important;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    text-decoration: none!important;    
+}
+
+.user-deal-details{
+
+}
+
+.user-deal-details span{
+    display: block;
+}
+
+.user-deal-details span.user-deal-title{
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-deal-details span.user-deal-description{
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-deal-details span.user-deal-date{
+    color: #737373;
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+
+}
+
+.user-deal-details span.user-deal-actions{
+    color: #627AAD;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.user-deal-details span.user-deal-actions a{
+    color: #627AAD;
+    text-decoration: underline;
+}
+.user-deal-td{
+    font-size: 15px;
+    font-weight: bold;
+    color: #737373;
 }

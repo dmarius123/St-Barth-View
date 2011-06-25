@@ -3,10 +3,10 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/user/templates/deals-template.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 28 May 2011
- * Last Modified By        : Marius-Cristian Donea
+ * Created / Last Modified : 25 June 2011
+ * Last Modified By        : Andrei Calistru
  * Description             : Login User - Deals template.
 */
 
@@ -26,7 +26,7 @@
     <h1 class="user-deals-title">Merchant Center</h1>
     <div class="user-deals-tabs">
         <ul class="user-deals-tabs-menu">
-            <li><a href="javascript:void(0)">Daily Deals</a></li>
+            <li><a href="javascript:void(0)">My Deals</a></li>
             <li class="current"><a href="javascript:void(0)">Now! Deals</a></li>
             <li><a href="javascript:void(0)">Manage Redemptions</a></li>
             <li><a href="javascript:void(0)">Business Profile</a></li>
@@ -276,7 +276,7 @@
     <div class="delimiter"></div>
     <div class="delimiter"></div>
     <div class="users-daily-deals">
-        <div class="users-deals-list">
+<!--        <div class="users-deals-list">
             <ul id="search-reviews-sorting">
                 <li>Generate customer list:</li>
                 <li><a href="javascript:void(0)" target="_self" class="last-filter2-click" id="last-all-btn">All</a></li>
@@ -284,9 +284,12 @@
                 <li><a href="javascript:void(0)" target="_self" class="last-filter2-click" id="last-hotels-btn">Unredeemed only</a></li>
             </ul>
             <br class="clear" />
+        </div>-->
+<!--        <div class="delimiter"></div>-->
+<!--        <h2>Store Deals</h2>-->
+        <div class="user-add-daily-deal">
+            > <a href="#">add new deal</a>
         </div>
-        <div class="delimiter"></div>
-        <h2>Store Deals</h2>
         <div class="users-daily-deals-list">
             <table class="">
                   <tr>
@@ -297,22 +300,45 @@
                     <th class="last">Redeemed Value</th>
                   </tr>
                   <tr>
-                    <td>Active</td>
-                    <td>50% Deals!</td>
-                    <td>15</td>
-                    <td>25</td>
-                    <td>$255</td>
+                    <td><a href="#" class="user-deal-active">Active</a></td>
+                    <td>
+                        <div class="user-deal-details">
+                            <span class="user-deal-title">Hotel: Eden Rock</span>
+                            <span class="user-deal-description">Special Winter 1 room is offer !</span>
+                            <span class="user-deal-date">from 12/12/2010 - 5:57pm to 12/12/2010 - 5:57pm</span>
+                            <span class="user-deal-actions">
+                                > <a href="#" >edit</a>
+                                > <a href="#" >preview</a>
+                                > <a href="#" >copy</a>
+                                > <a href="#" >close</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td class="user-deal-td">15</td>
+                    <td class="user-deal-td">25</td>
+                    <td class="user-deal-td">$255</td>
                   </tr>
                   <tr>
-                    <td>Active</td>
-                    <td>50% Deals!</td>
-                    <td>15</td>
-                    <td>25</td>
-                    <td>$255</td>
+                    <td><a href="#" class="user-deal-pending">Pending</a></td>
+                    <td><div class="user-deal-details">
+                            <span class="user-deal-title">Hotel: Eden Rock</span>
+                            <span class="user-deal-description">Special Winter 1 room is offer !</span>
+                            <span class="user-deal-date">from 12/12/2010 - 5:57pm to 12/12/2010 - 5:57pm</span>
+                            <span class="user-deal-actions">
+                                > <a href="#" >edit</a>
+                                > <a href="#" >preview</a>
+                                > <a href="#" >copy</a>
+                                > <a href="#" >close</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td class="user-deal-td">15</td>
+                    <td class="user-deal-td">25</td>
+                    <td class="user-deal-td">$255</td>
                   </tr>
                   <tr>
                     <td colspan="5" class="no_deals">
-                      You don't have any Store deals yet!
+                      You don't have any deals yet!
                       <a href="javascript:void(0)">Create one now.</a>
                     </td>
                   </tr>
