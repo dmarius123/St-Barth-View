@@ -24,7 +24,10 @@
                         <div class="review-right">
                             <div class="review-right-buble-corner"></div>
                             <div class="review-right-buble">
+<<<<<<< HEAD
                                 <form action="" method="post">
+=======
+>>>>>>> c2afc2af84c0526dfe86f33337d5df943bd61ad4
                                 <div class="review-form-top">
                                     <div class="review-form-top-left">
                                         <div class="review-form-top-left-title">
@@ -72,7 +75,10 @@
                                     <a target="_self" id="review-form-preview" href="#">Preview</a>
                                     <br class="clear" />
                                 </div>
+<<<<<<< HEAD
                                 </form>
+=======
+>>>>>>> c2afc2af84c0526dfe86f33337d5df943bd61ad4
                             </div>
                         </div>
                         <br class="clear" />
