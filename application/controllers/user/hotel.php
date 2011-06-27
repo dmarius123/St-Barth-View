@@ -124,6 +124,7 @@
                         $data['id'] = $this->hotelId;
                         $data['name'] = $details['name'];
                         $data['description'] = $details['description'];
+                        $data['locations'] = $details['locations'];
                         $data['offer_amenities'] = $details['amenities'];
                         $data['address'] = $details['alt_address'];
 
