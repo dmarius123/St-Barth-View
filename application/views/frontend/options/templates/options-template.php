@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/offers/templates/options-template.php
@@ -8,8 +7,63 @@
  * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers - Options Template.
-*/
-
+ */
 ?>
 <?php $this->load->view('frontend/header'); ?>
-<?php $this->load->view('frontend/footer');?>
+
+<div id="section" class="section-options">
+    <div id="main">
+        <div class="offer-selected">
+            <span class="image">
+                <span class="image-container"><span class="TilVPxUA8HOfQyZpOwBNUMpgH51QP0JF-1" style="background: url('http://ns381653.ovh.net/~stbarthv/assets/libraries/gui/images/no-image.png') no-repeat scroll center center transparent; display: block; width: 172px; height: 122px; opacity: 1;"></span></span>
+            </span>
+            <span class="content">
+                <span class="title"><a target="_self" href="#">La Bannane</a></span>
+                <span class="location">St Barth, Lorient</span>
+                <span class="clear separator"></span>
+                <span class="details">1 Room, 2 Adults</span>
+                <span class="date">from  <span class="bold">01/02/2011</span>  to  <span class="bold">10/02/2011</span></span>
+                <span class="actions"><a href="#">modify</a></span>
+            </span>
+        </div>
+        <div class="offer-options">
+            <h2>Add options:</h2>
+            <div class="offer-sorting-options">
+                <ul class="sorting-menu" id="offer-sorting-options">
+                    <li>view: </li>
+                    <li><a id="offer-bottom-menu-description" class="selected" target="_self" href="#"><span class="text">all</span><span class="end"></span></a></li>
+                    <li class="separator"></li>
+                    <li><a id="offer-bottom-menu-amenities" target="_self" href="#"><span class="text">cars</span><span class="end"></span></a></li>
+                    <li class="separator"></li>
+                    <li><a id="offer-bottom-menu-rooms" target="_self" href="#"><span class="text">spa &amp; beauty</span><span class="end"></span></a></li>
+                    <li class="separator"></li>
+                    <li><a id="offer-bottom-menu-map" target="_self" href="#"><span class="text">services</span><span class="end"></span></a></li>
+                </ul>
+            </div>
+            <div class="offer-option car">
+                <span class="image">
+                    <span class="image-container"><span class="TilVPxUA8HOfQyZpOwBNUMpgH51QP0JF-1" style="background: url('http://ns381653.ovh.net/~stbarthv/assets/libraries/gui/images/no-image.png') no-repeat scroll center center transparent; display: block; width: 135px; height: 94px; opacity: 1;"></span></span>
+                </span>
+                <span class="content">
+                    <span class="title"><a target="_self" href="#">Add Car: Hertz</a></span>
+                    <span class="location">St Barth</span>
+                    <span class="details"><a href="#"><span class="text">details</span><span class="end"></span></a></span>
+                    <span class="price"><span class="pre-text">from</span><span class="sum">0</span><span class="currency-icon">&euro;</span></span>
+                    <span class="clear separator"></span>
+                    <span class="options">
+                        <span class="info-text" >Select your <br /> type / period</span>
+                        <input type="text" id="option_pick_on" name="option_pick_on" class="offer_date_pick hasDatepicker" value="Pick On" />
+                        <input type="text" id="option_drop_off" name="option_drop_off" class="offer_date_pick hasDatepicker" value="Drop Off" />
+                        <br class="clear" />
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar">
+
+    </div>
+    <br class="clear" />
+</div>
+
+<?php $this->load->view('frontend/footer'); ?>
