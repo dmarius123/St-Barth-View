@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/models/frontend/offers_model.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 21 June 2011
+ * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers Model.
 */
@@ -39,6 +39,7 @@
                 'name' => $this->input->post('name'),
                 'alt_address' => $this->input->post('alt_address'),
                 'description' => $this->input->post('description'),
+                'locations' => $this->input->post('locations'),
                 'amenities' => $this->input->post('amenities')
             );
             $this->db->where('id', $this->input->post('id'));
@@ -305,6 +306,14 @@
             $this->db->where('offer_id', $id);
             $this->db->order_by('position');
             $query = $this->db->get('offers_images');
+            return $query;
+        }
+        
+        function getComments($id){
+            $this->db->where('offer_id', $id);
+            $this->db->where('status', 'approved');
+            $this->db->order_by('date', 'desc');
+            $query = $this->db->get('comments');
             return $query;
         }
 

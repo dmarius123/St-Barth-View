@@ -30,6 +30,7 @@
             var BASE_URL = "<?=base_url()?>";
         </script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.countdown.js'; ?>"></script>
+        <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.RatingInput.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.ImageLoader.min.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.ThumbnailGallery.js'; ?>"></script>
         <script type="text/JavaScript" src="<?php echo base_url().'assets/libraries/js/jquery.dop.BookingCalendar.js'; ?>"></script>

@@ -29,6 +29,10 @@
             <textarea name="description" id="description" cols="" rows="" class="user-area-textarea-style"><?=$description?></textarea>
         </div>
         <div class="user-area-form-field textarea">
+            <label><?=$user_villa_details_locations?> <span class="required" id="info-locations"><?=$user_mandatory_field?></span></label><br />
+            <textarea name="locations" id="locations" cols="" rows="" class="user-area-textarea-style"><?=$locations?></textarea>
+        </div>
+        <div class="user-area-form-field textarea">
             <label><?=$user_villa_details_amenities?></label><br />
             <ul class="amenities-list">
 <?php

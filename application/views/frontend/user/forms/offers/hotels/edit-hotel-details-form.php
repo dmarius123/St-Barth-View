@@ -3,7 +3,7 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/user/forms/offers/hotels/edit-hotel-details-form.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
  * Created / Last Modified : 27 May 2011
  * Last Modified By        : Marius-Cristian Donea
@@ -27,6 +27,10 @@
         <div class="user-area-form-field textarea">
             <label><?=$user_hotel_details_description?> <span class="required" id="info-description"><?=$user_mandatory_field?></span></label><br />
             <textarea name="description" id="description" cols="" rows="" class="user-area-textarea-style"><?=$description?></textarea>
+        </div>
+        <div class="user-area-form-field textarea">
+            <label><?=$user_hotel_details_locations?> <span class="required" id="info-locations"><?=$user_mandatory_field?></span></label><br />
+            <textarea name="locations" id="locations" cols="" rows="" class="user-area-textarea-style"><?=$locations?></textarea>
         </div>
         <div class="user-area-form-field textarea">
             <label><?=$user_hotel_details_amenities?></label><br />

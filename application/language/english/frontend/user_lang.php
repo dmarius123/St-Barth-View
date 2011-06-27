@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/language/english/frontend/user_lang.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 16 June 2011
+ * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : English Frontend User translation.
 */
@@ -102,6 +102,7 @@
     $lang['user_hotel_details_name_invalid'] = "[required]";
     $lang['user_hotel_details_description'] = "Description";
     $lang['user_hotel_details_description_invalid'] = "[required]";
+    $lang['user_hotel_details_locations'] = "Locations";
     $lang['user_hotel_details_amenities'] = "Amenities";
 
     $lang['user_add_hotel'] = "Add Hotel";
@@ -144,6 +145,7 @@
     $lang['user_villa_details_name_invalid'] = "[required]";
     $lang['user_villa_details_description'] = "Description";
     $lang['user_villa_details_description_invalid'] = "[required]";
+    $lang['user_villa_details_locations'] = "Locations";
     $lang['user_villa_details_amenities'] = "Amenities";
 
     $lang['user_add_villa'] = "Add Villa";

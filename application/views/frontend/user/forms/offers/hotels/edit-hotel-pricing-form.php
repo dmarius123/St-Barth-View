@@ -5,7 +5,7 @@
  * File                    : application/views/frontend/user/forms/offers/hotels/edit-hotel-pricing-form.php
  * File Version            : 1.0
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 25 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Edit Hotel Pricing form.
 */
@@ -14,7 +14,7 @@
     <h3 id="edit-offer-pricing-title"><?=$user_edit_hotel_pricing_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-pricing-info"></span>
-    <form method="post" action="" onsubmit="return editHotelPricing()">
+    <form method="post" action="" onsubmit="return user_editHotelPricing()">
         <input type="hidden" id="hotel_id" name="hotel_id" value="<?=$id?>" />
         <div class="user-area-form-field">
             <label><?=$user_edit_hotel_pricing_currency?> <span class="required" id="info-last-name">&nbsp</span></label><br />
@@ -71,15 +71,17 @@
         <br class="clear" />
         <input type="submit" name="submit-pricing" id="submit-pricing" class="user-area-submit-style" value="<?=$user_edit_hotel_pricing_edit_pricing_submit?>" />
     </form>
-    <input type="button" name="add-room" index="add-room" class="user-area-submit-style" value="<?=$user_add_room?>" onclick="addHotelRoom(<?=$id?>)" />
+    <input type="button" name="add-room" index="add-room" class="user-area-submit-style" value="<?=$user_add_room?>" onclick="user_addHotelRoom(<?=$id?>)" />
     <input type="button" name="back" id="back" class="user-area-submit-style" onClick="parent.location = '#offers'; user_parseContent()" value="<?=$user_offers_back?>" />
     <br class="clear" />
+    <div class="user-bottom"></div>
+    <div class="user-bottom"></div>
 
     <h3 id="edit-offer-rooms-title"><?=$user_edit_hotel_rooms_title?></h3>
     <span class="separator"></span>
     <span id="edit-offer-rooms-info"></span>
     <div class="user-area-form-field">
-        <select id="rooms" id="rooms" class="user-area-select-style" onchange="showHotelRoom(this.value)">
+        <select id="rooms" id="rooms" class="user-area-select-style" onchange="user_showHotelRoom(this.value)">
             <option value="0"><?=$user_edit_hotel_pricing_select_room?></option>
 <?php
     foreach ($rooms->result() as $room):
