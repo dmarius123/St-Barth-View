@@ -2,10 +2,10 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/offers/templates/options-template.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 June 2011
- * Last Modified By        : Marius-Cristian Donea
+ * Created / Last Modified : 28 June 2011
+ * Last Modified By        : Andrei Calistru
  * Description             : Offers - Options Template.
  */
 ?>
@@ -58,9 +58,68 @@
                     </span>
                 </span>
             </div>
+            <div class="offer-option-details ">
+                <span class="row">
+                    <span class="title">Ford fusion, </span>
+                    <span class="details">Automatic, A/C, 4 pers </span>
+                    <span class="info"></span>
+                    <span class="actions"><a href="">ajouter</a> </span>
+                    <span class="price">100 &euro;</span>
+                    <span class="price-old">120 &euro;</span>
+                    <br class="clear" />
+                </span>
+                <span class="row">
+                    <span class="title">Ford fusion, </span>
+                    <span class="details">Automatic, A/C, 4 pers </span>
+                    <span class="info"></span>
+                    <span class="actions"><a href="">ajouter</a> </span>
+                    <span class="price">100 &euro;</span>
+<!--                    <span class="price-old">120 &euro;</span>-->
+                    <br class="clear" />
+                </span>
+                <span class="row">
+                    <span class="title">Ford fusion, </span>
+                    <span class="details">Automatic, A/C, 4 pers </span>
+                    <span class="info"></span>
+                    <span class="actions"><a href="">ajouter</a> </span>
+                    <span class="price">100 &euro;</span>
+<!--                    <span class="price-old">120 &euro;</span>-->
+                    <br class="clear" />
+                </span>
+            </div>
         </div>
     </div>
     <div id="sidebar">
+        <div class="checkout-options">
+            <span class="type">HOTELS</span>
+            <span class="content">
+                <span class="title">LA BANANE</span>
+                <span class="price">2500 &euro;</span>
+                <br class="clear" />
+                <span class="details">1 Room, 2 pers.</span>
+                <span class="date">from  <span class="bold">01/02/2011</span>  to  <span class="bold">10/02/2011</span></span>
+            </span>
+            <span class="actions"><span class="checkout-remove">&nbsp;</span> </span>
+            <br class="clear" />
+        </div>
+        <div class="checkout-options">
+            <span class="type">SERVICES</span>
+            <span class="content">
+                <span class="title">Babysitter</span>
+                <span class="price">100 &euro;</span>
+                <br class="clear" />
+                <span class="details">4 hours per night</span>
+                <span class="date"><span class="bold">01/02/2011 - 10:30PM </span></span>
+            </span>
+            <span class="actions"><span class="checkout-remove">&nbsp;</span> </span>
+            <br class="clear" />
+        </div>
+        <div class="checkout-total">
+            <span class="checkout-sum">Total: 2600 &euro;</span>
+            <span class="checkout-sum-info">This rates include local tax 4,6%</span>
+            <span class="checkout-button"><a href="#">Checkout</a></span>
+            <br class="clear" />
+        </div>
 
     </div>
     <br class="clear" />
