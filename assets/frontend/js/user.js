@@ -1,9 +1,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/js/user.js
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 20 June 2011
+ * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : User Scripts.
 */
@@ -539,6 +539,7 @@ function user_redirectOffers(){
                                                                       alt_address: $('#alt-address').val(),
                                                                       name: $('#name').val(),
                                                                       description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
                                                                       amenities: amenities}, function(data){
                         $('.name', '#offer-'+$('#hotel_id').val()).html($('#name').val());
                         $('.title', '#offers-list').html($('#name').val());
@@ -631,11 +632,14 @@ function user_redirectOffers(){
 
     function user_editHotelPricing(){
         user_disableHotelPricing(true);
+        alert('OK1');
         $('#edit-offer-pricing-title').addClass('loading');
+        alert('OK2');
         $.post(BASE_URL+'user/hotel/editPricingSubmit/', {hotelId:$('#hotel_id').val(),
                                                           currency:$('#currency').val(),
                                                           min_stay:$('#min-stay').val(),
                                                           cancel_policy:$('#cancel-policy').val()}, function(data){
+                                                          
             $('#edit-offer-pricing-title').removeClass('loading');
             user_disableHotelPricing(false);
             user_showInfo('#edit-offer-pricing-info', data);
@@ -870,6 +874,7 @@ function user_redirectOffers(){
                                                                       alt_address: $('#alt-address').val(),
                                                                       name: $('#name').val(),
                                                                       description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
                                                                       amenities: amenities}, function(data){
                         $('.name', '#offer-'+$('#villa_id').val()).html($('#name').val());
                         $('.title', '#offers-list').html($('#name').val());
