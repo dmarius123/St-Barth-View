@@ -94,6 +94,18 @@
             $this->db->update('offers', $query_data);
         }
 
+        function addComment($userId){
+            $query_data = array(
+               'user_id' => $userId,
+               'offer_id' => $this->input->post('offer_id'),
+               'rating' => $this->input->post('review_form_rating'),
+               'year' => $this->input->post('review_form_year'),
+               'title' => $this->input->post('review_form_title'),
+               'comment' => $this->input->post('review_form_content')
+            );
+            $this->db->insert('comments', $query_data);
+        }
+
 // Search
         function search(){
             if ($this->input->post('location') != ''){
@@ -398,6 +410,7 @@
             $query = $this->db->get('offers_types_filters_values');
             return $query;
         }
+
     }
 
 ?>

@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/offers/templates/offer-template.php
- * File Version            : 1.3
+ * File Version            : 1.4
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 21 June 2011
+ * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers - Offer Template.
 */
@@ -19,6 +19,7 @@
         <input type="hidden" id="offer_id" name="offer_id" value="<?=$offer['id']?>" />
         <input type="hidden" id="offer_type_id" name="offer_type_id" value="<?=$offer['offer_type_id']?>" />
         <input type="hidden" id="offer_description" name="offer_description" value="<?=$offer['description']?>" />
+        <input type="hidden" id="offer_locations" name="offer_locations" value="<?=$offer['locations']?>" />
         <input type="hidden" id="offer_amenities" name="offer_type_id" value="<?=$offer['amenities']?>" />
         <input type="hidden" id="offer_coordinates" name="offer_coordinates" value="<?=$offer['coordinates']?>" />
 <?php $this->load->view('frontend/offers/templates/offer-top-template'); ?>

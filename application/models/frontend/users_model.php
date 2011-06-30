@@ -52,6 +52,8 @@
 
         function getNoComments($id){
             $this->db->where('user_id', $id);
+            $this->db->where('status', 'approved');
+            $query = $this->db->get('comments');
             return $query->num_rows();
         }
 

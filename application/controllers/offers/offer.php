@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/offers/offer.php
- * File Version            : 1.2
+ * File Version            : 1.4
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 19 June 2011
+ * Created / Last Modified : 29 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers - Offer Controller.
 */
@@ -55,6 +55,12 @@
                 $offer['last_comment_last_name'] = $this->CI->Users_model->getProfile($offer['last_comment']['user_id'], 'last_name');
                 $offer['last_comment_profile_picture'] = $this->CI->Users_model->getProfile($offer['last_comment']['user_id'], 'picture');
             }
+
+            $offer['owner_first_name'] = $this->CI->Users_model->getProfile($offer['user_id'], 'first_name');
+            $offer['owner_last_name'] = $this->CI->Users_model->getProfile($offer['user_id'], 'last_name');
+            $offer['owner_profile_picture'] = $this->CI->Users_model->getProfile($offer['user_id'], 'picture');
+            $offer['owner_short_description'] = $this->CI->Functions_model->shortText($this->CI->Users_model->getProfile($offer['user_id'], 'description'), 70);
+
             $data['offer'] = $offer;
 
             $this->load->view('frontend/offers/templates/offer-template', $data);
@@ -86,23 +92,46 @@
 
         public function getReviews(){
             $data = $this->lang->language;
+            if ($this->session->userdata('stbartsview-user')){
+                $data['is_login'] = true;
+            }
+            else{
+                $data['is_login'] = false;
+            }
             
             $comments = $this->CI->Offers_model->getComments($this->input->post('offer_id'));
             foreach ($comments->result() as $comment):
-                $comment->user_picture = $this->CI->Offers_model->getProfile($comment->user_id, 'picture');
-                $comment->first_name = $this->CI->Offers_model->getProfile($comment->user_id, 'first_name');
-                $comment->last_name = $this->CI->Offers_model->getProfile($comment->user_id, 'last_name');
-                $comment->no_comments = $this->CI->User_model->getNoComments($comment->user_id);
+                $comment->user_picture = $this->CI->Users_model->getProfile($comment->user_id, 'picture');
+                $comment->first_name = $this->CI->Users_model->getProfile($comment->user_id, 'first_name');
+                $comment->last_name = $this->CI->Users_model->getProfile($comment->user_id, 'last_name');
+                $comment->no_comments = $this->CI->Users_model->getNoComments($comment->user_id);
             endforeach;
 
             $data['comments'] = $comments;
-
             $this->load->view('frontend/offers/templates/bottom-templates/offer-bottom-reviews-template', $data);
         }
 
         public function getAddReview(){
             $data = $this->lang->language;
             $this->load->view('frontend/offers/forms/offer-add-review-form', $data);
+        }
+
+        public function addReview(){
+            if ($this->input->post('offer_id')){
+                $comment->no_comments = $this->CI->Offers_model->addComment($this->session->userdata('stbartsview-user'));
+                echo $this->lang->line('offers_bottom_review_add_review_submit_success');
+            }
+        }
+
+        public function getReportReview(){
+            $data = $this->lang->language;
+            $this->load->view('frontend/offers/forms/offer-report-review-form', $data);
+        }
+
+        public function reportReview(){
+            if ($this->input->post('offer_id')){
+                $comment->no_comments = $this->CI->Offers_model->addComment($this->session->userdata('stbartsview-user'));
+            }
         }
     }
 

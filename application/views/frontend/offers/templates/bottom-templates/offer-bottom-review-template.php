@@ -9,18 +9,22 @@
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers - Offer Bottom Review Template.
 */
+?>
 
+<?php
+    if ($comments->num_rows() > 0){
+        foreach ($comments->result() as $comment):
 ?>
     <div class="offer-bottom-review">
         <div class="review-left">
             <div class="review-left-top">
                 <div class="review-left-image">
-                    <a href=""><img src="<?=$comment->user_picture?>" alt="" /></a>
+                    <a href=""><img src="<?=$comment->user_picture?>" width="62px" height="62px" alt="" /></a>
                 </div>
                 <div class="review-left-user">
                     <span class="review-left-user-name"><a href=""><?=$comment->first_name?> <br /><?=$comment->last_name?></a></span>
-                    <span class="review-left-user-status verified-buyer"><?=$offers_bottom_review_verified_buyer?></span>
-<!--                    <span class="review-left-user-status verified-review"><?=$offers_bottom_review_verified_review?></span>-->
+<!--                    <span class="review-left-user-status verified-buyer"><?=$offers_bottom_review_verified_buyer?></span>-->
+                    <span class="review-left-user-status verified-review"><?=$offers_bottom_review_verified_review?></span>
                 </div>
                 <br class="clear" />
             </div>
@@ -43,9 +47,16 @@
                     <?=$comment->comment?>
                 </div>
                 <div class="review-report-problem">
-                    > <a href="#"><?=$offers_bottom_review_abuse?></a>
+                    > <a href="javascript:offer_showReportReview()"><?=$offers_bottom_review_abuse?></a>
                 </div>
             </div>
         </div>
         <br class="clear" />
     </div>
+<?php
+        endforeach;
+    }
+    else{
+        echo $offers_bottom_review_no_comments;
+    }
+?>
