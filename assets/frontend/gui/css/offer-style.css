@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/offer-style.js
- * File Version            : 1.2
+ * File Version            : 1.4
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 19 June 2011
+ * Created / Last Modified : 27 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offer Style.
 */
@@ -475,6 +475,7 @@
     #offer-sidebar{
         width: 280px;
         float: left;
+        z-index: 1000;
     }
 
         /* #offer-booking */
@@ -971,7 +972,7 @@
 }
 
 .offer-bottom-reviews{
-    margin-top: 5px;
+/*    margin-top: 5px;*/
 }
 
 .offer-bottom-reviews-add div{
@@ -1004,8 +1005,10 @@
 }
 
 .offer-bottom-review{
-    clear:both;
-    margin-top: 20px;
+    margin: 15px 0 0 0;
+}
+
+.offer-bottom-review-add{
 }
 
 .review-left{
@@ -1185,14 +1188,20 @@
 }
 
 .big-stars{
+    width: 250px;
+}
+
+#add-review-rating-stars{
     float: left;
+    margin: 0 0 0 10px;
 }
 
 .big-stars .rating-value{
-    font-size: 15px;
+    float: right;
+    font-size: 20px;
     color: #6980b1;
     font-weight: bold;
-    margin-left: 5px;
+    padding: 2px 0 0 10px;
 }
 
 .big-stars .rating-stars {
@@ -1254,7 +1263,7 @@
     width: 100px;
 }
 
-#review-form-title{
+#review_form_title{
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     color: #737373;
@@ -1265,7 +1274,7 @@
     margin-top: 10px;
 }
 
-#review-form-content{
+#review_form_content{
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     color: #737373;
@@ -1314,6 +1323,7 @@
 
 #review-form-submit{
     background: url("../images/sprite.png") repeat scroll 0 -750px transparent;
+    border: none;
     color: #FFFFFF;
     display: block;
     float: left;
@@ -1327,6 +1337,7 @@
     text-align: center;
     vertical-align: middle;
     width: 142px;
+    cursor: pointer;
 }
 
 #review-form-preview{
@@ -1337,6 +1348,10 @@
     line-height: 22px;
     margin-top: 5px;
     padding-left: 15px;
+}
+
+.review-form-required{
+    color:#ff0000 !important;
 }
 
 /* end #offer-bottom */
