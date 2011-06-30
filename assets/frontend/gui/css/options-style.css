@@ -1,0 +1,456 @@
+/*
+ * Title                   : St Barth View
+ * File                    : assets/frontend/gui/css/options-style.js
+ * File Version            : 1.2
+ * Author                  : Marius-Cristian Donea
+ * Created / Last Modified : 28 June 2011
+ * Last Modified By        : Andrei Calistru
+ * Description             : Offers - Options Template.
+ */
+
+.section-options #main{
+    width: 648px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+/*    min-height: 250px;*/
+    -moz-box-shadow: 3px 3px 10px #d4d4d4;
+    -webkit-box-shadow: 3px 3px 10px #d4d4d4;
+    box-shadow: 3px 3px 10px #d4d4d4;
+    margin: 0 10px 0 0;
+}
+
+.offer-selected {
+    background: #fdfdfd;
+    border-bottom: 1px solid #e3e3e3;
+    height: 158px;
+    width: 648px;
+}
+
+.offer-selected .image {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E4E4E4;
+    float: left;
+    height: 126px;
+    margin: 6px 0 0 8px;
+    width: 180px;
+}
+
+.offer-selected .content {
+    float: left;
+    height: 130px;
+    margin: 7px 0 0 10px;
+    width: 435px;
+}
+
+.offer-selected .title {
+    color: #333333;
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 4px 0 4px 0px;
+}
+
+.offer-selected .title a {
+    color: #333333;
+}
+
+.offer-selected .location {
+    color: #737373;
+    float: left;
+    margin: 6px 0 4px 10px;
+    font-size: 15px;
+}
+
+.offer-selected .separator {
+    background-color: #DADADB;
+    display: block;
+    height: 1px;
+}
+
+.offer-selected .details{
+    font-size: 14px;
+    font-weight: bold;
+    color: #737373;
+    display: block;
+    margin-top:10px;
+}
+
+.offer-selected .date{
+    font-size: 14px;
+    font-weight: normal;
+    color: #737373;
+}
+
+.offer-selected .date .bold{
+    font-weight: bold;
+}
+
+.offer-selected .actions{
+    margin-top:10px;
+    display: block;
+}
+
+.offer-selected .actions a{
+    background: url("../images/sprite.png") no-repeat -130px -1680px transparent;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 77px;
+    height:25px;
+    line-height: 20px;
+}
+
+.offer-options{
+    margin: 10px;
+}
+
+.offer-options h2{
+    color: #FC4C98;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.offer-sorting-options{
+    margin-top: 5px;
+}
+
+.offer-option{
+    margin: 10px 0 0;
+    padding:10px;
+/*    border: 1px solid #627AAD;*/
+/*    border-bottom: 0px;*/
+    color: #fff;
+    background: #a6bad6;
+    width: 608px;
+    height: 105px;
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.16, rgb(166,186,214)),
+    color-stop(0.58, rgb(140,167,202)),
+    color-stop(0.79, rgb(109,143,188))
+    );
+    background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(166,186,214) 16%,
+    rgb(140,167,202) 58%,
+    rgb(109,143,188) 79%
+    );
+
+}
+
+.offer-option .image{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E4E4E4;
+    float: left;
+    height: 94px;
+    margin: 3px 0 0 4px;
+    width: 135px;
+}
+
+.offer-option .content{
+    float: left;
+    height: 94px;
+    margin: 3px 0 0 10px;
+    width: 455px
+}
+
+.offer-option .title{
+    color: #ffffff;
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 4px 0 4px 0px;
+}
+
+.offer-option .title a {
+    color: #ffffff;
+}
+
+.offer-option .location {
+    color: #ffffff;
+    float: left;
+    margin: 6px 0 4px 10px;
+    font-size: 12px;
+}
+
+.offer-option .details {
+    color: #ffffff;
+    float: left;
+    margin: 6px 0 4px 15px;
+    font-size: 14px;
+}
+
+.offer-option .details a{
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+    vertical-align: middle;
+}
+
+.offer-option .details a .text{
+    background: url("../images/sprite.png") repeat scroll -250px -100px transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    height: 17px;
+    padding: 0 0 0 3px;
+}
+
+.offer-option .details a .end{
+    background: url("../images/sprite.png") repeat scroll -357px -100px transparent;
+    color: #FFFFFF;
+    width: 3px;
+    display: block;
+    float: left;
+    height: 15px;
+    padding: 0 0 2px 1px;
+}
+
+.offer-option .price{
+    float: right;
+    color: #fff;
+    display: block;
+    margin: 6px 0 4px 15px;
+    text-align: center;
+}
+
+.offer-option .price .pre-text {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.offer-option .price .sum {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 0 5px;
+}
+
+.offer-option .price .currency-icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.offer-option .separator {
+    background-color: #DADADB;
+    display: block;
+    height: 1px;
+}
+
+.offer-option .options{
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #d6d6d6;
+    padding: 10px;
+    display: block;
+    margin-top: 14px;
+}
+
+.offer-option .options .info-text{
+    color: #FC4C98;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1em;
+    float: left;
+    text-align: center;
+    padding:0 10px;
+}
+
+.offer_date_pick {
+    background: url("../images/sprite.png") repeat scroll -21px -510px transparent;
+    border: 1px solid #D8D8D8;
+    border-radius: 5px 5px 5px 5px;
+    color: #737373;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 25px 3px 5px;
+    width: 65px;
+    margin-left: 15px;
+}
+
+.offer-option-details{
+    margin: 0;
+    padding:10px;
+    border: 1px solid #d4d4d4;
+    border-top: 0px;
+    color: #737373;
+    background: #fff;
+    width: 606px;
+/*    height: 105px;*/
+}
+
+.offer-option-details .row{
+    font-size: 13px;
+    color: #737373;
+}
+
+.offer-option-details .row .title{
+    color: #333333;
+    font-weight: bold;
+    float: left;
+    padding-right: 5px;
+}
+
+.offer-option-details .row .details{
+    float: left;
+}
+
+.offer-option-details .row .info {
+    background: url("../images/sprite.png") no-repeat scroll -335px -1170px transparent;
+/*    display: block;*/
+    float: left;
+    height: 14px;
+    width: 14px;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+.offer-option-details .row .price-old{
+    text-decoration: line-through;
+    float: right;
+    padding-right: 10px;
+}
+
+.offer-option-details .row .price{
+    color: #FC4C98;
+    float: right;
+    padding-right: 25px;
+}
+
+.offer-option-details .row .actions{
+    float: right;
+}
+
+.offer-option-details .row .actions a{
+    background: url("../images/sprite.png") no-repeat -212px -1680px transparent;
+    color: #fff;
+    height: 20px;
+    width: 56px;
+    text-align: center;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 16px;
+}
+
+/* sidebar */
+
+.section-options #sidebar{
+    width: 278px;
+/*    min-height: 155px;*/
+    border: 1px solid #627AAD;
+    color: #fff;
+    background: #a6bad6;
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.16, rgb(166,186,214)),
+    color-stop(0.58, rgb(140,167,202)),
+    color-stop(0.79, rgb(109,143,188))
+);
+background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(166,186,214) 16%,
+    rgb(140,167,202) 58%,
+    rgb(109,143,188) 79%
+);
+}
+
+.checkout-options{
+    padding: 10px 10px 0;
+    font-size: 14px;
+/*    margin-top: 10px;*/
+}
+
+.checkout-options .type{
+    color: #FC4C98;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+}
+
+.checkout-options .content{
+    float: left;
+    width: 235px;
+}
+
+.checkout-options .title{
+    color: #ffffff;
+    font-weight: bold;
+    float: left;
+}
+
+.checkout-options .price{
+    font-weight: bold;
+    float: right;
+}
+
+.checkout-options .details{
+    font-weight: bold;
+    display: block;
+}
+
+.checkout-options .date{
+    font-weight: normal;
+}
+
+.checkout-options .actions{
+    float: right;
+    width: 16px;
+}
+
+.checkout-options .actions .checkout-remove{
+    background: url("../images/sprite.png") no-repeat -907px -626px transparent;
+    display: block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.checkout-total {
+    margin: 0 10px 10px;
+    padding: 10px 0 0;
+    text-align: right;
+}
+
+.checkout-total .checkout-sum{
+    border-top: 1px solid #d6d6d6;
+    padding-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #ffffff;
+    display: block;
+}
+
+.checkout-total .checkout-sum-info {
+    font-size: 13px;
+    font-weight: normal;
+    display: block;
+}
+
+.checkout-total .checkout-button{
+    display: block;
+}
+
+.checkout-total .checkout-button a{
+    background: url("../images/sprite.png") no-repeat -130px -1714px transparent;
+    display: block;
+    width: 153px;
+    height: 39px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    float: right;
+    line-height: 35px;
+    margin-top: 5px;
+}
