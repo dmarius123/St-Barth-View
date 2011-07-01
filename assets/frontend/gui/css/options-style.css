@@ -9,7 +9,7 @@
  */
 
 .section-options #main{
-    width: 648px;
+    width: 628px;
     border: 1px solid #e3e3e3;
     background: #fff;
 /*    min-height: 250px;*/
@@ -23,7 +23,7 @@
     background: #fdfdfd;
     border-bottom: 1px solid #e3e3e3;
     height: 158px;
-    width: 648px;
+    width: 628px;
 }
 
 .offer-selected .image {
@@ -39,7 +39,7 @@
     float: left;
     height: 130px;
     margin: 7px 0 0 10px;
-    width: 435px;
+    width: 415px;
 }
 
 .offer-selected .title {
@@ -123,7 +123,7 @@
 /*    border-bottom: 0px;*/
     color: #fff;
     background: #a6bad6;
-    width: 608px;
+    width: 588px;
     height: 105px;
     background-image: -webkit-gradient(
     linear,
@@ -155,7 +155,7 @@
     float: left;
     height: 94px;
     margin: 3px 0 0 10px;
-    width: 455px
+    width: 435px
 }
 
 .offer-option .title{
@@ -282,7 +282,7 @@
     border-top: 0px;
     color: #737373;
     background: #fff;
-    width: 606px;
+    width: 586px;
 /*    height: 105px;*/
 }
 
@@ -343,7 +343,8 @@
 /* sidebar */
 
 .section-options #sidebar{
-    width: 278px;
+    width: 286px;
+    float: right;
 /*    min-height: 155px;*/
     border: 1px solid #627AAD;
     color: #fff;
