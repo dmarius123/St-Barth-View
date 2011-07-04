@@ -1,47 +1,51 @@
 @charset "utf-8";
+
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/deals-style.css
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Andrei Calistru
- * Created / Last Modified : 27 May 2011
- * Last Modified By        : Andrei Calistru
+ * Created / Last Modified : 02 July 2011
+ * Last Modified By        : Marius-Cristian Donea
  * Description             : Deals Style Sheet.
 */
+
 #users-deals{
-/*    border: 2px solid #333333;*/
-/*    border-radius: 9px 9px 9px 9px;*/
     padding: 10px 0;
     position: relative;
     font-size: 14px;
 }
 
 .users-deals-alert-box{
-    margin: 0 10px;
-    padding: 10px;
-    border: 2px solid #D31B5D;
-    border-radius: 9px 9px 9px 9px;
-    background: #FFDCD7;
+    background-color: #FFDCD7;
+    border: 1px solid #D31B5D;
+    border-radius: 5px 5px 5px 5px;
+    color: #666666;
+    display: block;
+    font-size: 13px;
+    margin: 20px 0 0 20px;
+    opacity: 1;
+    padding: 5px;
+    width: 633px;
 }
 
 .users-deals-alert-box .title{
-    color: #D31B5D;
-    font-size: 14px;
+    color: #666666;
+    font-size: 13px;
     font-weight: bold;
 }
 .users-deals-alert-box .description{
-    color: #D31B5D;
-    font-size: 14px;
+    color: #666666;
+    font-size: 13px;
     font-weight: normal;
 }
 .user-deals-title{
-    margin: 10px 10px 0 10px;
+    margin: 20px 0px 0 20px;
     font-size:16px;
     font-weight: bold;
 }
 .user-deals-tabs{
-    margin: 10px 0px;
-/*    border-bottom: 2px solid #6D8FBC;*/
+    margin: 20px 0px 0;
     background: url('../images/sprite.png') -170px -598px;
     width: 685px;
     height: 32px;
@@ -53,15 +57,10 @@
 .user-deals-tabs ul li{
     float:left;
     display:block;
-/*    margin-right: 3px;   */
 }
 .user-deals-tabs ul li a{
-/*    border:2px solid #6D8FBC;*/
-/*    border-bottom-width: 0px;*/
-/*    border-radius: 9px 9px 0px 0px;*/
     display: block;
     color:#ffffff;
-/*    background: #6D8FBC;*/
     padding: 7px 10px;
     font-size: 15px;
     font-weight: bold;
@@ -76,101 +75,118 @@
 }
 
 .users-deals-warning-box{
-    margin: 0px 10px;
-    padding: 10px;
-    border: 2px solid #E8E488;
-    border-radius: 9px 9px 9px 9px;
-    background: #FFFEDF;
+    background-color: #FFFEDF;
+    border: 1px solid #E8E488;
+    border-radius: 5px 5px 5px 5px;
+    color: #666666;
+    display: block;
+    font-size: 13px;
+    margin: 20px 0 0 20px;
+    opacity: 1;
+    padding: 5px;
+    width: 633px;
 }
 .users-deals-warning-box .description{
-    color: #333333;
-    font-size: 14px;
+    color: #666666;
+    font-size: 13px;
 }
 
 .form-fields{
-    margin: 0 10px;
 }
 
 .uses-deals-add-form .steps{
-    border-bottom:1px solid #6D8FBC;
+    border-bottom: 1px solid #dddddd;
     padding-bottom: 10px;
-    margin-bottom: 10px;
+    color: #959595;
+    margin: 20px 0 0 20px;
+    width: 321px;
 }
 .uses-deals-add-form .steps h2, .users-daily-deals h2{
-    font-size:16px;
-    color: #333333;
+    font-size:1.5em;
+    color: #959595;
+    padding:0;
 }
 .add-deal-row{
     display: block;
-    margin: 5px 0;
+    margin: 20px 0 0 20px;
 }
+
+.add-deal-row p{
+    color: #777777;
+    font-size: 12px;
+    font-style: italic;
+}
+
 .add-deal-row .add-deal-row-left{
-    float: left;
-    width: 200px;
-    padding:5px;
 }
 
 .add-deal-row-left label{
-    font-size: 12px;
-    text-align: right;
     display: block;
+    color: #959595;
+    font-size: 18px;
     font-weight: bold;
-    line-height: 30px;
+    width: 345px;
+}
+
+.add-deal-row-left label .required{
+    color: #FF69A7;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .add-deal-row .add-deal-row-right{
-    float: left;
-    padding:5px 0 5px 5px;
 }
 
 .add-deal-values{
-    border:1px solid #737373;
-    color: #333333;
+    margin-right: 20px;
+    border-left: 1px solid #B4C6DD;
 }
 
 .add-deal-values .block{
     float:left;
     display: block;
-/*    width: 100px;*/
-/*    border:1px solid #737373;*/
-    background: #d4d4d4;
+    padding-right: 0px;
+    width: 161px;
 }
 
 .add-deal-values .block input{
     width: 60px;
-    float: left;
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     padding: 3px;
 }
 
 .add-deal-values .block-top{
-    background: #a0a0a0;
-    padding:5px;
+    background: #B4C6DD;
+    padding:10px 10px;
+    color: #fff;
+    font-weight: bold;
 }
 .add-deal-values .block-bottom{
-    padding:5px;
-    height: 22px;
-    border-right:1px solid #737373;
+    padding:10px 10px;
+    border-right:1px solid #B4C6DD;
+    border-bottom:1px solid #B4C6DD;
+    background: #fff;
+    height:24px;
+    color: #737373;
 }
 
 .add-deal-values .block-bottom label{
-/*    width: 30px;*/
-    display: block;
-    float:left;
     padding: 2px;
 }
 
 .deal-desc{
-    width: 300px;
+    background-color: #FFFFFF;
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
+    font-size: 14px;
     padding: 5px;
+    width: 633px;
 }
 
 .deal-restrictions{
-    width:300px;
-    height: 100px;
+    width:633px;
+    height: 150px;
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     padding: 5px;
@@ -196,6 +212,7 @@
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     padding: 5px;
+    width: 300px;
 }
 
 .schedule-program select{
@@ -227,12 +244,12 @@
 }
 
 .users-deals-display #search-reviews-sorting{
-    margin:0 10px
+    margin:0 20px
 }
 
 #users-deals .delimiter{
     border-bottom: 1px solid #333333;
-    margin: 10px;
+    margin: 20px;
 }
 
 #users-deals-calendar{
@@ -241,28 +258,43 @@
 }
 
 .user-current-deals{
-    margin: 0 10px;
+    margin: 0 20px;
+}
+
+.user-current-deals p{
+    margin: 20px 0 0;
+}
+
+.user-current-deals label{
+    color: #959595;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    width: 345px;
 }
 
 .user-deal-detail #calendar-pricing-links, .user-current-deals-details{
-    margin: 0 10px;
+    margin: 20px 20px 0;
 }
 .user-current-deals-fees{
-/*    width: 100%;*/
-    border:1px solid #737373;
+    width: 100%;
+    border:1px solid #B4C6DD;
 }
 
 .user-current-deals-fees th{
-    background: #a0a0a0;
+    background: #B4C6DD;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .user-current-deals-fees td,.user-current-deals-fees th{
-    padding: 5px;
-    border-bottom: 1px solid #737373;
+    padding: 10px;
+    border-bottom: 1px solid #B4C6DD;
 }
 
 .user-current-deals-fees td{
-    background: #d4d4d4;
+    background: #ffffff;
+    color: #737373;
 }
 
 .user-current-deals-fees td .percent{
@@ -286,7 +318,7 @@
 }
 
 .user-add-daily-deal{
-    margin: 10px;
+    margin: 20px;
     color: #627AAD;
     font-weight: bold;
     font-size: 13px;
@@ -298,7 +330,7 @@
 }
 
 .users-daily-deals-list{
-    margin: 10px;
+    margin: 20px;
 }
 
 .users-daily-deals-list table{
@@ -311,7 +343,6 @@
 }
 
 .users-daily-deals-list table th{
-/*    border-right: 1px solid #a0a0a0;*/
     border: 0;
     background: none;
     padding: 5px;
@@ -327,7 +358,6 @@
 }
 
 .users-daily-deals-list table td.no_deals{
-/*    border: 1px solid #d4d4d4;*/
     padding: 15px;
     text-align:center;
     font-style: italic;

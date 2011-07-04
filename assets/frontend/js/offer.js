@@ -8,11 +8,97 @@
  * Description             : Offer Scripts.
 */
 
-var currOfferSection = 'description';
+var currOfferSection = 'description',
+currOfferContent = 'gallery';
 
 function offer_init(){
     $('#offer-gallery-container').DOPThumbnailGallery({'SettingsXMLFilePath': BASE_URL+'offers/offer/gallerySettings', 'ContentXMLFilePath': BASE_URL+'offers/offer/gallery/'+$('#offer_id').val()});
+
+    if ($('#offer_no_deals').val() > 0){
+        $('#owner-action-normal').hover(function(){
+            $('#owner-action-normal').css('display', 'none');
+            $('#single-deal-option').css('display', 'block');
+        },function(){
+        });
+
+        $('#single-deal-option').hover(function(){
+        },function(){
+            if (currOfferContent != 'deals'){
+                $('#owner-action-normal').css('display', 'block');
+                $('#single-deal-option').css('display', 'none');
+            }
+        });
+    }
 }
+
+// BEGIN CONTENT SCRIPT
+
+function offer_hideRatesSlider(callback){
+    var time = 600;
+    if ($('#rates-slider').css('margin-left') > '0px'){
+        time = 0;
+    }
+
+    $('#booking-rates').css('display', 'block');
+    $('#booking-rates-hover').css('display', 'none');
+    $('#rates-slider').stop(true, true).animate({'margin-left':660}, time, function(){
+        if (callback != null){
+            eval(callback);
+        }
+    });
+}
+
+function offer_hideDealsSlider(callback){
+    var time = 600;
+    if ($('#deals-slider').css('margin-left') > '0px'){
+        time = 0;
+    }
+
+    $('#owner-action-normal').css('display', 'block');
+    $('#multiple-deals').css('display', 'none');
+    $('#single-deal-options').css('display', 'none');
+    $('#deals-slider').stop(true, true).animate({'margin-left':660}, time, function(){
+        if (callback != null){
+            eval(callback);
+        }
+    });
+}
+
+function offer_showRatesSlider(){
+    currOfferContent = 'rates';
+    $('#booking-rates').css('display', 'none');
+    $('#booking-rates-hover').css('display', 'block');
+    $('#rates-slider').stop(true, true).animate({'margin-left':0}, 600, function(){
+        offer_initRatesSlider();
+    });
+}
+
+function offer_showDealsSlider(){
+    currOfferContent = 'deals';
+    $('#owner-action-normal').css('display', 'none');
+    $('#single-deal-option').css('display', 'none');
+
+    if ($('#offer_no_deals').val() > 1){
+        $('#multiple-deals').css('display', 'block');
+    }
+    else{
+        $('#single-deal-options').css('display', 'block');
+    }
+    $('#deals-slider').stop(true, true).animate({'margin-left':0}, 600, function(){
+    });
+}
+
+function offer_initRatesSlider(){
+    $('#rates-calendar').DOPBookingCalendar({'Type':'FrontEnd'});
+}
+
+function offer_initDealsSlider(){
+
+}
+
+// END CONTENT SCRIPT
+
+// BEGIN BOTTOM SCRIPT
 
 function offer_showDescription(){
     if (currOfferSection != 'description'){
@@ -275,3 +361,5 @@ function offer_selectBottomMenuItem(item){
     $('a', '#offer-bottom-menu').removeClass('selected');
     $('#offer-bottom-menu-'+item).addClass('selected');
 }
+
+// END BOTTOM SCRIPT

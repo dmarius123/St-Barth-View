@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/user-style.js
- * File Version            : 1.2
+ * File Version            : 1.3
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 20 June 2011
+ * Created / Last Modified : 02 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : User Style.
 */
@@ -372,7 +372,7 @@ div.user-add-offer span{
     background-color: #f0f0f0;
 }
 
-.user-area-select-style,.user-area-select-style-small,.user-area-select-style-smallest,.user-area-select-style-medium{
+.user-area-select-style, .user-area-add-select-style, .user-area-select-style-small, .user-area-select-style-smallest, .user-area-select-style-medium{
     background-color: #ffffff;
     width: 300px;
     border: 1px #d8d8d8 solid;
@@ -381,6 +381,10 @@ div.user-add-offer span{
     border-radius: 5px;
     font-size: 14px;
     padding: 5px;
+}
+
+.user-area-add-select-style{
+    margin: 20px 0 0 20px;
 }
 
 .user-area-select-style-small{
@@ -435,7 +439,6 @@ div.user-add-offer span{
     -moz-border-radius: 5px;
     border-radius: 5px;
     margin: 20px 0 0 20px;
-    float: left;
 }
 
 .user-area-form-success{
@@ -572,6 +575,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     height: 29px;
     background: #c7e6f9;
 }
+
 #user-offer-edit-top a{
     vertical-align: middle;
     display: block;
@@ -579,6 +583,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     float:right;
     
 }
+
 #user-offer-edit-top a .text{
     background: url("../images/sprite.png") repeat scroll -360px -380px transparent;
     cursor: pointer;
@@ -604,7 +609,6 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     top: 0px;
     float:left;
 }
-
 
 #calendar-pricing-links li{
     display:block;
@@ -1093,11 +1097,13 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     background: url('../images/sprite.png') -900px -560px no-repeat;
 }
 
-#offers-submenu li a{
+/* Submenus */
+
+#offers-submenu li a, #deals-submenu li a{
     padding-left: 30px;
 }
 
-#offers-submenu li a span.valid{
+#offers-submenu li a span.valid, #deals-submenu li a span.valid{
     background: url('../images/sprite.png') -880px -590px no-repeat;
     width: 50px;
     height: 28px;
@@ -1105,7 +1111,7 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     float: left;
 }
 
-#offers-submenu li a span.invalid{
+#offers-submenu li a span.invalid, #deals-submenu li a span.invalid{
     background: url('../images/sprite.png') -880px -620px no-repeat;
     width: 50px;
     height: 28px;
@@ -1113,6 +1119,6 @@ h3#edit-offer-rooms-title a, #edit-room, #edit-room a{
     float: left;
 }
 
-#offers-submenu li a span.name{
+#offers-submenu li a span.name, #deals-submenu li a span.name{
     float: left;
 }

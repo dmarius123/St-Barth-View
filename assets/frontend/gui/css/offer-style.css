@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/offer-style.js
- * File Version            : 1.4
+ * File Version            : 1.5
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 June 2011
+ * Created / Last Modified : 28 June 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offer Style.
 */
@@ -223,11 +223,14 @@
 
     #offer-main{
         width: 660px;
-        float:left;
+        float: left;
         height: 450px;
+        overflow: hidden;
     }
 
-    #rates-slider,#deal-slider{
+    #rates-slider, #deals-slider{
+        z-index:1100;
+        margin-left: 660px;
     }
 
     .hidden-slider{
@@ -253,6 +256,7 @@
     }
 
     .slider-left a{
+        display: block;
         color: #ffffff;
     }
     
@@ -264,9 +268,9 @@
     }
 
     .rates-calendar{
-        width: 380px;
-        height: 235px;
-        margin: 70px 0 0 115px;
+        width: 570px;
+        height: 370px;
+        margin: 30px 0 0 30px;
     }
     
     .rates-calendar-actions{
@@ -279,19 +283,19 @@
         font-weight: bold;
     }
 
-    #deal-slider .slider-right{
+    #deals-slider .slider-right{
         background: #ffffff;
         z-index: 1000;
     }
 
-    #deal-slider .title{
+    #deals-slider .title{
         font-size: 24px;
         font-weight: bold;
         color:#333333;
         margin: 25px 35px 0;
     }
 
-    #deal-slider .location{
+    #deals-slider .location{
         font-size: 14px;
         color: #737373;
         margin: 5px 35px 0;
@@ -445,7 +449,7 @@
         line-height: 16px;
     }
 
-    #deal-slider .extra-info .title{
+    #deals-slider .extra-info .title{
         font-size: 16px;
         font-weight: bold;
         color: #737373;
@@ -475,7 +479,7 @@
     #offer-sidebar{
         width: 280px;
         float: left;
-        z-index: 1000;
+        z-index: 2000;
     }
 
         /* #offer-booking */
@@ -554,6 +558,7 @@
             margin-top: 33px;
             float: left;
         }
+
         .offer-booking-btn-rates{
             float: left;
             margin-top: 25px;
@@ -579,6 +584,7 @@
             margin-left: -30px;
             z-index: 100;
         }
+
         .booking-rates a{
             width: 100px;
             height: 38px;
@@ -589,20 +595,11 @@
             font-size: 18px;
             font-weight: bold;
             padding-right: 20px;
-
-        }
-        .booking-rates-hover a{
-            width: 100px;
-            height: 38px;
-            text-align: right;
-            line-height: 35px;
-            display: block;
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: bold;
-            padding-right: 20px;
         }
 
+        .booking-rates:hover{
+            background: url('../images/sprite.png') 0px -814px;
+        }
 
         .booking-rates-hover{
             background: url('../images/sprite.png') 0px -814px;
@@ -617,6 +614,19 @@
             padding-right: 20px;
             margin-left: -30px;
             z-index: 100;
+            display: none;
+        }
+
+        .booking-rates-hover a{
+            width: 100px;
+            height: 38px;
+            text-align: right;
+            line-height: 35px;
+            display: block;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding-right: 20px;
         }
 
         .booking-instant-book{
@@ -799,7 +809,7 @@
 
         .owner-action-active .multiple-deals,.owner-action-active .single-deal-option,.owner-action-active .single-deal-options{
             display: block;
-            width: 282px;
+            width: 287px;
             height: 41px;
             margin-left: -30px;
             background: url('../images/sprite.png') -530px -781px;
@@ -840,9 +850,16 @@
 
         .owner-action-active .single-deal-option{
             background: url('../images/sprite.png') -530px -830px;
+            display: none;
         }
+
+        .owner-action-active .multiple-deals{
+            display: none;
+        }
+
         .owner-action-active .single-deal-options{
             background: url('../images/sprite.png') -530px -880px;
+            display: none;
         }
 
         /* end #offer-deal */

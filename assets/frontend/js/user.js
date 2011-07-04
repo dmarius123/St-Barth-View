@@ -1,9 +1,9 @@
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/js/user.js
- * File Version            : 1.2
+ * File Version            : 1.3
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 June 2011
+ * Created / Last Modified : 03 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : User Scripts.
 */
@@ -39,6 +39,36 @@ function user_openPage(currPage, ID){
             break;
         case 'add-villa':
             ajaxURL = BASE_URL+'user/villa/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-car':
+            ajaxURL = BASE_URL+'user/car/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-spa-beauty':
+            ajaxURL = BASE_URL+'user/beauty/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-chef':
+            ajaxURL = BASE_URL+'user/chef/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-boat':
+            ajaxURL = BASE_URL+'user/boat/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-babysitter':
+            ajaxURL = BASE_URL+'user/babysitter/add';
+            menuSelect = 'offers';
+            submenuHide = 'deals';
+            break;
+        case 'add-massage':
+            ajaxURL = BASE_URL+'user/massage/add';
             menuSelect = 'offers';
             submenuHide = 'deals';
             break;
@@ -128,11 +158,31 @@ function user_openPage(currPage, ID){
                 user_redirectOffers();
             }
             break;
+        case 'hotel-deals':
+            if ($('#deals-submenu').html() != ''){
+                ajaxURL = BASE_URL+'user/hotel/deals';
+                menuSelect = 'none';
+                submenuHide = 'offers';
+            }
+            else{
+                user_redirectDeals();
+            }
+            break;
+        case 'villa-deals':
+            if ($('#deals-submenu').html() != ''){
+                ajaxURL = BASE_URL+'user/hotel/deals';
+                menuSelect = 'none';
+                submenuHide = 'offers';
+            }
+            else{
+                user_redirectDeals();
+            }
+            break;
     }
 
     user_selectMenuItem(menuSelect);
     user_hideSubmenus(submenuHide);
-    
+
     $.post(ajaxURL, {id:ID}, function(data){
         $(contentArea).html(data);
         positionFooter();
@@ -161,6 +211,24 @@ function user_openPage(currPage, ID){
             case 'add-villa':
                 user_initAddVilla();
                 break;
+            case 'add-car':
+                user_initAddCar();
+                break;
+            case 'add-spa-beauty':
+                user_initAddBeauty();
+                break;
+            case 'add-chef':
+                user_initAddChef();
+                break;
+            case 'add-boat':
+                user_initAddBoat();
+                break;
+            case 'add-babysitter':
+                user_initAddBabysitter();
+                break;
+            case 'add-massage':
+                user_initAddMassage();
+                break;
             case 'hotel':
                 $('body').DOPImageLoader({'Container':'.image-container', 'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png'});
                 break;
@@ -184,6 +252,9 @@ function user_openPage(currPage, ID){
                 break;
             case 'edit-villa-pricing':
                 user_initEditVillaPricing();
+                break;
+            case 'hotel-deals':
+                //$('body').DOPImageLoader({'Container':'.image-container', 'LoaderURL':BASE_URL+'assets/libraries/gui/images/box-loader.gif', 'NoImageURL':BASE_URL+'assets/libraries/gui/images/no-image.png'});
                 break;
             case 'messages':
                 break;
@@ -301,6 +372,8 @@ function user_redirectOffers(){
     user_parseContent();
 }
 
+/******************************************************************************* OFFER PROFILE */
+
 /* BEGIN PROFILE */
 
     function user_initProfile(){
@@ -407,6 +480,8 @@ function user_redirectOffers(){
     }
 
 /* END PROFILE */
+
+/******************************************************************************* OFFER HOTEL */
 
 /* BEGIN ADD HOTEL */
 
@@ -617,7 +692,7 @@ function user_redirectOffers(){
         });
     }
 
-    function user_deleteImage(no){
+    function user_deleteHotelImage(no){
         $('#edit-offer-gallery-title').addClass('loading');
         $.post(BASE_URL+'user/hotel/deleteImage/', {no:no, hotelId:HOTEL_ID}, function(data){
             $('#image_'+no).fadeOut(600);
@@ -743,6 +818,8 @@ function user_redirectOffers(){
     }
 
 /* END EDIT HOTEL */
+
+/******************************************************************************* OFFER VILLA */
 
 /* BEGIN ADD VILLA */
 
@@ -870,7 +947,7 @@ function user_redirectOffers(){
                             amenities += item_id.split('amenity')[1]+',';
                         }
                     });
-                    $.post(BASE_URL+'user/hotel/editDetailsSubmit/', {id: $('#villa_id').val(),
+                    $.post(BASE_URL+'user/villa/editDetailsSubmit/', {id: $('#villa_id').val(),
                                                                       alt_address: $('#alt-address').val(),
                                                                       name: $('#name').val(),
                                                                       description: $('#description').val(),
@@ -927,7 +1004,7 @@ function user_redirectOffers(){
 
         $('#uploadify').uploadify({
             'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
-            'script'         : '../user/hotel/uploadify/'+HOTEL_ID,
+            'script'         : '../user/villa/uploadify/'+VILLA_ID,
             'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
             'folder'         : '',
             'queueID'        : 'fileQueue',
@@ -952,7 +1029,1344 @@ function user_redirectOffers(){
         });
     }
 
+    function user_deleteVillaImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/villa/deleteImage/', {no:no, villaId:VILLA_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
 /* END EDIT VILLA */
+
+/******************************************************************************* OFFER CAR */
+
+/* BEGIN ADD CAR */
+
+    function user_initAddCar(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/car/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/car/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addCar(){
+        var validForm = true;
+        user_disableAddCarForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/car/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/car/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/car/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                            location_id: $('#location_id').val(),
+                                                            locality: $('#locality').val(),
+                                                            address: $('#address').val(),
+                                                            alt_address: $('#alt-address').val(),
+                                                            name: $('#name').val(),
+                                                            description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddCarForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddCarForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddCarForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD CAR */
+
+/* BEGIN EDIT CAR */
+
+    function user_initEditCarDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/car/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/car/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editCarDetails(){
+        var validForm = true;
+        user_disableEditCarDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/car/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/car/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/car/editDetailsSubmit/', {id: $('#car_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#car_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditCarDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditCarDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditCarDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditCarGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/car/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/car/uploadify/'+CAR_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteCarImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/car/deleteImage/', {no:no, carId:CAR_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT CAR */
+
+/******************************************************************************* OFFER SPA & BEAUTY */
+
+/* BEGIN ADD SPA & BEAUTY */
+
+    function user_initAddBeauty(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/beauty/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/beauty/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addBeauty(){
+        var validForm = true;
+        user_disableAddBeautyForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/beauty/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/beauty/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/beauty/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                               location_id: $('#location_id').val(),
+                                                               locality: $('#locality').val(),
+                                                               address: $('#address').val(),
+                                                               alt_address: $('#alt-address').val(),
+                                                               name: $('#name').val(),
+                                                               description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddBeautyForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddBeautyForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddBeautyForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD SPA & BEAUTY */
+
+/* BEGIN EDIT BEAUTY */
+
+    function user_initEditBeautyDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/beauty/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/beauty/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editBeautyDetails(){
+        var validForm = true;
+        user_disableEditBeautyDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/beauty/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/beauty/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/beauty/editDetailsSubmit/', {id: $('#beauty_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#beauty_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditBeautyDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditBeautyDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditBeautyDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditBeautyGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/beauty/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/beauty/uploadify/'+BEAUTY_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteBeautyImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/beauty/deleteImage/', {no:no, beautyId:BEAUTY_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT BEAUTY */
+
+/******************************************************************************* OFFER CHEF */
+
+/* BEGIN ADD CHEF */
+
+    function user_initAddChef(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/chef/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/chef/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addChef(){
+        var validForm = true;
+        user_disableAddChefForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/chef/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/chef/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/chef/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                             location_id: $('#location_id').val(),
+                                                             locality: $('#locality').val(),
+                                                             address: $('#address').val(),
+                                                             alt_address: $('#alt-address').val(),
+                                                             name: $('#name').val(),
+                                                             description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddChefForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddChefForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddChefForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD CHEF */
+
+/* BEGIN EDIT CHEF */
+
+    function user_initEditChefDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/chef/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/chef/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editChefDetails(){
+        var validForm = true;
+        user_disableEditChefDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/chef/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/chef/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/chef/editDetailsSubmit/', {id: $('#chef_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#chef_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditChefDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditChefDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditChefDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditChefGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/chef/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/chef/uploadify/'+CHEF_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteChefImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/chef/deleteImage/', {no:no, chefId:CHEF_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT CHEF */
+
+/******************************************************************************* OFFER BOAT */
+
+/* BEGIN ADD BOAT */
+
+    function user_initAddBoat(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/boat/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/boat/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addBoat(){
+        var validForm = true;
+        user_disableAddBoatForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/boat/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/boat/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/boat/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                             location_id: $('#location_id').val(),
+                                                             locality: $('#locality').val(),
+                                                             address: $('#address').val(),
+                                                             alt_address: $('#alt-address').val(),
+                                                             name: $('#name').val(),
+                                                             description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddBoatForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddBoatForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddBoatForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD BOAT */
+
+/* BEGIN EDIT BOAT */
+
+    function user_initEditBoatDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/boat/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/boat/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editBoatDetails(){
+        var validForm = true;
+        user_disableEditBoatDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/boat/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/boat/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/boat/editDetailsSubmit/', {id: $('#boat_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#boat_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditBoatDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditBoatDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditBoatDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditBoatGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/boat/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/boat/uploadify/'+BOAT_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteBoatImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/boat/deleteImage/', {no:no, boatId:BOAT_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT BOAT */
+
+/******************************************************************************* OFFER BABYSITTER */
+
+/* BEGIN ADD BABYSITTER */
+
+    function user_initAddBabysitter(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/babysitter/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/babysitter/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addBabysitter(){
+        var validForm = true;
+        user_disableAddBabysitterForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/babysitter/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/babysitter/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/babysitter/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                             location_id: $('#location_id').val(),
+                                                             locality: $('#locality').val(),
+                                                             address: $('#address').val(),
+                                                             alt_address: $('#alt-address').val(),
+                                                             name: $('#name').val(),
+                                                             description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddBabysitterForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddBabysitterForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddBabysitterForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD BABYSITTER */
+
+/* BEGIN EDIT BABYSITTER */
+
+    function user_initEditBabysitterDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/babysitter/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/babysitter/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editBabysitterDetails(){
+        var validForm = true;
+        user_disableEditBabysitterDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/babysitter/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/babysitter/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/babysitter/editDetailsSubmit/', {id: $('#babysitter_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#babysitter_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditBabysitterDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditBabysitterDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditBabysitterDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditBabysitterGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/babysitter/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/babysitter/uploadify/'+BABYSITTER_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteBabysitterImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/babysitter/deleteImage/', {no:no, babysitterId:BABYSITTER_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT BABYSITTER */
+
+/******************************************************************************* OFFER MASSAGE */
+
+/* BEGIN ADD MASSAGE */
+
+    function user_initAddMassage(){
+        marker = null;
+        gm_initialize('user-area-main-add-map');
+        gm_codeAddress(gm_decodeLocation($('#location').val(), 2), 'mapplusmarker', 'keep');
+        $("#address").keyup(function(event){
+            if(event.keyCode != 13){
+                gm_showHints($(this).val(), '#address-hints');
+            }
+        });
+
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/massage/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/massage/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_addMassage(){
+        var validForm = true;
+        user_disableAddMassageForm(true);
+        $('#add-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/massage/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/massage/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    $.post(BASE_URL+'user/massage/addSubmit/', {coordinates: $('#coordinates').val(),
+                                                             location_id: $('#location_id').val(),
+                                                             locality: $('#locality').val(),
+                                                             address: $('#address').val(),
+                                                             alt_address: $('#alt-address').val(),
+                                                             name: $('#name').val(),
+                                                             description: $('#description').val()}, function(data){
+                        $('#add-offer-details-title').removeClass('loading');
+                        user_disableAddMassageForm(false);
+                        user_redirectOffers();
+                    });
+                }
+                else{
+                    $('#add-offer-details-title').removeClass('loading');
+                    user_disableAddMassageForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableAddMassageForm(val){
+        $('#address').attr('disabled', val);
+        $('#location').attr('disabled', val);
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+/* END ADD MASSAGE */
+
+/* BEGIN EDIT MASSAGE */
+
+    function user_initEditMassageDetails(){
+        $('#name').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/massage/validateName/', {name: $('#name').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-name').html(data);
+            });
+        });
+        $('#description').blur(function(){
+            $('#add-offer-details-title').addClass('loading');
+            $.post(BASE_URL+'user/massage/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#add-offer-details-title').removeClass('loading');
+                $('#info-description').html(data);
+            });
+        });
+    }
+
+    function user_editMassageDetails(){
+        var validForm = true;
+        user_disableEditMassageDetailsForm(true);
+        $('#edit-offer-details-title').addClass('loading');
+        $.post(BASE_URL+'user/massage/validateName/', {name: $('#name').val()}, function(data){
+            $('#info-name').html(data);
+            if (data.split('font').length > 1){
+                validForm = false;
+            }
+            $.post(BASE_URL+'user/massage/validateDescription/', {description: $('#description').val()}, function(data){
+                $('#info-description').html(data);
+                if (data.split('font').length > 1){
+                    validForm = false;
+                }
+                if (validForm){
+                    var amenities = ',', item_id;
+                    $('input', '.amenities-list').each(function(){
+                        if ($(this).is(':checked')){
+                            item_id = $(this).attr('id');
+                            amenities += item_id.split('amenity')[1]+',';
+                        }
+                    });
+                    $.post(BASE_URL+'user/massage/editDetailsSubmit/', {id: $('#massage_id').val(),
+                                                                      alt_address: $('#alt-address').val(),
+                                                                      name: $('#name').val(),
+                                                                      description: $('#description').val(),
+                                                                      locations: $('#locations').val(),
+                                                                      amenities: amenities}, function(data){
+                        $('.name', '#offer-'+$('#massage_id').val()).html($('#name').val());
+                        $('.title', '#offers-list').html($('#name').val());
+                        $('.description', '#offers-list').html(searchBoxShortText($('#description').val(), 150));
+                        $('#edit-offer-details-title').removeClass('loading');
+                        user_disableEditMassageDetailsForm(false);
+                        user_showInfo('#edit-offer-details-info', data);
+                    });
+                }
+                else{
+                    $('#edit-offer-details-title').removeClass('loading');
+                    user_disableEditMassageDetailsForm(false);
+                }
+            });
+        });
+
+        return false;
+    }
+
+    function user_disableEditMassageDetailsForm(val){
+        $('#alt-address').attr('disabled', val);
+        $('#name').attr('disabled', val);
+        $('#description').attr('disabled', val);
+        if (val){
+            $('#submit').css('cursor', 'default');
+            $('#back').css('cursor', 'default');
+        }
+        else{
+            $('#submit').css('cursor', 'pointer');
+            $('#back').css('cursor', 'pointer');
+        }
+        $('#submit').attr('disabled', val);
+        $('#back').attr('disabled', val);
+    }
+
+    function user_initEditMassageGallery(){
+        $('#edit-offer-gallery').sortable({placeholder:"image_highlight", opacity:0.6, cursor:'move', update:function(){
+            $('#edit-offer-gallery-title').addClass('loading');
+            var data = '';
+            $('li', this).each(function(){
+                if ($(this).css('display') != 'none'){
+                    data += $(this).attr('id').split('_')[1]+';;';
+                }
+            });
+            $.post(BASE_URL+'user/massage/sortImages/', {data:data}, function(data){
+                $('#edit-offer-gallery-title').removeClass('loading');
+                user_showInfo('#edit-offer-gallery-info', data);
+            });
+        }});
+
+        $('#uploadify').uploadify({
+            'uploader'       : '../assets/libraries/gui/swf/uploadify.swf',
+            'script'         : '../user/massage/uploadify/'+MASSAGE_ID,
+            'cancelImg'      : '../assets/libraries/gui/images/cancel.png',
+            'folder'         : '',
+            'queueID'        : 'fileQueue',
+            'buttonText'     : UPLOAD_IMAGES,
+            'width'          : 120,
+            'height'         : 30,
+            'auto'           : true,
+            'multi'          : true,
+            'onSelect'       : function(event, ID, fileObj){
+                                   $('#edit-offer-gallery-title').addClass('loading');
+                               },
+            'onComplete'     : function(event, ID, fileObj, response, data){
+                                   $('#edit-offer-gallery').append(response);
+                                   $('.close', '#edit-offer-gallery').click(function(){
+                                       $(this).parent().css('display', 'none');
+                                   });
+                               },
+            'onAllComplete'  : function(event, data){
+                                   $('#edit-offer-gallery-title').removeClass('loading');
+                                   user_showInfo('#edit-offer-gallery-info', UPLOAD_IMAGES_SUCCESS);
+                               }
+        });
+    }
+
+    function user_deleteMassageImage(no){
+        $('#edit-offer-gallery-title').addClass('loading');
+        $.post(BASE_URL+'user/massage/deleteImage/', {no:no, massageId:MASSAGE_ID}, function(data){
+            $('#image_'+no).fadeOut(600);
+            $('#edit-offer-gallery-title').removeClass('loading');
+            user_showInfo('#edit-offer-gallery-info', data);
+        });
+    }
+
+/* END EDIT MASSAGE */
+
+/******************************************************************************* OFFER SETTINGS */
 
 /* BEGIN SETTINGS */
 

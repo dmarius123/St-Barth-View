@@ -1,10 +1,10 @@
 
 /*
-* Title                   : Booking Calendar
-* Version                 : 1.0
+* Title                   : Ajax Booking Calendar Pro
+* Version                 : 1.1
 * File                    : jquery.dop.BookingCalendar.js
-* File Version            : 1.0
-* Created / Last Modified : 03 May 2011
+* File Version            : 1.1
+* Created / Last Modified : 24 May 2011
 * Author                  : Marius-Cristian Donea
 * Copyright               : © 2011 Marius-Cristian Donea
 * Website                 : http://www.mariuscristiandonea.com
@@ -15,7 +15,24 @@
 {
     $.fn.DOPBookingCalendar = function(options)
     {
-        var Data = {'Type':'BackEnd', 'DataURL':'', 'SaveURL':''},
+        var Data = {'Type':'BackEnd',
+                    'DataURL':'BookingCalendar/php/load.php',
+                    'SaveURL':'BookingCalendar/php/save.php',
+                    'DayNames':['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    'MonthNames':['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    'AvailableText':'AVAILABLE', // The available text.
+                    'BookedText':'BOOKED', // The Booked text.
+                    'UnavailableText':'NOT AVAILABLE', // The unavailable text.
+                    'DateType':1, // 1: american style; 2: european style;
+                    'PopupDisplayTime':300, // The time for the Pop-Up to Show/Hide
+                    'StatusLabel':'Status', // The text for Availability label.
+                    'PriceLabel':'Price', // The text for Price label.
+                    'Currency':'$', // The currency.
+                    'SubmitBtnText':'Submit', // The text for Submit button.
+                    'ResetBtnText':'Reset', // The text for Reset button.
+                    'ExitBtnText':'Exit', // The text for Exit button.
+                    'InvalidPriceText':'Error! Please enter a number for the price.' // The text for Invalid Price Warning.
+                   },
 
         UniqueID,
         Container = this,
@@ -29,23 +46,22 @@
         CurrYear = StartYear,
         CurrMonth = StartMonth,
 
-        dayNames = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
-        monthNames = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
-        bookedText = 'BOOKED', // The Booked text.
-        oneAvailableText = 'room', // One item available text.
-        moreAvailableText = 'rooms', // More items available text.
-        dateType = 1, // 1: american style; 2: european style;
-        popupDisplayTime = 300, // The time for the Pop-Up to Show/Hide
-        noRooms = 1, // Number of rooms available > 0
-        availabilityLabel = 'Number of rooms available', // The text for Availability label.
-        priceLabel = 'Price', // The text for Price label.
-        currency = '$', // The currency.
-        submitBtnText = 'Submit', // The text for Submit button.
-        closedBtnText = 'Closed', // The text for Closed button.
-        resetBtnText = 'Reset', // The text for Reset button.
-        exitBtnText = 'Exit', // The text for exit button.
+        dayNames = new Array(),
+        monthNames = new Array(),
+        availableText,
+        bookedText,
+        unavailableText,
+        dateType,
+        popupDisplayTime,
+        statusLabel,
+        priceLabel,
+        currency,
+        submitBtnText,
+        resetBtnText,
+        exitBtnText,
+        invalidPriceText,
 
-        startScloseBtnTextelection,
+        startSelection,
         endSelection,
         firstSelected = false,
 
@@ -60,91 +76,62 @@
                         });
                     },
                     parseData:function(){
-                        $.post(Data['DataURL'], {}, function(data){
-                            var parses = data.split(';;;;;');
-                            if (parses[0] != 'default0123456789'){
-                                dayNames = [];
-                                dayNames = parses[0].split(';;');
+                        dayNames = Data['DayNames'];
+                        monthNames = Data['MonthNames'];
+                        availableText = Data['AvailableText'];
+                        bookedText = Data['BookedText'];
+                        unavailableText = Data['UnavailableText'];
+                        dateType = Data['DateType'];
+                        popupDisplayTime = Data['PopupDisplayTime'];
+                        statusLabel = Data['StatusLabel'];
+                        priceLabel = Data['PriceLabel'];
+                        currency = Data['Currency'];
+                        submitBtnText = Data['SubmitBtnText'];
+                        resetBtnText = Data['ResetBtnText'];
+                        exitBtnText = Data['ExitBtnText'];
+                        invalidPriceText = Data['InvalidPriceText'];
+                        
+                        $.get(Data['DataURL'], {}, function(data){
+                            if (data != ''){
+                                Content = data.split(',');
                             }
-                            if (parses[1] != 'default0123456789'){
-                                monthNames = [];
-                                monthNames = parses[1].split(';;');
+                            if (Data['Type'] == 'BackEnd'){
+                                methods.initBackendBookingCalendar();
                             }
-                            if (parses[2] != 'default0123456789'){
-                                bookedText = parses[2];
+                            else{
+                                methods.initFrontendBookingCalendar();
                             }
-                            if (parses[3] != 'default0123456789'){
-                                oneAvailableText = parses[3];
-                            }
-                            if (parses[4] != 'default0123456789'){
-                                moreAvailableText = parses[4];
-                            }
-                            if (parses[5] != 'default0123456789'){
-                                dateType = parseInt(parses[5]);
-                            }
-                            if (parses[6] != 'default0123456789'){
-                                popupDisplayTime = parseInt(parses[6]);
-                            }
-                            if (parses[7] != 'default0123456789'){
-                                noRooms = parseInt(parses[7]);
-                            }
-                            if (parses[8] != 'default0123456789'){
-                                availabilityLabel = parses[8];
-                            }
-                            if (parses[9] != 'default0123456789'){
-                                priceLabel = parses[9];
-                            }
-                            if (parses[10] != 'default0123456789'){
-                                currency = parses[10];
-                            }
-                            if (parses[11] != 'default0123456789'){
-                                submitBtnText = parses[11];
-                            }
-                            if (parses[12] != 'default0123456789'){
-                                closedBtnText = parses[12];
-                            }
-                            if (parses[13] != 'default0123456789'){
-                                resetBtnText = parses[13];
-                            }
-                            if (parses[14] != 'default0123456789'){
-                                exitBtnText = parses[14];
-                            }
-                            if (parses[15] != 'default0123456789'){
-                                Content = parses[15].split(';;;');
-                            }
-                            
-                            methods.initBookingCalendar();
                         });
                     },
-                    initBookingCalendar:function(){// Init the Gallery
-                        var HTML = new Array(),
-                        roomsHTML = new Array(), i;
 
-                        for (i=0; i<=noRooms; i++){
-                            roomsHTML.push('<option value="'+i+'">'+i+'</option>');
-                        }
+                    initBackendBookingCalendar:function(){// Init Backend Calendar
+                        var HTML = new Array();
 
-                        HTML.push('<div class="DOP_BookingCalendar_Container">');
-                        HTML.push('   <div class="DOP_BookingCalendar_PopUp">');
+                        HTML.push('<div class="DOP_BackendBookingCalendar_Container">');
+                        HTML.push('   <div class="DOP_BackendBookingCalendar_PopUp">');
                         HTML.push('       <div class="bg"></div>');
                         HTML.push('       <div class="window">');
                         HTML.push('           <span class="start-date"></span>');
-                        HTML.push('           <span class="separator-date"></span>');
                         HTML.push('           <span class="end-date"></span>');
                         HTML.push('           <br style="clear:both;" />');
-                        HTML.push('           <label class="label" for="'+UniqueID+'-availability">'+availabilityLabel+'</label>');
-                        HTML.push('           <select name="'+UniqueID+'-availability" id="'+UniqueID+'-availability" class="select-style">');
-                        HTML.push(roomsHTML.join(''));
+                        HTML.push('           <label class="label" for="'+UniqueID+'-availability">'+statusLabel+'</label>');
+                        HTML.push('           <select name="'+UniqueID+'-status" id="'+UniqueID+'-status" class="select-style">');
+                        HTML.push('               <option value="0" id="'+UniqueID+'-no-status"></option>');
+                        HTML.push('               <option value="1">'+availableText+'</option>');
+                        HTML.push('               <option value="2">'+bookedText+'</option>');
+                        HTML.push('               <option value="3">'+unavailableText+'</option>');
                         HTML.push('           </select>');
                         HTML.push('           <label class="label" for="'+UniqueID+'-price">'+priceLabel+' ('+currency+')</label>');
                         HTML.push('           <input type="text" name="'+UniqueID+'-price" id="'+UniqueID+'-price" class="input-style" value="" />');
-                        HTML.push('           <input type="button" name="'+UniqueID+'-submit" id="'+UniqueID+'-submit" class="button-style submit-btn" value="'+submitBtnText+'" />');
-                        HTML.push('           <input type="button" name="'+UniqueID+'-closed" id="'+UniqueID+'-closed" class="button-style" value="'+closedBtnText+'" />');
-                        HTML.push('           <input type="button" name="'+UniqueID+'-reset" id="'+UniqueID+'-reset" class="button-style" value="'+resetBtnText+'" />');
-                        HTML.push('           <input type="button" name="'+UniqueID+'-exit" id="'+UniqueID+'-exit" class="button-style" value="'+exitBtnText+'" />');
+                        HTML.push('           <span class="buttons_container">');
+                        HTML.push('               <input type="button" name="'+UniqueID+'-submit" id="'+UniqueID+'-submit" class="button-style" value="'+submitBtnText+'" />');
+                        HTML.push('               <input type="button" name="'+UniqueID+'-reset" id="'+UniqueID+'-reset" class="button-style" value="'+resetBtnText+'" />');
+                        HTML.push('               <input type="button" name="'+UniqueID+'-exit" id="'+UniqueID+'-exit" class="button-style" value="'+exitBtnText+'" />');
+                        HTML.push('               <span class="loader"></span>');
+                        HTML.push('           </span>');
                         HTML.push('       </div>');
                         HTML.push('   </div>');
-                        HTML.push('   <div class="DOP_BookingCalendar_Navigation">');
+                        HTML.push('   <div class="DOP_BackendBookingCalendar_Navigation">');
                         HTML.push('       <div class="previous_btn disabled"><div class="icon"></div></div>');
                         HTML.push('       <div class="next_btn"><div class="icon"></div></div>');
                         HTML.push('       <div class="month_year"></div>');
@@ -158,59 +145,55 @@
                         HTML.push('         <div class="day">'+dayNames[0]+'</div><br style="clear:both;" />');
                         HTML.push('       </div>');
                         HTML.push('   </div>');
-                        HTML.push('   <div class="DOP_BookingCalendar_Calendar"></div>');
+                        HTML.push('   <div class="DOP_BackendBookingCalendar_Calendar"></div>');
                         HTML.push('</div>');
 
                         Container.html(HTML.join(''));
-                        methods.initSettings();
+                        methods.initBackendSettings();
                     },
-                    initSettings:function(){// Init Settings
-                        methods.initContainer();
-                        methods.initNavigation();
-                        methods.initCalendar();
-                        methods.initPopUp();
+                    initBackendSettings:function(){// Init Backend Settings
+                        methods.initBackendContainer();
+                        methods.initBackendNavigation();
+                        methods.initBackendCalendar();
+                        methods.initBackendPopUp();
                     },
-
-                    initContainer:function(){// Init Container
-                        $('.DOP_BookingCalendar_Container', Container).width(Container.width());
-                        $('.DOP_BookingCalendar_Container', Container).height(Container.height());
+                    initBackendContainer:function(){// Init Backend Container
+                        $('.DOP_BackendBookingCalendar_Container', Container).width(Container.width());
+                        $('.DOP_BackendBookingCalendar_Container', Container).height(Container.height());
                     },
-
-                    initNavigation:function(){// Init Navigation
-                        $('.DOP_BookingCalendar_Navigation .week .day', Container).width(parseInt((Container.width()-(parseInt($('.DOP_BookingCalendar_Navigation .week .day', Container).css('margin-left'))+parseInt($('.DOP_BookingCalendar_Navigation .week .day', Container).css('margin-right')))*7)/7));
-                        $('.DOP_BookingCalendar_Navigation .previous_btn', Container).click(function(){
+                    initBackendNavigation:function(){// Init Navigation
+                        $('.DOP_BackendBookingCalendar_Navigation .week .day', Container).width(parseInt((Container.width()-(parseInt($('.DOP_BackendBookingCalendar_Navigation .week .day', Container).css('margin-left'))+parseInt($('.DOP_BackendBookingCalendar_Navigation .week .day', Container).css('margin-right')))*7)/7));
+                        $('.DOP_BackendBookingCalendar_Navigation .previous_btn', Container).click(function(){
                             var item = $(this);
                             if (!item.hasClass('disabled')){
-                                $('.DOP_BookingCalendar_Calendar', Container).html('');
-                                methods.initMonth(StartYear, CurrMonth-1);
+                                $('.DOP_BackendBookingCalendar_Calendar', Container).html('');
+                                methods.initBackendMonth(StartYear, CurrMonth-1);
                                 if (CurrMonth == StartMonth){
                                     item.addClass('disabled');
                                 }
                             }
                         });
-                        $('.DOP_BookingCalendar_Navigation .next_btn', Container).click(function(){
-                            $('.DOP_BookingCalendar_Calendar', Container).html('');
-                            methods.initMonth(StartYear, CurrMonth+1);
-                            $('.DOP_BookingCalendar_Navigation .previous_btn', Container).removeClass('disabled');
+                        $('.DOP_BackendBookingCalendar_Navigation .next_btn', Container).click(function(){
+                            $('.DOP_BackendBookingCalendar_Calendar', Container).html('');
+                            methods.initBackendMonth(StartYear, CurrMonth+1);
+                            $('.DOP_BackendBookingCalendar_Navigation .previous_btn', Container).removeClass('disabled');
                         });
                     },
-
-                    initCalendar:function(){// Init Calendar
-                        methods.initMonth(StartYear, StartMonth);
+                    initBackendCalendar:function(){// Init Calendar
+                        methods.initBackendMonth(StartYear, StartMonth);
                     },
-
-                    initMonth:function(year, month){// Init Month
+                    initBackendMonth:function(year, month){// Init Month
                         var i, j, d, cyear, cmonth, cday, start, totalDays = 0,
                         noDays = new Date(year, month, 0).getDate(),
                         noDaysPreviousMonth = new Date(year, month-1, 0).getDate(),
                         firstDay = new Date(year, month-1, 1).getDay(),
                         lastDay = new Date(year, month-1, noDays).getDay(),
-                        aText, pText;
+                        sText, pText;
 
                         CurrYear = new Date(year, month, 0).getFullYear();
                         CurrMonth = month;
-                        $('.DOP_BookingCalendar_Navigation .month_year', Container).html(monthNames[new Date(year, month, 0).getMonth()]+' '+CurrYear);
-                        $('.DOP_BookingCalendar_Calendar', Container).html('<div class="DOP_BookingCalendar_Month"></div>');
+                        $('.DOP_BackendBookingCalendar_Navigation .month_year', Container).html(monthNames[new Date(year, month, 0).getMonth()]+' '+CurrYear);
+                        $('.DOP_BackendBookingCalendar_Calendar', Container).html('<div class="DOP_BackendBookingCalendar_Month"></div>');
 
                         if (firstDay == 0){
                             start = 7;
@@ -225,20 +208,20 @@
                             cyear = d.getFullYear();
                             cmonth = prototypes.longMonth(d.getMonth()+1);
                             cday = prototypes.longDay(d.getDate());
-                            aText = '';
+                            sText = '';
                             pText = '';
                             for (j=0; j<Content.length; j++){
                                 if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
-                                    aText = Content[j].split(';;')[1];
+                                    sText = Content[j].split(';;')[1];
                                     pText = Content[j].split(';;')[2];
                                 }
                             }
 
                             if (StartMonth == month){
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
                             }
                             else{
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('last_month', cyear, cmonth, cday, d.getDate(), aText, pText));
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('last_month', cyear, cmonth, cday, d.getDate(), sText, pText));
                             }
                         }
                         
@@ -248,20 +231,20 @@
                             cyear = d.getFullYear();
                             cmonth = prototypes.longMonth(d.getMonth()+1);
                             cday = prototypes.longDay(d.getDate());
-                            aText = '';
+                            sText = '';
                             pText = '';
                             for (j=0; j<Content.length; j++){
                                 if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
-                                    aText = Content[j].split(';;')[1];
+                                    sText = Content[j].split(';;')[1];
                                     pText = Content[j].split(';;')[2];
                                 }
                             }
                             
                             if (StartMonth == month && StartDay > d.getDate()){
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
                             }
                             else{
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('curr_month', cyear, cmonth, cday, d.getDate(), aText, pText));
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('curr_month', cyear, cmonth, cday, d.getDate(), sText, pText));
                             }
                         }
 
@@ -271,15 +254,15 @@
                                 cyear = d.getFullYear();
                                 cmonth = prototypes.longMonth(d.getMonth()+1);
                                 cday = prototypes.longDay(d.getDate());
-                                aText = '';
+                                sText = '';
                                 pText = '';
                                 for (j=0; j<Content.length; j++){
                                     if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
-                                        aText = Content[j].split(';;')[1];
+                                        sText = Content[j].split(';;')[1];
                                         pText = Content[j].split(';;')[2];
                                     }
                                 }
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('next_month', cyear, cmonth, cday, d.getDate(), aText, pText));                                
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('next_month', cyear, cmonth, cday, d.getDate(), sText, pText));
                             }
                         }
                         else{
@@ -288,44 +271,41 @@
                                 cyear = d.getFullYear();
                                 cmonth = prototypes.longMonth(d.getMonth()+1);
                                 cday = prototypes.longDay(d.getDate());
-                                aText = '';
+                                sText = '';
                                 pText = '';
                                 for (j=0; j<Content.length; j++){
                                     if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
-                                        aText = Content[j].split(';;')[1];
+                                        sText = Content[j].split(';;')[1];
                                         pText = Content[j].split(';;')[2];
                                     }
                                 }
-                                $('.DOP_BookingCalendar_Month', Container).append(methods.initDay('next_month', cyear, cmonth, cday, d.getDate(), aText, pText));                                
+                                $('.DOP_BackendBookingCalendar_Month', Container).append(methods.initBackendDay('next_month', cyear, cmonth, cday, d.getDate(), sText, pText));
                             }
                         }
 
-                        $('.DOP_BookingCalendar_Month', Container).width(Container.width());
-                        $('.DOP_BookingCalendar_Month', Container).height(Container.height());
-                        $('.DOP_BookingCalendar_Day', Container).width((Container.width()-(parseInt($('.DOP_BookingCalendar_Day', Container).css('margin-left'))+parseInt($('.DOP_BookingCalendar_Day', Container).css('margin-right'))+2.5)*7)/7);
-                        $('.DOP_BookingCalendar_Day', Container).height((Container.height()-$('.DOP_BookingCalendar_Navigation', Container).height()-(parseInt($('.DOP_BookingCalendar_Day', Container).css('margin-top'))+parseInt($('.DOP_BookingCalendar_Day', Container).css('margin-bottom'))+2.5)*6)/6);
-                        $('.content', '.DOP_BookingCalendar_Day', Container).css('line-height', ($('.DOP_BookingCalendar_Day', Container).height()-$('.header', '.DOP_BookingCalendar_Day', Container).height()-parseInt($('.header', '.DOP_BookingCalendar_Day', Container).css('padding-top'))-parseInt($('.header', '.DOP_BookingCalendar_Day', Container).css('padding-bottom')))+'px');
-                        methods.initEvents();
+                        $('.DOP_BackendBookingCalendar_Month', Container).width(Container.width());
+                        $('.DOP_BackendBookingCalendar_Month', Container).height(Container.height());
+                        $('.DOP_BackendBookingCalendar_Day', Container).width(parseInt((Container.width()-(parseInt($('.DOP_BackendBookingCalendar_Day', Container).css('margin-left'))+parseInt($('.DOP_BackendBookingCalendar_Day', Container).css('margin-right')))*7)/7));
+                        $('.DOP_BackendBookingCalendar_Day', Container).height(parseInt((Container.height()-$('.DOP_BackendBookingCalendar_Navigation', Container).height()-(parseInt($('.DOP_BackendBookingCalendar_Day', Container).css('margin-top'))+parseInt($('.DOP_BackendBookingCalendar_Day', Container).css('margin-bottom')))*6)/6));
+                        $('.content', '.DOP_BackendBookingCalendar_Day', Container).css('line-height', ($('.DOP_BackendBookingCalendar_Day', Container).height()-$('.header', '.DOP_BackendBookingCalendar_Day', Container).height()-parseInt($('.header', '.DOP_BackendBookingCalendar_Day', Container).css('padding-top'))-parseInt($('.header', '.DOP_BackendBookingCalendar_Day', Container).css('padding-bottom')))+'px');
+                        $('.content', '.DOP_BackendBookingCalendar_Day', Container).height($('.DOP_BackendBookingCalendar_Day', Container).height()-$('.header', '.DOP_BackendBookingCalendar_Day', Container).height()-parseInt($('.header', '.DOP_BackendBookingCalendar_Day', Container).css('padding-top'))-parseInt($('.header', '.DOP_BackendBookingCalendar_Day', Container).css('padding-bottom')));
+                        methods.initBackendEvents();
                     },
-
-                    initDay:function(type, cyear, cmonth, cday, d, noRooms, price){// Init Day
+                    initBackendDay:function(type, cyear, cmonth, cday, d, status, price){// Init Day
                         var dayHTML = Array(),
-                        aText, pText;
+                        sText = '&nbsp;', pText;
 
-                        if (noRooms == ''){
-                            aText = '';
+                        if (status == 1){
+                            sText = availableText;
+                            type += ' available';
                         }
-                        else if (noRooms == 0){
-                            aText = bookedText;
+                        else if (status == 2){
+                            sText = bookedText;
                             type += ' booked';
                         }
-                        else if (noRooms == 1){
-                            aText = '1 '+oneAvailableText;
-                            type += ' available';
-                        }
-                        else{
-                            aText = noRooms+' '+moreAvailableText;
-                            type += ' available';
+                        else if (status == 3){
+                            sText = unavailableText;
+                            type += ' unavailable';
                         }
 
                         if (price == ''){
@@ -335,17 +315,16 @@
                             pText = currency+' '+price;
                         }
 
-                        dayHTML.push('<div class="DOP_BookingCalendar_Day '+type+'" id="'+UniqueID+'_'+cyear+'-'+cmonth+'-'+cday+'">');
-                        dayHTML.push('    <span class="header">'+d+'<span class="price">'+pText+'</span></span>');
-                        dayHTML.push('    <span class="content">'+aText+'</span>');
+                        dayHTML.push('<div class="DOP_BackendBookingCalendar_Day '+type+'" id="'+UniqueID+'_'+cyear+'-'+cmonth+'-'+cday+'">');
+                        dayHTML.push('    <span class="header"><span class="day">'+d+'</span><span class="price">'+pText+'</span><br style="clear:both;" /></span>');
+                        dayHTML.push('    <span class="content">'+sText+'</span>');
                         dayHTML.push('    </span>');
                         dayHTML.push('</div>');
 
                         return dayHTML.join('');
                     },
-
-                    initEvents:function(){// Init Events for the days of the Calendar.
-                        $('.DOP_BookingCalendar_Day', Container).click(function(){
+                    initBackendEvents:function(){// Init Events for the days of the Calendar.
+                        $('.DOP_BackendBookingCalendar_Day', Container).click(function(){
                             var day = $(this);
                             if (!day.hasClass('past_day')){
                                 if (!firstSelected){
@@ -355,24 +334,23 @@
                                 else{
                                     firstSelected = false;
                                     endSelection = day.attr('id');
-                                    methods.showPopUp();
+                                    methods.showBackendPopUp();
                                 }
-                                methods.initSelection(day.attr('id'));
+                                methods.initBackendSelection(day.attr('id'));
                             }
                         });
 
-                        $('.DOP_BookingCalendar_Day', Container).hover(function(){
+                        $('.DOP_BackendBookingCalendar_Day', Container).hover(function(){
                             var day = $(this);
                             if (firstSelected){
-                                methods.initSelection(day.attr('id'));
+                                methods.initBackendSelection(day.attr('id'));
                             }
                         });
                     },
-
-                    initSelection:function(id){
-                        $('.DOP_BookingCalendar_Day', Container).removeClass('selected');
+                    initBackendSelection:function(id){
+                        $('.DOP_BackendBookingCalendar_Day', Container).removeClass('selected');
                         if (id < startSelection){
-                            $('.DOP_BookingCalendar_Day', Container).each(function(){
+                            $('.DOP_BackendBookingCalendar_Day', Container).each(function(){
                                var day = $(this);
                                if (day.attr('id') >= id && day.attr('id') <= startSelection && !day.hasClass('past_day')){
                                    day.addClass('selected');
@@ -380,7 +358,7 @@
                             });
                         }
                         else{
-                            $('.DOP_BookingCalendar_Day', Container).each(function(){
+                            $('.DOP_BackendBookingCalendar_Day', Container).each(function(){
                                var day = $(this);   
                                if (day.attr('id') >= startSelection && day.attr('id') <= id && !day.hasClass('past_day')){
                                    day.addClass('selected');
@@ -388,27 +366,34 @@
                             });
                         }
                     },
-
-                    initPopUp:function(){// Init Pop-Up
-                        $('.DOP_BookingCalendar_PopUp', Container).css('display', 'block');
-                        $('.DOP_BookingCalendar_PopUp', Container).width(Container.width());
-                        $('.DOP_BookingCalendar_PopUp', Container).height(Container.height());
-                        $('.DOP_BookingCalendar_PopUp .bg', Container).width($('.DOP_BookingCalendar_PopUp', Container).width());
-                        $('.DOP_BookingCalendar_PopUp .bg', Container).height($('.DOP_BookingCalendar_PopUp', Container).height());
-                        $('.DOP_BookingCalendar_PopUp .window', Container).css('margin-left', ($('.DOP_BookingCalendar_PopUp', Container).width()-$('.DOP_BookingCalendar_PopUp .window', Container).width())/2);
-                        $('.DOP_BookingCalendar_PopUp .window', Container).css('margin-top', ($('.DOP_BookingCalendar_PopUp', Container).height()-$('.DOP_BookingCalendar_PopUp .window', Container).height())/2);
-                        $('.DOP_BookingCalendar_PopUp', Container).css('display', 'none');
+                    initBackendPopUp:function(){// Init Pop-Up
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).css('display', 'block');
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).width(Container.width());
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).height(Container.height());
+                        $('.DOP_BackendBookingCalendar_PopUp .bg', Container).width($('.DOP_BackendBookingCalendar_PopUp', Container).width());
+                        $('.DOP_BackendBookingCalendar_PopUp .bg', Container).height($('.DOP_BackendBookingCalendar_PopUp', Container).height());
+                        $('.DOP_BackendBookingCalendar_PopUp .window', Container).css('margin-left', ($('.DOP_BackendBookingCalendar_PopUp', Container).width()-$('.DOP_BackendBookingCalendar_PopUp .window', Container).width())/2);
+                        $('.DOP_BackendBookingCalendar_PopUp .window', Container).css('margin-top', ($('.DOP_BackendBookingCalendar_PopUp', Container).height()-$('.DOP_BackendBookingCalendar_PopUp .window', Container).height())/2);
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).css('display', 'none');
 
                         $('#'+UniqueID+'-submit').click(function(){
-                            methods.setData();
+                            if (prototypes.validateCharacters($('#'+UniqueID+'-price').val(), '0123456789')){
+                                methods.setBackendData();
+                            }
+                            else{
+                                alert(invalidPriceText);
+                            }
+                        });
+
+                        $('#'+UniqueID+'-reset').click(function(){
+                            methods.resetBackendPopUp();
                         });
 
                         $('#'+UniqueID+'-exit').click(function(){
-                            methods.hidePopUp();
+                            methods.hideBackendPopUp();
                         });
                     },
-
-                    showPopUp:function(){// Show Pop-Up after the dates are selected.
+                    showBackendPopUp:function(){// Show Pop-Up after the dates are selected.
                         var startDate, sYear, sMonth, sMonthText, sDay,
                         endDate, eYear, eMonth, eMonthText, eDay;
 
@@ -423,42 +408,43 @@
 
                         sYear = startDate.split('-')[0],
                         sMonth = startDate.split('-')[1],
-                        sMonthText = monthNames[parseInt(sMonth)-1],
+                        sMonthText = monthNames[parseInt(sMonth, 10)-1],
                         sDay = startDate.split('-')[2];
 
                         eYear = endDate.split('-')[0],
                         eMonth = endDate.split('-')[1],
-                        eMonthText = monthNames[parseInt(eMonth)-1],
+                        eMonthText = monthNames[parseInt(eMonth, 10)-1],
                         eDay = endDate.split('-')[2];
 
-
                         if (dateType == 1){
-                            $('.DOP_BookingCalendar_PopUp .window .start-date', Container).html(sMonthText+' '+sDay+', '+sYear);
+                            $('.DOP_BackendBookingCalendar_PopUp .window .start-date', Container).html(sMonthText+' '+sDay+', '+sYear);
                         }
                         else{
-                            $('.DOP_BookingCalendar_PopUp .window .start-date', Container).html(sDay+' '+sMonthText+' '+sYear);
+                            $('.DOP_BackendBookingCalendar_PopUp .window .start-date', Container).html(sDay+' '+sMonthText+' '+sYear);
                         }
 
                         if (startSelection != endSelection){
-                            $('.DOP_BookingCalendar_PopUp .window .separator-date', Container).html('-');
                             if (dateType == 1){
-                                $('.DOP_BookingCalendar_PopUp .window .end-date', Container).html(eMonthText+' '+eDay+', '+eYear);
+                                $('.DOP_BackendBookingCalendar_PopUp .window .end-date', Container).html(eMonthText+' '+eDay+', '+eYear);
                             }
                             else{
-                                $('.DOP_BookingCalendar_PopUp .window .end-date', Container).html(eDay+' '+eMonthText+' '+eYear);
+                                $('.DOP_BackendBookingCalendar_PopUp .window .end-date', Container).html(eDay+' '+eMonthText+' '+eYear);
                             }
                         }
+                        else{
+                            $('.DOP_BackendBookingCalendar_PopUp .window .end-date', Container).html('');
+                        }
 
-                        $('.DOP_BookingCalendar_PopUp', Container).stop(true, true).fadeIn(popupDisplayTime, function(){
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).stop(true, true).fadeIn(popupDisplayTime, function(){
                             
                         });
                     },
-
-                    setData:function(){// Set submited data.                        
+                    setBackendData:function(){// Set submited data.
+                        $('.DOP_BackendBookingCalendar_PopUp .window .loader', Container).css('display', 'block');
                         var newContent = new Array(),
                         firstContent = new Array,
                         lastContent = new Array(),
-                        oldContent = Content, i, y, m, d, noDays,
+                        oldContent = Content, i, y, m, d, noDays, firstDay = StartYear+'-'+prototypes.longMonth(StartMonth)+'-'+prototypes.longDay(StartDay),
                         startDate, sYear, sMonth, sDay,
                         endDate, eYear, eMonth, eDay,
                         fromMonth, toMonth, fromDay, toDay,
@@ -468,7 +454,7 @@
                             price = 0;
                         }
                         else{
-                            price = parseInt($('#'+UniqueID+'-price').val());
+                            price = parseInt($('#'+UniqueID+'-price').val(), 10);
                         }
 
                         if (startSelection > endSelection){
@@ -480,21 +466,22 @@
                             endDate = endSelection.split('_')[1];
                         }
                         
-                        sYear = parseInt(startDate.split('-')[0]);
-                        sMonth = parseInt(startDate.split('-')[1]);
-                        sDay = parseInt(startDate.split('-')[2]);
+                        sYear = parseInt(startDate.split('-')[0], 10);
+                        sMonth = parseInt(startDate.split('-')[1], 10);
+                        sDay = parseInt(startDate.split('-')[2], 10);
 
-                        eYear = parseInt(endDate.split('-')[0]);
-                        eMonth = parseInt(endDate.split('-')[1]);
-                        eDay = parseInt(endDate.split('-')[2]);
-
+                        eYear = parseInt(endDate.split('-')[0], 10);
+                        eMonth = parseInt(endDate.split('-')[1], 10);
+                        eDay = parseInt(endDate.split('-')[2], 10);
                         
                         for (i=0; i<oldContent.length; i++){
-                            if (oldContent[i].split(';;')[0] < startDate){
-                                firstContent.push(oldContent[i]);
-                            }
-                            else if (oldContent[i].split(';;')[0] > endDate){
-                                lastContent.push(oldContent[i]);
+                            if (oldContent[i].split(';;')[0] >= firstDay){
+                                if (oldContent[i].split(';;')[0] < startDate){
+                                    firstContent.push(oldContent[i]);
+                                }
+                                else if (oldContent[i].split(';;')[0] > endDate){
+                                    lastContent.push(oldContent[i]);
+                                }
                             }
                         }
                         
@@ -508,7 +495,7 @@
                             if (y == eYear){
                                 toMonth = eMonth;
                             }
-
+                            
                             for (m=fromMonth; m<=toMonth; m++){
                                 noDays = new Date(y, m, 0).getDate();
                                 fromDay = 1;
@@ -522,7 +509,9 @@
                                 }
 
                                 for (d=fromDay; d<=toDay; d++){
-                                    newContent.push(y+'-'+prototypes.longMonth(m)+'-'+prototypes.longDay(d)+';;'+$('#'+UniqueID+'-availability').val()+';;'+price);
+                                    if ($('#'+UniqueID+'-status').val() != 0){
+                                        newContent.push(y+'-'+prototypes.longMonth(m)+'-'+prototypes.longDay(d)+';;'+$('#'+UniqueID+'-status').val()+';;'+price);
+                                    }
                                 }
                             }
                         }
@@ -535,40 +524,247 @@
                             Content = newContent.concat(lastContent);
                         }
                         
-                        $('.DOP_BookingCalendar_Day', Container).each(function(){
+                        $('.DOP_BackendBookingCalendar_Day', Container).each(function(){
                             var day = $(this);
 
                             if (day.hasClass('selected')){
-                                if ($('#'+UniqueID+'-availability').val() == 0){
+                                day.removeClass('available').removeClass('booked').removeClass('unavailable');
+                                
+                                if ($('#'+UniqueID+'-status').val() == 1){
+                                    day.addClass('available');
+                                    $('.price', this).html(currency+' '+price);
+                                    $('.content', this).html(availableText);
+                                }
+                                else if ($('#'+UniqueID+'-status').val() == 2){
                                     day.addClass('booked');
+                                    $('.price', this).html(currency+' '+price);
                                     $('.content', this).html(bookedText);
                                 }
-                                else{
-                                    day.addClass('available');
-                                    if ($('#'+UniqueID+'-availability').val() == 1){
-                                        $('.content', this).html($('#'+UniqueID+'-availability').val()+' '+oneAvailableText);
-                                    }
-                                    else{
-                                        $('.content', this).html($('#'+UniqueID+'-availability').val()+' '+moreAvailableText);
-                                    }
+                                else if ($('#'+UniqueID+'-status').val() == 3){
+                                    day.addClass('unavailable');
+                                    $('.price', this).html(currency+' '+price);
+                                    $('.content', this).html(unavailableText);
                                 }
-
-                                $('.price', this).html(currency+' '+price);
+                                else{
+                                    $('.price', this).html('');
+                                    $('.content', this).html('&nbsp;');
+                                }
                             }
                         });
 
-                        methods.saveData();
-                        methods.hidePopUp();
+                        methods.saveBackendData();
                     },
-                    saveData:function(){// Save data.
-                        $.post(Data['SaveURL'], {dop_booking_calendar:Content.join(';;;')}, function(data){});
+                    saveBackendData:function(){// Save data.
+                        $.post(Data['SaveURL'], {dop_booking_calendar:Content.join(',')}, function(data){
+                            methods.hideBackendPopUp();
+                        });
                     },
-
-                    hidePopUp:function(){// Close Pop-Up.
-                        $('.DOP_BookingCalendar_Day', Container).removeClass('selected');
-                        $('.DOP_BookingCalendar_PopUp', Container).stop(true, true).fadeOut(popupDisplayTime, function(){
+                    resetBackendPopUp:function(){// Reset Pop-Up.
+                        $('#'+UniqueID+'-no-status').attr('selected', 'selected');
+                        $('#'+UniqueID+'-price').val('');
+                        methods.setBackendData();
+                    },
+                    hideBackendPopUp:function(){// Close Pop-Up.
+                        $('.DOP_BackendBookingCalendar_PopUp .window .loader', Container).css('display', 'none');
+                        $('.DOP_BackendBookingCalendar_Day', Container).removeClass('selected');
+                        $('.DOP_BackendBookingCalendar_PopUp', Container).stop(true, true).fadeOut(popupDisplayTime, function(){
 
                         });
+                    },
+
+                    initFrontendBookingCalendar:function(){// Init Backend Calendar
+                        var HTML = new Array();
+
+                        HTML.push('<div class="DOP_FrontendBookingCalendar_Container">');
+                        HTML.push('   <div class="DOP_FrontendBookingCalendar_Navigation">');
+                        HTML.push('       <div class="previous_btn disabled"><div class="icon"></div></div>');
+                        HTML.push('       <div class="next_btn"><div class="icon"></div></div>');
+                        HTML.push('       <div class="month_year"></div>');
+                        HTML.push('       <div class="week">');
+                        HTML.push('         <div class="day">'+dayNames[1]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[2]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[3]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[4]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[5]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[6]+'</div>');
+                        HTML.push('         <div class="day">'+dayNames[0]+'</div><br style="clear:both;" />');
+                        HTML.push('       </div>');
+                        HTML.push('   </div>');
+                        HTML.push('   <div class="DOP_FrontendBookingCalendar_Calendar"></div>');
+                        HTML.push('</div>');
+
+                        Container.html(HTML.join(''));
+                        methods.initFrontendSettings();
+                    },
+                    initFrontendSettings:function(){// Init Backend Settings
+                        methods.initFrontendContainer();
+                        methods.initFrontendNavigation();
+                        methods.initFrontendCalendar();
+                    },
+                    initFrontendContainer:function(){// Init Backend Container
+                        $('.DOP_FrontendBookingCalendar_Container', Container).width(Container.width());
+                        $('.DOP_FrontendBookingCalendar_Container', Container).height(Container.height());
+                    },
+                    initFrontendNavigation:function(){// Init Navigation
+                        $('.DOP_FrontendBookingCalendar_Navigation .week .day', Container).width(parseInt((Container.width()-(parseInt($('.DOP_FrontendBookingCalendar_Navigation .week .day', Container).css('margin-left'))+parseInt($('.DOP_FrontendBookingCalendar_Navigation .week .day', Container).css('margin-right')))*7)/7));
+                        $('.DOP_FrontendBookingCalendar_Navigation .previous_btn', Container).click(function(){
+                            var item = $(this);
+                            if (!item.hasClass('disabled')){
+                                $('.DOP_FrontendBookingCalendar_Calendar', Container).html('');
+                                methods.initFrontendMonth(StartYear, CurrMonth-1);
+                                if (CurrMonth == StartMonth){
+                                    item.addClass('disabled');
+                                }
+                            }
+                        });
+                        $('.DOP_FrontendBookingCalendar_Navigation .next_btn', Container).click(function(){
+                            $('.DOP_FrontendBookingCalendar_Calendar', Container).html('');
+                            methods.initFrontendMonth(StartYear, CurrMonth+1);
+                            $('.DOP_FrontendBookingCalendar_Navigation .previous_btn', Container).removeClass('disabled');
+                        });
+                    },
+                    initFrontendCalendar:function(){// Init Calendar
+                        methods.initFrontendMonth(StartYear, StartMonth);
+                    },
+                    initFrontendMonth:function(year, month){// Init Month
+                        var i, j, d, cyear, cmonth, cday, start, totalDays = 0,
+                        noDays = new Date(year, month, 0).getDate(),
+                        noDaysPreviousMonth = new Date(year, month-1, 0).getDate(),
+                        firstDay = new Date(year, month-1, 1).getDay(),
+                        lastDay = new Date(year, month-1, noDays).getDay(),
+                        sText, pText;
+
+                        CurrYear = new Date(year, month, 0).getFullYear();
+                        CurrMonth = month;
+                        $('.DOP_FrontendBookingCalendar_Navigation .month_year', Container).html(monthNames[new Date(year, month, 0).getMonth()]+' '+CurrYear);
+                        $('.DOP_FrontendBookingCalendar_Calendar', Container).html('<div class="DOP_FrontendBookingCalendar_Month"></div>');
+
+                        if (firstDay == 0){
+                            start = 7;
+                        }
+                        else{
+                            start = firstDay;
+                        }
+
+                        for (i=start-1; i>=1; i--){
+                            totalDays++;
+                            d = new Date(year, month-2, noDaysPreviousMonth-i+1);
+                            cyear = d.getFullYear();
+                            cmonth = prototypes.longMonth(d.getMonth()+1);
+                            cday = prototypes.longDay(d.getDate());
+                            sText = '';
+                            pText = '';
+                            for (j=0; j<Content.length; j++){
+                                if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
+                                    sText = Content[j].split(';;')[1];
+                                    pText = Content[j].split(';;')[2];
+                                }
+                            }
+
+                            if (StartMonth == month){
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
+                            }
+                            else{
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('last_month', cyear, cmonth, cday, d.getDate(), sText, pText));
+                            }
+                        }
+
+                        for (i=1; i<=noDays; i++){
+                            totalDays++;
+                            d = new Date(year, month-1, i);
+                            cyear = d.getFullYear();
+                            cmonth = prototypes.longMonth(d.getMonth()+1);
+                            cday = prototypes.longDay(d.getDate());
+                            sText = '';
+                            pText = '';
+                            for (j=0; j<Content.length; j++){
+                                if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
+                                    sText = Content[j].split(';;')[1];
+                                    pText = Content[j].split(';;')[2];
+                                }
+                            }
+
+                            if (StartMonth == month && StartDay > d.getDate()){
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('past_day', cyear, cmonth, cday, d.getDate(), '', ''));
+                            }
+                            else{
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('curr_month', cyear, cmonth, cday, d.getDate(), sText, pText));
+                            }
+                        }
+
+                        if (totalDays+7 < 42){
+                            for (i=1; i<=14-lastDay; i++){
+                                d = new Date(year, month, i);
+                                cyear = d.getFullYear();
+                                cmonth = prototypes.longMonth(d.getMonth()+1);
+                                cday = prototypes.longDay(d.getDate());
+                                sText = '';
+                                pText = '';
+                                for (j=0; j<Content.length; j++){
+                                    if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
+                                        sText = Content[j].split(';;')[1];
+                                        pText = Content[j].split(';;')[2];
+                                    }
+                                }
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('next_month', cyear, cmonth, cday, d.getDate(), sText, pText));
+                            }
+                        }
+                        else{
+                            for (i=1; i<=7-lastDay; i++){
+                                d = new Date(year, month, i);
+                                cyear = d.getFullYear();
+                                cmonth = prototypes.longMonth(d.getMonth()+1);
+                                cday = prototypes.longDay(d.getDate());
+                                sText = '';
+                                pText = '';
+                                for (j=0; j<Content.length; j++){
+                                    if (Content[j].split(';;')[0] == cyear+'-'+cmonth+'-'+cday){
+                                        sText = Content[j].split(';;')[1];
+                                        pText = Content[j].split(';;')[2];
+                                    }
+                                }
+                                $('.DOP_FrontendBookingCalendar_Month', Container).append(methods.initFrontendDay('next_month', cyear, cmonth, cday, d.getDate(), sText, pText));
+                            }
+                        }
+
+                        $('.DOP_FrontendBookingCalendar_Month', Container).width(Container.width());
+                        $('.DOP_FrontendBookingCalendar_Month', Container).height(Container.height());
+                        $('.DOP_FrontendBookingCalendar_Day', Container).width(parseInt((Container.width()-(parseInt($('.DOP_FrontendBookingCalendar_Day', Container).css('margin-left'))+parseInt($('.DOP_FrontendBookingCalendar_Day', Container).css('margin-right')))*7)/7));
+                        $('.DOP_FrontendBookingCalendar_Day', Container).height(parseInt((Container.height()-$('.DOP_FrontendBookingCalendar_Navigation', Container).height()-(parseInt($('.DOP_FrontendBookingCalendar_Day', Container).css('margin-top'))+parseInt($('.DOP_FrontendBookingCalendar_Day', Container).css('margin-bottom')))*6)/6));
+                        $('.content', '.DOP_FrontendBookingCalendar_Day', Container).css('line-height', ($('.DOP_FrontendBookingCalendar_Day', Container).height()-$('.header', '.DOP_FrontendBookingCalendar_Day', Container).height()-parseInt($('.header', '.DOP_FrontendBookingCalendar_Day', Container).css('padding-top'))-parseInt($('.header', '.DOP_FrontendBookingCalendar_Day', Container).css('padding-bottom')))+'px');
+                        $('.content', '.DOP_FrontendBookingCalendar_Day', Container).height($('.DOP_FrontendBookingCalendar_Day', Container).height()-$('.header', '.DOP_FrontendBookingCalendar_Day', Container).height()-parseInt($('.header', '.DOP_FrontendBookingCalendar_Day', Container).css('padding-top'))-parseInt($('.header', '.DOP_FrontendBookingCalendar_Day', Container).css('padding-bottom')));
+                    },
+                    initFrontendDay:function(type, cyear, cmonth, cday, d, status, price){// Init Day
+                        var dayHTML = Array(),
+                        sText = '&nbsp;', pText;
+
+                        if (status == 1){
+                            sText = availableText;
+                            type += ' available';
+                        }
+                        else if (status == 2){
+                            sText = bookedText;
+                            type += ' booked';
+                        }
+                        else if (status == 3){
+                            sText = unavailableText;
+                            type += ' unavailable';
+                        }
+
+                        if (price == ''){
+                            pText = '';
+                        }
+                        else{
+                            pText = currency+' '+price;
+                        }
+
+                        dayHTML.push('<div class="DOP_FrontendBookingCalendar_Day '+type+'" id="'+UniqueID+'_'+cyear+'-'+cmonth+'-'+cday+'">');
+                        dayHTML.push('    <span class="header"><span class="day">'+d+'</span><span class="price">'+pText+'</span><br style="clear:both;" /></span>');
+                        dayHTML.push('    <span class="content">'+sText+'</span>');
+                        dayHTML.push('    </span>');
+                        dayHTML.push('</div>');
+
+                        return dayHTML.join('');
                     }
                   },
 
@@ -850,6 +1046,14 @@
                             else{
                                 window.location = url;
                             }
+                        },
+
+                        validateCharacters:function(str, allowedCharacters){
+                            var characters = str.split('');
+
+                            for (var i=0; i<characters.length; i++)
+                                if (allowedCharacters.indexOf(characters[i]) == -1) return false;
+                            return true;
                         }
                      };
 
