@@ -17,7 +17,7 @@
     <ul id="offers-list">
         <li>
             <span class="image">
-                <span class="image-container"><img src="<?=$first_image?>" title="<?=$villa['name']?>" alt="" /></span>
+                <span class="image-container"><img src="<?=$villa['first_image']?>" title="<?=$villa['name']?>" alt="" /></span>
             </span>
             <span class="content">
                 <span class="number">#<?=$villa['id']?>.</span>
@@ -33,7 +33,7 @@
                 <span class="deals"><a href="javascript:void(0)" target="_self"><span class="icon <?php echo $villa['no_deals'] == 0 ? 'no-deals':'' ?>"></span><span class="no"><?=$villa['no_deals']?></span><br /><span class="text"><?=$user_offers_deals?></span></a></span>
                 <span class="owner"><span class="last-comment">Last comment</span> <a href="javascript:void(0)" target="_self"><span class="icon"></span><span class="first-name"></span></a><br />at: -</span>
                 <br class="clear" />
-                <span class="description"><?=$short_description?></span>
+                <span class="description"><?=$villa['short_description']?></span>
                 <span class="price"><span class="pre-text"><?=$user_offers_from?></span><span class="sum"><?=$villa['start_price']?></span><span class="currency-icon"><?php echo $villa['currency'] == 0 ? $user_euro_icon:$user_dollar_icon ?></span></span>
             </span>
             <br class="clear" />

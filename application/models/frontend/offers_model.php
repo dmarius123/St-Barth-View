@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/models/frontend/offers_model.php
- * File Version            : 1.2
+ * File Version            : 1.3
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 June 2011
+ * Created / Last Modified : 01 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers Model.
 */
@@ -278,9 +278,6 @@
                 case 'no_likes':
                     return $row_items['no_likes'];
                     break;
-                case 'no_deals':
-                    return $row_items['no_deals'];
-                    break;
                 case 'currency':
                     return $row_items['currency'];
                     break;
@@ -372,6 +369,13 @@
                 return $this->getFirstImage($id);
             }
         }
+
+        function getNoDeals($id){
+            $this->db->where('offer_id', $id);
+            $this->db->where('status', 'approved');
+            $query = $this->db->get('deals');
+            return $query->num_rows();
+        }
     
 // Functions
         function validateLocality($locality, $location_id){
@@ -410,7 +414,6 @@
             $query = $this->db->get('offers_types_filters_values');
             return $query;
         }
-
     }
 
 ?>

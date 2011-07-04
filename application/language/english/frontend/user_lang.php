@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/language/english/frontend/user_lang.php
- * File Version            : 1.2
+ * File Version            : 1.3
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 June 2011
+ * Created / Last Modified : 02 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : English Frontend User translation.
 */
@@ -69,9 +69,7 @@
     $lang['user_edit_profile_success'] = "You have successfully edited your profile.";
 
 // Offers
-    $lang['user_offers_hotels_title'] = "My Hotels";
-
-    $lang['user_offers_villas_title'] = "My Villas";
+    $lang['user_add_continue'] = "Continue";
 
     $lang['user_offers_table_name'] = "Name (Info)";
     $lang['user_offers_table_status'] = "Status";
@@ -164,7 +162,137 @@
     $lang['user_edit_villa_pricing'] = "Rooms & Pricing";
     $lang['user_edit_villa_details_title'] = "Edit Villa Details";
     $lang['user_edit_villa_gallery_title'] = "Edit Villa Gallery";
-    $lang['user_editvilla_pricing_title'] = "Edit Villa Rooms & Pricing";
+    $lang['user_edit_villa_pricing_title'] = "Edit Villa Rooms & Pricing";
+
+// Car Service
+    $lang['user_car_details_name'] = "Name";
+    $lang['user_car_details_name_invalid'] = "[required]";
+    $lang['user_car_details_description'] = "Description";
+    $lang['user_car_details_description_invalid'] = "[required]";
+    $lang['user_car_details_locations'] = "Locations";
+    $lang['user_car_details_amenities'] = "Amenities";
+
+    $lang['user_add_car'] = "Add Car for Rent";
+    $lang['user_add_car_title'] = "Add Car for Rent";
+    $lang['user_add_car_location_title'] = "Where are you located?";
+    $lang['user_add_car_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_car_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_car_details_title'] = "Details";
+    $lang['user_add_car_submit'] = "Add Car for Rent";
+
+    $lang['user_edit_car_title'] = "Edit Car";
+    $lang['user_edit_car_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_car_details_submit'] = "Edit";
+    $lang['user_edit_car_details_success'] = "Car details have been successfully edited.";
+    
+// Spa & Beauty Service
+    $lang['user_beauty_details_name'] = "Name";
+    $lang['user_beauty_details_name_invalid'] = "[required]";
+    $lang['user_beauty_details_description'] = "Description";
+    $lang['user_beauty_details_description_invalid'] = "[required]";
+    $lang['user_beauty_details_locations'] = "Locations";
+    $lang['user_beauty_details_amenities'] = "Amenities";
+
+    $lang['user_add_beauty'] = "Add Spa & Beauty";
+    $lang['user_add_beauty_title'] = "Add  Spa & Beauty";
+    $lang['user_add_beauty_location_title'] = "Where are you located?";
+    $lang['user_add_beauty_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_beauty_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_beauty_details_title'] = "Details";
+    $lang['user_add_beauty_submit'] = "Add Spa & Beauty";
+
+    $lang['user_edit_beauty_title'] = "Edit  Spa & Beauty";
+    $lang['user_edit_beauty_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_beauty_details_submit'] = "Edit";
+    $lang['user_edit_beauty_details_success'] = "Spa & Beauty details have been successfully edited.";
+
+// Services
+    $lang['user_services'] = "Services";
+
+// Chef Service
+    $lang['user_chef_details_name'] = "Name";
+    $lang['user_chef_details_name_invalid'] = "[required]";
+    $lang['user_chef_details_description'] = "Description";
+    $lang['user_chef_details_description_invalid'] = "[required]";
+    $lang['user_chef_details_locations'] = "Locations";
+    $lang['user_chef_details_amenities'] = "Amenities";
+
+    $lang['user_add_chef'] = "Add Chef Service";
+    $lang['user_add_chef_title'] = "Add Chef Service";
+    $lang['user_add_chef_location_title'] = "Where are you located?";
+    $lang['user_add_chef_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_chef_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_chef_details_title'] = "Details";
+    $lang['user_add_chef_submit'] = "Add Chef Service";
+
+    $lang['user_edit_chef_title'] = "Edit Service";
+    $lang['user_edit_chef_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_chef_details_submit'] = "Edit";
+    $lang['user_edit_chef_details_success'] = "Chef Service details have been successfully edited.";
+
+// Boat Service
+    $lang['user_boat_details_name'] = "Name";
+    $lang['user_boat_details_name_invalid'] = "[required]";
+    $lang['user_boat_details_description'] = "Description";
+    $lang['user_boat_details_description_invalid'] = "[required]";
+    $lang['user_boat_details_locations'] = "Locations";
+    $lang['user_boat_details_amenities'] = "Amenities";
+
+    $lang['user_add_boat'] = "Add Boat Rental Service";
+    $lang['user_add_boat_title'] = "Add Boat Rental Service";
+    $lang['user_add_boat_location_title'] = "Where are you located?";
+    $lang['user_add_boat_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_boat_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_boat_details_title'] = "Details";
+    $lang['user_add_boat_submit'] = "Add Boat Rental Service";
+
+    $lang['user_edit_boat_title'] = "Edit Service";
+    $lang['user_edit_boat_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_boat_details_submit'] = "Edit";
+    $lang['user_edit_boat_details_success'] = "Boat Rental Service details have been successfully edited.";
+
+// Babysitter Service
+    $lang['user_babysitter_details_name'] = "Name";
+    $lang['user_babysitter_details_name_invalid'] = "[required]";
+    $lang['user_babysitter_details_description'] = "Description";
+    $lang['user_babysitter_details_description_invalid'] = "[required]";
+    $lang['user_babysitter_details_locations'] = "Locations";
+    $lang['user_babysitter_details_amenities'] = "Amenities";
+
+    $lang['user_add_babysitter'] = "Add Babysitter Service";
+    $lang['user_add_babysitter_title'] = "Add Babysitter Service";
+    $lang['user_add_babysitter_location_title'] = "Where are you located?";
+    $lang['user_add_babysitter_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_babysitter_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_babysitter_details_title'] = "Details";
+    $lang['user_add_babysitter_submit'] = "Add Babysitter Service";
+
+    $lang['user_edit_babysitter_title'] = "Edit Service";
+    $lang['user_edit_babysitter_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_babysitter_details_submit'] = "Edit";
+    $lang['user_edit_babysitter_details_success'] = "Babysitter Service details have been successfully edited.";
+
+// Massage Service
+    $lang['user_massage_details_name'] = "Name";
+    $lang['user_massage_details_name_invalid'] = "[required]";
+    $lang['user_massage_details_description'] = "Description";
+    $lang['user_massage_details_description_invalid'] = "[required]";
+    $lang['user_massage_details_locations'] = "Locations";
+    $lang['user_massage_details_amenities'] = "Amenities";
+
+    $lang['user_add_massage'] = "Add Massage Service";
+    $lang['user_add_massage_title'] = "Add Massage Service";
+    $lang['user_add_massage_location_title'] = "Where are you located?";
+    $lang['user_add_massage_location_info'] = "Add your address or drag the marker on the map to determine your location.";
+    $lang['user_add_massage_alternative_address'] = "Add an different address if you think the one displayed with the location is incorrect. This address will be displayed instead of the above one.";
+    $lang['user_add_massage_details_title'] = "Details";
+    $lang['user_add_massage_submit'] = "Add Massage Service";
+
+    $lang['user_edit_massage_title'] = "Edit Service";
+    $lang['user_edit_massage_details_alternative_address'] = "Alternative Address";
+    $lang['user_edit_massage_details_submit'] = "Edit";
+    $lang['user_edit_massage_details_success'] = "Massage Service details have been successfully edited.";
+
 
 
 

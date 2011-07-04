@@ -41,6 +41,7 @@
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 
+// User
 $route['user'] = 'user/signIn';
 $route['user/redirect'] = 'user/signIn/redirect';
 $route['user/validate/(:any)'] = 'user/signIn/validate';

@@ -57,6 +57,19 @@
             return $query->num_rows();
         }
 
+        function getNoFriends($id){
+            $where = "(user1='".$id."' OR user2='".$id."')";
+            $this->db->where($where);
+            $query = $this->db->get('friends');
+            return $query->num_rows();
+        }
+
+        function getNoOffers($id){
+            $this->db->where('user_id', $id);
+            $query = $this->db->get('offers');
+            return $query->num_rows();
+        }
+
         function getNewUsers(){
             $this->db->order_by("date_created", "desc");
             $this->db->limit(15);

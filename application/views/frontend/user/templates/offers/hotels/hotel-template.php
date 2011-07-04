@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/views/frontend/user/templates/offers/hotels/hotel-template.php
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 17 june 2011
+ * Created / Last Modified : 02 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Hotel template.
 */
@@ -17,7 +17,7 @@
     <ul id="offers-list">
         <li>
             <span class="image">
-                <span class="image-container"><img src="<?=$first_image?>" title="<?=$hotel['name']?>" alt="" /></span>
+                <span class="image-container"><img src="<?=$hotel['first_image']?>" title="<?=$hotel['name']?>" alt="" /></span>
             </span>
             <span class="content">
                 <span class="number">#<?=$hotel['id']?>.</span>
@@ -33,7 +33,7 @@
                 <span class="deals"><a href="javascript:void(0)" target="_self"><span class="icon <?php echo $hotel['no_deals'] == 0 ? 'no-deals':'' ?>"></span><span class="no"><?=$hotel['no_deals']?></span><br /><span class="text"><?=$user_offers_deals?></span></a></span>
                 <span class="owner"><span class="last-comment">Last comment</span> <a href="javascript:void(0)" target="_self"><span class="icon"></span><span class="first-name"></span></a><br />at: -</span>
                 <br class="clear" />
-                <span class="description"><?=$short_description?></span>
+                <span class="description"><?=$hotel['short_description']?></span>
                 <span class="price"><span class="pre-text"><?=$user_offers_from?></span><span class="sum"><?=$hotel['start_price']?></span><span class="currency-icon"><?php echo $hotel['currency'] == 0 ? $user_euro_icon:$user_dollar_icon ?></span></span>
             </span>
             <br class="clear" />

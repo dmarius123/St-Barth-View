@@ -15,6 +15,7 @@
     $lang['offers_deals'] = "deals";
     $lang['offers_friends'] = "friends";
     $lang['offers_comments'] = "comments";
+    $lang['offers_offers'] = "offers";
 
     $lang['offers_no_comments'] = "no comments";
     $lang['offers_last_comment'] = "Last comment";
@@ -31,6 +32,9 @@
     $lang['offers_booking_book'] = "Book it!";
 
     $lang['offers_owner'] = "OWNER";
+
+    $lang['offers_deals_btn_deals'] = "Deals";
+    $lang['offers_deals_btn_time_left'] = "time left to buy";
 
     $lang['offers_bottom_menu_description'] = "description";
     $lang['offers_bottom_menu_amenities'] = "amenities";

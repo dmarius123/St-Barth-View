@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/search.php
- * File Version            : 1.4
+ * File Version            : 1.5
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 19 June 2011
+ * Created / Last Modified : 01 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Search Controller.
 */
@@ -112,6 +112,7 @@
                     $offer->locality = $this->CI->Locations_model->getLocality($this->CI->Offers_model->getData($offer->id, 'locality_id'), 'name');
                     $offer->location = $this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'name');
                     $offer->country = $this->CI->Locations_model->getCountry($this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer->id, 'location_id'), 'aa0_id'));
+                    $offer->no_deals = $this->CI->Offers_model->getNoDeals($offer->id);
 //                    if ($offer->no_comments > 0){
 //                        $offer->last_comment = $this->CI->Offers_model->getLastComment($offer->id)->row_array();
 //                        $date_pieces = explode(' ', $offer->last_comment['date']);

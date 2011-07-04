@@ -59,11 +59,11 @@
                 </div>
                 <div class="offer-booking-form-row">
                     <div class="offer-booking-btn-rates">
-                        <div class="booking-rates">
-                            <a href=""><?=$offers_booking_rates?></a>
+                        <div class="booking-rates" id="booking-rates">
+                            <a href="javascript:offer_hideDealsSlider('offer_showRatesSlider()')"><?=$offers_booking_rates?></a>
                         </div>
-                        <div class="booking-rates-hover" style="display:none;">
-                            <a href=""><?=$offers_booking_rates?></a>
+                        <div class="booking-rates-hover" id="booking-rates-hover">
+                            <a href="javascript:offer_hideRatesSlider(null)"><?=$offers_booking_rates?></a>
                         </div>
                     </div>
                     <div class="offer-booking-btn-instant-book"><a href="" class="booking-instant-book"><?=$offers_booking_book?></a></div>

@@ -64,7 +64,6 @@ function gm_codeAddress(address, type, name){
                 map.setCenter(results[0].geometry.location);
                 //alert(gm_displayData(results));
                 $('#coordinates').val(results[0].geometry.location);
-                $('#address').val(gm_validAddress(results));
                 if (name == 'keep'){
                     $('#location_id').val(gm_decodeLocation($('#location').val(), 0));
                     $('#address').val(address);
@@ -359,9 +358,16 @@ function gm_showMap(list){
 
 function gm_showLocation(address, list){
     if (!googleFormEvent){
-        $('#address').val(gm_decodeLocation(address));
-        $(list).html('<li></li>');
-        gm_codeAddress(gm_decodeLocation(address, 2), 'mapplusmarker', 'keep');
+        if (list == undefined){
+            $('#address').val(gm_decodeLocation(address));
+            $(list).html('<li></li>');
+            gm_codeAddress(gm_decodeLocation(address, 2), 'mapplusmarker', 'keep');
+        }
+        else{
+            $('#address').val(address);
+            $(list).html('<li></li>');
+            gm_codeAddress(address, 'mapplusmarker', '');
+        }
     }
     else{
         googleFormEvent = false;
