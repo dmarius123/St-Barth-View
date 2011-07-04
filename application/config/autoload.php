@@ -134,7 +134,8 @@ $autoload['language'] = array('frontend/footer',
 |
 */
 
-$autoload['model'] = array('frontend/Functions_model',
+$autoload['model'] = array('frontend/Deals_model',
+                           'frontend/Functions_model',
                            'frontend/Hotels_model',
                            'frontend/Last_model',
                            'frontend/Locations_model',

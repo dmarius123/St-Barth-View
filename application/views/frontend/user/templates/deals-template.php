@@ -47,7 +47,7 @@
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Set Default Value:</label>
+                        <label>Set Default Value <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <div class="add-deal-values">
@@ -82,36 +82,32 @@
                             <br class="clear" />
                         </div>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Describe your deal:</label>
+                        <label>Describe your deal <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <p><input type='text' class='deal-desc' value='e.g. "Food and Drinks", "60 Minute Massage"' /></p>
                         <p><label>60 characters remaining</label></p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Location:</label>
+                        <label>Location <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <p class="fixme"><input type='checkbox' class='deal-location' value='1' checked="checked"/> <label>Main Location</label></p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Custom Restrictions:</label>
+                        <label>Custom Restrictions <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <p><textarea class="deal-restrictions" rows="" cols=""></textarea></p>
                         <p><label>100 characters remaining</label></p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="steps">
                     <h2>Schedule Your Deal:</h2>
@@ -121,7 +117,7 @@
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Accept Groupons beginning:</label>
+                        <label>Accept Groupons beginning <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <div class="schedule-program">
@@ -139,11 +135,10 @@
                         </div>
                         <br class="clear" />
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Repeat deal:</label>
+                        <label>Repeat deal <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <select name="schedule-repeat" id="schedule-repeat" class="user-deals-select">
@@ -154,34 +149,30 @@
                             <option value="custom">Custom</option>
                         </select>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Maximum quantity:</label>
+                        <label>Maximum quantity <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <p><input type='checkbox' class='schedule-max-qty-check' value='1' checked="checked"/> <label>Sell no more than</label> <input type="text" name="schedule-max-qty" id="schedule-max-qty" value="" /> units per day</p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Maximum per purchase quantity:</label>
+                        <label>Maximum per purchase quantity <span id="info-name" class="required">[required]</span></label>
                     </div>
                     <div class="add-deal-row-right">
                         <p><input type='checkbox' class='schedule-max-qty-check-per-purchase' value='1' checked="checked"/> <label>Sell no more than</label> <input type="text" name="schedule-max-qty-per-purchase" id="schedule-max-qty-per-purchase" value="" /> per purchase</p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">
-                        <label>Summary:</label>
+                        <label>Summary </label>
                     </div>
                     <div class="add-deal-row-right">
                         <p class="fixme"><strong>Jun 07, 2011 from 5:45 AM to 9:00 PM</strong></p>
                     </div>
-                    <br class="clear" />
                 </div>
                 <div class="add-deal-row">
                     <div class="add-deal-row-left">&nbsp;</div>
@@ -191,7 +182,6 @@
                         <input type="submit" id="deal-submit" class="user-deal-submit" name="submitBtn" value="Preview Deal" />
                         </p>
                     </div>
-                    <br class="clear" />
                 </div>
             </div>
         </form>
@@ -208,7 +198,7 @@
         <div class="user-deal-detail">
             <div class="user-current-deals">
                 <p><input type="submit" name="submit" id="submit" class="user-deal-submit" onclick="" value="New Deal" /></p>
-                <p>Current Deals: <select  class="user-deals-select"><option value="" >Select Deal...</option><option value="" >Deal 1</option><option value="" >Deal 2</option></select></p>
+                <p><label>Current Deals</label> <select  class="user-deals-select"><option value="" >Select Deal...</option><option value="" >Deal 1</option><option value="" >Deal 2</option></select></p>
             </div>
             <ul id="calendar-pricing-links">
                 <li><a href="javascript:void(0)" target="_self" class="last-filter2-click selected" id="last-all-btn"><span class="text">Edit</span><span class="end"></span></a></li>

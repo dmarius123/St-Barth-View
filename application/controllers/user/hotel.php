@@ -36,7 +36,13 @@
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
-
+                $data['user_add_offer_location_title'] = $this->lang->line('user_add_hotel_location_title');
+                $data['user_add_offer_location_info'] = $this->lang->line('user_add_hotel_location_info');
+                $data['user_add_offer_alternative_address'] = $this->lang->line('user_add_hotel_alternative_address');
+                $data['user_add_offer_details_title'] = $this->lang->line('user_add_hotel_details_title');
+                $data['user_offer_details_name'] = $this->lang->line('user_hotel_details_name');
+                $data['user_offer_details_description'] = $this->lang->line('user_hotel_details_description');
+                
                 $data['user_id'] = $this->userId;
 
                 $locations_list = $this->CI->Locations_model->getLocationsList();
@@ -93,8 +99,9 @@
 
                         $hotel = $this->CI->Offers_model->getData($this->hotelId, 'all')->row_array(0);
 
-                        $data['short_description'] = $this->CI->Functions_model->shortText($hotel['description'], 150);
-                        $data['first_image'] = $this->CI->Offers_model->getFirstImage($hotel['id']);
+                        $hotel['short_description'] = $this->CI->Functions_model->shortText($hotel['description'], 150);
+                        $hotel['first_image'] = $this->CI->Offers_model->getFirstImage($hotel['id']);
+                        $hotel['no_deals'] = $this->CI->Offers_model->getNoDeals($hotel['id']);
                         $data['hotel'] = $hotel;
                         
                         

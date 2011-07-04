@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/offers/offer.php
- * File Version            : 1.4
+ * File Version            : 1.6
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 29 June 2011
+ * Created / Last Modified : 01 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Offers - Offer Controller.
 */
@@ -36,6 +36,7 @@
             
             $offer = $this->CI->Offers_model->getData($this->uri->segment(2), 'all')->row_array(0);
 
+            $offer['no_deals'] = $this->CI->Offers_model->getNoDeals($offer['id']);
             $offer['locality'] = $this->CI->Locations_model->getLocality($this->CI->Offers_model->getData($offer['id'], 'locality_id'), 'name');
             $offer['location'] = $this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer['id'], 'location_id'), 'name');
             $offer['country'] = $this->CI->Locations_model->getCountry($this->CI->Locations_model->getLocation($this->CI->Offers_model->getData($offer['id'], 'location_id'), 'aa0_id'));
@@ -60,7 +61,9 @@
             $offer['owner_last_name'] = $this->CI->Users_model->getProfile($offer['user_id'], 'last_name');
             $offer['owner_profile_picture'] = $this->CI->Users_model->getProfile($offer['user_id'], 'picture');
             $offer['owner_short_description'] = $this->CI->Functions_model->shortText($this->CI->Users_model->getProfile($offer['user_id'], 'description'), 70);
-
+            $offer['owner_no_offers'] = $this->CI->Users_model->getNoOffers($offer['user_id']);
+            $offer['owner_no_friends'] = $this->CI->Users_model->getNoFriends($offer['user_id']);
+            
             $data['offer'] = $offer;
 
             $this->load->view('frontend/offers/templates/offer-template', $data);

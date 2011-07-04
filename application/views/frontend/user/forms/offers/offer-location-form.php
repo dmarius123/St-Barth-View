@@ -2,12 +2,12 @@
 
 /*
  * Title                   : St Barth View
- * File                    : application/views/frontend/user/forms/offers/offer-hotel-location-form.php
- * File Version            : 1.0
+ * File                    : application/views/frontend/user/forms/offers/offer-location-form.php
+ * File Version            : 1.1
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 27 May 2011
+ * Created / Last Modified : 03 July 2011
  * Last Modified By        : Marius-Cristian Donea
- * Description             : Login User - Offer Villa Location form.
+ * Description             : Login User - Offer Location form.
 */
 
 ?>
@@ -23,9 +23,9 @@
         }
     endforeach;
 ?>
-    <h3 id="add-offer-location-title"><?=$user_add_villa_location_title?></h3>
+    <h3 id="add-offer-location-title"><?=$user_add_offer_location_title?></h3>
     <span class="separator"></span>
-    <span class="user-area-form-info"><?=$user_add_villa_location_info?></span>
+    <span class="user-area-form-info"><?=$user_add_offer_location_info?></span>
     <form method="post" action="" onsubmit="return showMap('#address-hints')">
         <input type="hidden" id="coordinates" name="coordinates" value="" />
         <input type="hidden" id="location_id" name="location_id" value="" />
@@ -40,5 +40,5 @@
         <li></li>
     </ul>
     <div id="user-area-main-add-map"></div>
-    <span class="user-area-form-info"><?=$user_add_villa_alternative_address?><span class="required"><?=$user_optional_field?></span></span>
+    <span class="user-area-form-info"><?=$user_add_offer_alternative_address?><span class="required"><?=$user_optional_field?></span></span>
     <input type="text" id="alt-address" name="alt-address" class="user-area-input-style-big" value="" />

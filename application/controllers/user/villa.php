@@ -3,9 +3,9 @@
 /*
  * Title                   : St Barth View
  * File                    : application/controllers/user/villa.php
- * File Version            : 1.1
+ * File Version            : 1.2
  * Author                  : Marius-Cristian Donea
- * Created / Last Modified : 16 June 2011
+ * Created / Last Modified : 03 July 2011
  * Last Modified By        : Marius-Cristian Donea
  * Description             : Login User - Villa Controller.
 */
@@ -35,6 +35,12 @@
             if ($this->session->userdata('stbartsview-user')){
                 $this->userId = $this->session->userdata('stbartsview-user');
                 $data = $this->lang->language;
+                $data['user_add_offer_location_title'] = $this->lang->line('user_add_villa_location_title');
+                $data['user_add_offer_location_info'] = $this->lang->line('user_add_villa_location_info');
+                $data['user_add_offer_alternative_address'] = $this->lang->line('user_add_villa_alternative_address');
+                $data['user_add_offer_details_title'] = $this->lang->line('user_add_villa_details_title');
+                $data['user_offer_details_name'] = $this->lang->line('user_villa_details_name');
+                $data['user_offer_details_description'] = $this->lang->line('user_villa_details_description');
 
                 $data['user_id'] = $this->userId;
 
@@ -92,8 +98,9 @@
 
                         $villa = $this->CI->Offers_model->getData($this->villaId, 'all')->row_array(0);
 
-                        $data['short_description'] = $this->CI->Functions_model->shortText($villa['description'], 150);
-                        $data['first_image'] = $this->CI->Offers_model->getFirstImage($villa['id']);
+                        $villa['short_description'] = $this->CI->Functions_model->shortText($villa['description'], 150);
+                        $villa['first_image'] = $this->CI->Offers_model->getFirstImage($villa['id']);
+                        $villa['first_image'] = $this->CI->Offers_model->getNoDeals($villa['id']);
                         $data['villa'] = $villa;
 
                         $this->load->view('frontend/user/templates/offers/villas/villa-template', $data);
