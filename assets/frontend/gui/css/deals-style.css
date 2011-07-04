@@ -1,27 +1,22 @@
 @charset "utf-8";
+
 /*
  * Title                   : St Barth View
  * File                    : assets/frontend/gui/css/deals-style.css
- * File Version            : 1.0
+ * File Version            : 1.1
  * Author                  : Andrei Calistru
- * Created / Last Modified : 27 May 2011
- * Last Modified By        : Andrei Calistru
+ * Created / Last Modified : 02 July 2011
+ * Last Modified By        : Marius-Cristian Donea
  * Description             : Deals Style Sheet.
 */
+
 #users-deals{
-/*    border: 2px solid #333333;*/
-/*    border-radius: 9px 9px 9px 9px;*/
     padding: 10px 0;
     position: relative;
     font-size: 14px;
 }
 
 .users-deals-alert-box{
-/*    margin: 0 10px;
-    padding: 10px;
-    border: 2px solid #D31B5D;
-    border-radius: 9px 9px 9px 9px;
-    background: #FFDCD7;*/
     background-color: #FFDCD7;
     border: 1px solid #D31B5D;
     border-radius: 5px 5px 5px 5px;
@@ -51,7 +46,6 @@
 }
 .user-deals-tabs{
     margin: 20px 0px 0;
-/*    border-bottom: 2px solid #6D8FBC;*/
     background: url('../images/sprite.png') -170px -598px;
     width: 685px;
     height: 32px;
@@ -63,15 +57,10 @@
 .user-deals-tabs ul li{
     float:left;
     display:block;
-/*    margin-right: 3px;   */
 }
 .user-deals-tabs ul li a{
-/*    border:2px solid #6D8FBC;*/
-/*    border-bottom-width: 0px;*/
-/*    border-radius: 9px 9px 0px 0px;*/
     display: block;
     color:#ffffff;
-/*    background: #6D8FBC;*/
     padding: 7px 10px;
     font-size: 15px;
     font-weight: bold;
@@ -86,11 +75,6 @@
 }
 
 .users-deals-warning-box{
-/*    margin: 0px 10px;
-    padding: 10px;
-    border: 2px solid #E8E488;
-    border-radius: 9px 9px 9px 9px;
-    background: #FFFEDF;*/
     background-color: #FFFEDF;
     border: 1px solid #E8E488;
     border-radius: 5px 5px 5px 5px;
@@ -108,13 +92,9 @@
 }
 
 .form-fields{
-/*    margin: 0 10px;*/
 }
 
 .uses-deals-add-form .steps{
-/*    border-bottom:1px solid #6D8FBC;
-    padding-bottom: 10px;
-    margin-bottom: 10px;*/
     border-bottom: 1px solid #dddddd;
     padding-bottom: 10px;
     color: #959595;
@@ -138,9 +118,6 @@
 }
 
 .add-deal-row .add-deal-row-left{
-/*    float: left;*/
-/*    width: 200px;*/
-/*    padding:5px;*/
 }
 
 .add-deal-row-left label{
@@ -158,13 +135,9 @@
 }
 
 .add-deal-row .add-deal-row-right{
-/*    float: left;*/
-/*    padding:5px 0 5px 5px;*/
 }
 
 .add-deal-values{
-/*    border:1px solid #737373;*/
-/*    color: #333333;*/
     margin-right: 20px;
     border-left: 1px solid #B4C6DD;
 }
@@ -172,16 +145,12 @@
 .add-deal-values .block{
     float:left;
     display: block;
-/*    width: 100px;*/
-/*    border:1px solid #737373;*/
-/*    background: #d4d4d4;*/
     padding-right: 0px;
     width: 161px;
 }
 
 .add-deal-values .block input{
     width: 60px;
-/*    float: left;*/
     border: 1px solid #D8D8D8;
     border-radius: 5px 5px 5px 5px;
     padding: 3px;
@@ -195,7 +164,6 @@
 }
 .add-deal-values .block-bottom{
     padding:10px 10px;
-/*    height: 22px;*/
     border-right:1px solid #B4C6DD;
     border-bottom:1px solid #B4C6DD;
     background: #fff;
@@ -204,9 +172,6 @@
 }
 
 .add-deal-values .block-bottom label{
-/*    width: 30px;*/
-/*    display: block;*/
-/*    float:left;*/
     padding: 2px;
 }
 
@@ -378,7 +343,6 @@
 }
 
 .users-daily-deals-list table th{
-/*    border-right: 1px solid #a0a0a0;*/
     border: 0;
     background: none;
     padding: 5px;
@@ -394,7 +358,6 @@
 }
 
 .users-daily-deals-list table td.no_deals{
-/*    border: 1px solid #d4d4d4;*/
     padding: 15px;
     text-align:center;
     font-style: italic;
